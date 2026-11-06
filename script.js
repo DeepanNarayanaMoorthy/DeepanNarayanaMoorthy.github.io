@@ -2,7 +2,7 @@
  * DEEPAN NARAYANAMOORTHY - PORTFOLIO INTERACTIVE SCRIPTS
  * Production-ready, zero-dependency ES6+ JavaScript
  * Includes: SRE Chaos Lab, FinOps Calculator, Recruiter Role Matcher,
- * Architecture Modals, Terminal, Synthesized Audio SFX, Confetti & Matrix Rain
+ * Architecture Modals, Terminal, Confetti & Matrix Rain
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // High-Impact Interactive Recruiter Features
   initTypewriterEffect();
-  initAudioSynthesizer();
   initChaosLab();
   initFinOpsCalculator();
   initRoleMatcher();
@@ -104,111 +103,6 @@ function initScrollSpy() {
 }
 
 /**
- * Web Audio Synthesizer (Zero external audio assets)
- */
-let audioCtx = null;
-let soundEnabled = false;
-
-function initAudioSynthesizer() {
-  const audioBtn = document.getElementById('audioToggleBtn');
-  const audioIcon = document.getElementById('audioIcon');
-  const audioText = document.getElementById('audioText');
-
-  if (!audioBtn) return;
-
-  audioBtn.addEventListener('click', () => {
-    soundEnabled = !soundEnabled;
-    if (soundEnabled && !audioCtx) {
-      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-      if (AudioContextClass) {
-        audioCtx = new AudioContextClass();
-      }
-    }
-
-    if (soundEnabled) {
-      audioBtn.classList.add('active');
-      if (audioIcon) audioIcon.textContent = '🔊';
-      if (audioText) audioText.textContent = 'SFX: ON';
-      playChimeSound();
-    } else {
-      audioBtn.classList.remove('active');
-      if (audioIcon) audioIcon.textContent = '🔇';
-      if (audioText) audioText.textContent = 'SFX: OFF';
-    }
-  });
-}
-
-function playClickSound() {
-  if (!soundEnabled || !audioCtx) return;
-  try {
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.04);
-    gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.04);
-  } catch (e) {}
-}
-
-function playTypingSound() {
-  if (!soundEnabled || !audioCtx) return;
-  try {
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(1000 + Math.random() * 350, audioCtx.currentTime);
-    gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.02);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.02);
-  } catch (e) {}
-}
-
-function playChimeSound() {
-  if (!soundEnabled || !audioCtx) return;
-  try {
-    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
-    notes.forEach((freq, idx) => {
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      const startTime = audioCtx.currentTime + (idx * 0.08);
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, startTime);
-      gain.gain.setValueAtTime(0.06, startTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.25);
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start(startTime);
-      osc.stop(startTime + 0.25);
-    });
-  } catch (e) {}
-}
-
-function playAlertSound() {
-  if (!soundEnabled || !audioCtx) return;
-  try {
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = 'sawtooth';
-    osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-    osc.frequency.setValueAtTime(330, audioCtx.currentTime + 0.12);
-    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.25);
-  } catch (e) {}
-}
-
-/**
  * Interactive DevOps / SRE Terminal Emulator
  */
 function initDevOpsTerminal() {
@@ -293,7 +187,6 @@ function initDevOpsTerminal() {
   // Pill click triggers
   pills.forEach((pill) => {
     pill.addEventListener('click', () => {
-      playClickSound();
       const cmd = pill.getAttribute('data-cmd');
       if (!cmd) return;
       if (terminalInput) terminalInput.value = '';
@@ -352,7 +245,6 @@ function initDevOpsTerminal() {
 
     if (cmd === 'hire' || cmd === 'hire deepan') {
       triggerConfetti();
-      playChimeSound();
       renderResponse(cmd, commands['hire']);
       return;
     }
@@ -408,7 +300,6 @@ function initChaosLab() {
 
   // Step 1: Inject Chaos
   btnInject.addEventListener('click', () => {
-    playAlertSound();
     btnInject.style.display = 'none';
     btnHeal.style.display = 'inline-flex';
     if (alertBanner) alertBanner.style.display = 'flex';
@@ -431,7 +322,6 @@ function initChaosLab() {
 
   // Step 2: Trigger Auto-Heal Remediation
   btnHeal.addEventListener('click', () => {
-    playClickSound();
     btnHeal.disabled = true;
     btnHeal.textContent = 'Remediating...';
 
@@ -478,7 +368,6 @@ function initChaosLab() {
           if (telemPodsVal) telemPodsVal.textContent = '6 / 6';
 
           triggerConfetti();
-          playChimeSound();
         }
       }, log.delay);
     });
@@ -487,7 +376,6 @@ function initChaosLab() {
   // Step 3: Reset Environment
   if (btnReset) {
     btnReset.addEventListener('click', () => {
-      playClickSound();
       btnReset.style.display = 'none';
       btnInject.style.display = 'inline-flex';
       btnHeal.style.display = 'none';
@@ -537,11 +425,9 @@ function initFinOpsCalculator() {
 
   spendSlider.addEventListener('input', () => {
     updateFinOps();
-    playClickSound();
   });
   teamSlider.addEventListener('input', () => {
     updateFinOps();
-    playClickSound();
   });
 }
 
@@ -613,7 +499,6 @@ function initRoleMatcher() {
 
   roleTabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      playClickSound();
       roleTabs.forEach(t => {
         t.classList.remove('active');
         t.setAttribute('aria-selected', 'false');
@@ -652,7 +537,6 @@ function initRoleMatcher() {
   // Highlight Matching Skills & Experience across page
   if (btnHighlight) {
     btnHighlight.addEventListener('click', () => {
-      playClickSound();
       const roleData = rolesData[currentRoleKey];
       if (!roleData) return;
 
@@ -983,7 +867,6 @@ function initCaseStudyModals() {
 
   cards.forEach(card => {
     card.addEventListener('click', () => {
-      playClickSound();
       const idx = parseInt(card.getAttribute('data-case-index'), 10);
       const data = caseStudiesData[idx];
       if (!data) return;
@@ -1023,7 +906,6 @@ function initCaseStudyModals() {
   }
 
   function closeModal() {
-    playClickSound();
     backdrop.classList.remove('open');
     backdrop.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
@@ -1081,7 +963,6 @@ function toggleMatrixRain(enable) {
   if (!overlay || !canvas) return;
 
   if (enable) {
-    playClickSound();
     overlay.classList.add('active');
     overlay.setAttribute('aria-hidden', 'false');
 
@@ -1246,7 +1127,6 @@ function initKonamiCode() {
 
   function triggerEasterEgg() {
     triggerConfetti();
-    playChimeSound();
     if (easterModal) {
       easterModal.classList.add('open');
       easterModal.setAttribute('aria-hidden', 'false');
@@ -1255,7 +1135,6 @@ function initKonamiCode() {
 
   if (easterCloseBtn && easterModal) {
     easterCloseBtn.addEventListener('click', () => {
-      playClickSound();
       easterModal.classList.remove('open');
       easterModal.setAttribute('aria-hidden', 'true');
     });
@@ -1277,7 +1156,6 @@ function initSkillsFilter() {
 
   filterBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      playClickSound();
       filterBtns.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
 
@@ -1306,7 +1184,6 @@ function initClipboard() {
   if (!copyBtn) return;
 
   copyBtn.addEventListener('click', async () => {
-    playClickSound();
     const email = 'deepanntech@gmail.com';
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1345,7 +1222,6 @@ function initContactForm() {
 
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    playClickSound();
 
     const name = document.getElementById('senderName')?.value.trim() || 'Visitor';
     const subject = document.getElementById('senderSubject')?.value.trim() || 'Portfolio Inquiry';
@@ -1404,10 +1280,7 @@ function initTypewriterEffect() {
       charIndex = Math.min(currentPhrase.length, charIndex + 1);
       el.textContent = currentPhrase.substring(0, charIndex);
 
-      // Audio click feedback if enabled
-      if (charIndex % 2 === 0 && typeof playTypingSound === 'function') {
-        playTypingSound();
-      }
+
 
       if (charIndex === currentPhrase.length) {
         isDeleting = true;
@@ -1462,7 +1335,6 @@ function initFloatingDock() {
 
   personaBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      playClickSound();
       personaBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
@@ -1497,7 +1369,6 @@ function initExperienceTechFilter() {
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      playClickSound();
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
@@ -1600,7 +1471,6 @@ function initArchitectureTopology() {
 
   nodes.forEach(node => {
     node.addEventListener('click', () => {
-      playClickSound();
       nodes.forEach(n => n.classList.remove('active'));
       node.classList.add('active');
 
@@ -1619,7 +1489,6 @@ function initArchitectureTopology() {
 
   if (nodeFilterBtn) {
     nodeFilterBtn.addEventListener('click', () => {
-      playClickSound();
       const targetCard = document.querySelector(`.interactive-case-card[data-case-index="${activeCaseIndex}"]`);
       if (targetCard) {
         targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1696,7 +1565,6 @@ function initSkillSearch() {
 
   if (clearBtn) {
     clearBtn.addEventListener('click', () => {
-      playClickSound();
       input.value = '';
       input.dispatchEvent(new Event('input'));
       input.focus();
@@ -1820,7 +1688,6 @@ function initMetricCardDetails() {
 
   cards.forEach(card => {
     card.addEventListener('click', () => {
-      playClickSound();
       const idx = parseInt(card.getAttribute('data-metric-index'), 10);
       const data = metricsData[idx];
       if (!data) return;
@@ -1850,7 +1717,6 @@ function initMetricCardDetails() {
   });
 
   function closeMetricModal() {
-    playClickSound();
     backdrop.classList.remove('open');
     backdrop.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
@@ -1885,7 +1751,6 @@ function initContactPresets() {
 
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
-      playClickSound();
       const subject = chip.getAttribute('data-subject') || '';
       const msg = chip.getAttribute('data-msg') || '';
 
