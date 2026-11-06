@@ -190,14 +190,14 @@
       </a>
 
       <div class="nav-menu" id="navMenu">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#recruiter-summary" class="nav-link">For Recruiters</a>
-        <a href="#sre-lab" class="nav-link">SRE Lab</a>
         <a href="#experience" class="nav-link">Experience</a>
-        <a href="#case-studies" class="nav-link">Case Studies</a>
         <a href="#skills" class="nav-link">Skills</a>
+        <a href="#case-studies" class="nav-link">Case Studies</a>
+        <a href="#about" class="nav-link">Pillars</a>
         <a href="#projects" class="nav-link">Projects</a>
         <a href="#certifications" class="nav-link">Certifications</a>
+        <a href="#recruiter-summary" class="nav-link">For Recruiters</a>
+        <a href="#sre-lab" class="nav-link">SRE Lab</a>
         <a href="#contact" class="nav-link">Contact</a>
       </div>
 
@@ -216,6 +216,7 @@
   </nav>
 
   <main>
+
     <!-- HERO SECTION -->
     <section id="hero" class="hero-section">
       <div class="container hero-container">
@@ -461,354 +462,6 @@
             <div class="metric-value">10+</div>
             <div class="metric-label">Blue/Green Deployments</div>
             <div class="metric-desc">Critical releases executed with zero downtime &amp; verified rollback</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- INTERACTIVE SRE LAB & FINOPS ROI CALCULATOR -->
-    <section id="sre-lab" class="section sre-lab-section">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="section-tag">LIVE INTERACTIVE PLAYGROUND</span>
-          <h2 class="section-title">SRE Chaos Lab &amp; Cloud FinOps Calculator</h2>
-          <p class="section-subtitle">
-            Experience first-hand how Deepan architects self-healing cloud platforms and drives tangible FinOps cost optimization.
-          </p>
-        </div>
-
-        <div class="lab-grid">
-          <!-- SRE Chaos Lab Card -->
-          <div class="lab-card card" id="chaosLabCard">
-            <div class="lab-card-header">
-              <div class="lab-title-group">
-                <span class="status-dot pulse" id="chaosStatusDot"></span>
-                <h3 class="lab-title">SRE Incident &amp; Auto-Heal Simulator</h3>
-              </div>
-              <span class="lab-badge badge-green" id="chaosStateBadge">🟢 SYSTEM HEALTHY</span>
-            </div>
-
-            <p class="lab-desc">
-              Test Deepan's multi-AZ high-availability architecture. Trigger a simulated AWS Zone failure and watch the automated self-healing pipeline restore 100% service availability.
-            </p>
-
-            <!-- Live Telemetry Monitor -->
-            <div class="telemetry-grid">
-              <div class="telemetry-item" id="telemUptime">
-                <span class="telem-label">Uptime SLO</span>
-                <span class="telem-val text-emerald" id="telemUptimeVal">99.9%</span>
-                <span class="telem-sub">Multi-Region Active</span>
-              </div>
-              <div class="telemetry-item" id="telemLatency">
-                <span class="telem-label">P99 Latency</span>
-                <span class="telem-val text-cyan" id="telemLatencyVal">18 ms</span>
-                <span class="telem-sub">Nominal SLA</span>
-              </div>
-              <div class="telemetry-item" id="telemErrors">
-                <span class="telem-label">5xx Error Rate</span>
-                <span class="telem-val text-emerald" id="telemErrorsVal">0.01%</span>
-                <span class="telem-sub">Healthy Ingress</span>
-              </div>
-              <div class="telemetry-item" id="telemPods">
-                <span class="telem-label">Healthy Pods</span>
-                <span class="telem-val text-blue" id="telemPodsVal">6 / 6</span>
-                <span class="telem-sub">us-east-1a &amp; 1b</span>
-              </div>
-            </div>
-
-            <!-- Incident Alert Banner (Hidden by default) -->
-            <div class="incident-alert-banner" id="incidentAlertBanner" style="display: none;">
-              <div class="alert-icon">🚨</div>
-              <div class="alert-content">
-                <strong>P2 INCIDENT IN PROGRESS:</strong> Datadog alert #492 triggered! Pod crash in us-east-1a, Latency spike to 465ms, HTTP 502 errors detected.
-              </div>
-            </div>
-
-            <!-- Auto-Heal Live Console -->
-            <div class="heal-console" id="healConsole" style="display: none;">
-              <div class="heal-console-header">
-                <span>automated-remediation.log</span>
-                <span class="heal-pulse">EXEC</span>
-              </div>
-              <div class="heal-console-body" id="healConsoleBody"></div>
-            </div>
-
-            <!-- Interactive Action Controls -->
-            <div class="lab-actions">
-              <button class="btn btn-danger btn-sm" id="btnInjectChaos">
-                <span>💣 Inject Chaos: Simulate AZ Outage</span>
-              </button>
-              <button class="btn btn-success btn-sm pulse-btn" id="btnAutoHeal" style="display: none;">
-                <span>🛡️ Trigger Auto-Heal (Terraform HPA)</span>
-              </button>
-              <button class="btn btn-outline btn-sm" id="btnResetChaos" style="display: none;">
-                <span>🔄 Reset Environment</span>
-              </button>
-            </div>
-            <div class="lab-footnote" id="chaosFootnote">
-              Simulates automated Datadog webhook ➔ Terraform Auto-Scaling Policy ➔ ALB target group failover.
-            </div>
-          </div>
-
-          <!-- FinOps Cloud ROI Calculator -->
-          <div class="lab-card card" id="finopsCard">
-            <div class="lab-card-header">
-              <div class="lab-title-group">
-                <span class="lab-icon-finops">💰</span>
-                <h3 class="lab-title">Interactive Cloud FinOps Calculator</h3>
-              </div>
-              <span class="lab-badge text-amber">FINOPS SAVINGS</span>
-            </div>
-
-            <p class="lab-desc">
-              Estimate quantifiable cost savings and engineering velocity reclaimed by adding Deepan to your cloud platform team.
-            </p>
-
-            <div class="finops-sliders">
-              <div class="slider-group">
-                <div class="slider-header">
-                  <label for="monthlySpendSlider" class="slider-label">Current Monthly Cloud Spend (AWS/Azure):</label>
-                  <span class="slider-display" id="spendDisplay">$35,000 / mo</span>
-                </div>
-                <input type="range" id="monthlySpendSlider" min="5000" max="150000" step="2500" value="35000" class="finops-range">
-                <div class="slider-ticks">
-                  <span>$5K</span>
-                  <span>$50K</span>
-                  <span>$100K</span>
-                  <span>$150K</span>
-                </div>
-              </div>
-
-              <div class="slider-group">
-                <div class="slider-header">
-                  <label for="teamSizeSlider" class="slider-label">Engineering Team Size (Developers):</label>
-                  <span class="slider-display" id="teamDisplay">30 Developers</span>
-                </div>
-                <input type="range" id="teamSizeSlider" min="5" max="150" step="5" value="30" class="finops-range">
-                <div class="slider-ticks">
-                  <span>5 devs</span>
-                  <span>50 devs</span>
-                  <span>100 devs</span>
-                  <span>150 devs</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Dynamic ROI Results Grid -->
-            <div class="roi-results-grid">
-              <div class="roi-item">
-                <span class="roi-metric" id="roiAnnualSavings">$92,400</span>
-                <span class="roi-label">Est. Annual Cloud Savings</span>
-                <span class="roi-detail">Via EFS rightsizing &amp; auto-parked sandboxes</span>
-              </div>
-              <div class="roi-item">
-                <span class="roi-metric" id="roiHoursSaved">135 hrs</span>
-                <span class="roi-label">Dev Hours Reclaimed / Mo</span>
-                <span class="roi-detail">Via 80% CI rerun acceleration &amp; OIDC</span>
-              </div>
-            </div>
-
-            <div class="finops-verdict-box">
-              <span class="verdict-icon">⚡</span>
-              <p class="verdict-text" id="verdictText">
-                <strong>FinOps ROI:</strong> Deepan pays for his own compensation within the first <strong>75 days</strong> through automated infrastructure rightsizing alone.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CORE PHILOSOPHY & PILLARS -->
-    <section id="about" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">ENGINEERING PILLARS</span>
-          <h2 class="section-title">How I Build & Operate Cloud Platforms</h2>
-          <p class="section-subtitle">
-            Reliability isn't an afterthought. It is architected into every Terraform module, CI/CD pipeline, and monitor.
-          </p>
-        </div>
-
-        <div class="pillars-grid">
-          <div class="pillar-card">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            </div>
-            <h3>Infrastructure as Code First</h3>
-            <p>
-              Every resource is defined declaratively using <strong>Terraform</strong>, <strong>AWS CloudFormation</strong>, or <strong>Azure ARM</strong>. Zero console drift, repeatable multi-account environments, and automated state synchronization across regions.
-            </p>
-            <ul class="pillar-checklist">
-              <li>Multi-account VPC peering & networking topologies</li>
-              <li>Role-separated database & secrets isolation</li>
-              <li>Preflight automated validation before apply</li>
-            </ul>
-          </div>
-
-          <div class="pillar-card">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            </div>
-            <h3>Zero Static Cloud Credentials</h3>
-            <p>
-              Pioneered the elimination of long-lived AWS IAM access keys in CI/CD. Leveraged <strong>GitHub OIDC</strong> federation with short-lived STS tokens, private-key Snowflake auth, and automated secret expiry alerts.
-            </p>
-            <ul class="pillar-checklist">
-              <li>Ephemeral token exchange via OpenID Connect</li>
-              <li>Least-privilege scoped IAM & Azure RBAC roles</li>
-              <li>Automated Key Vault & SAS token renewal bots</li>
-            </ul>
-          </div>
-
-          <div class="pillar-card">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-            </div>
-            <h3>SLI/SLO Observability & SRE</h3>
-            <p>
-              Designed synthetic end-to-end user checks, alert routing to reduce noise, and deep integration between <strong>Datadog</strong> and <strong>Atlassian Statuspage</strong> for automated public incident transparency and L1 triage runbooks.
-            </p>
-            <ul class="pillar-checklist">
-              <li>Synthetic probes & customer impact monitors</li>
-              <li>Automated incident lifecycle & root cause analysis</li>
-              <li>Monthly availability & uptime reporting for finance</li>
-            </ul>
-          </div>
-
-          <div class="pillar-card">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-            </div>
-            <h3>Multi-Tenant Cloud Isolation</h3>
-            <p>
-              Engineered isolated Customer Sandboxes across US & EU clusters for tier-1 enterprise clients, with deterministic DNS hashing, dedicated database instances, and cross-account DataSync.
-            </p>
-            <ul class="pillar-checklist">
-              <li>Tenant-isolated analytics & microservices</li>
-              <li>Fail-fast guardrails preventing cross-tenant bleed</li>
-              <li>Auto-parking idle environments saving cloud spend</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- RECRUITER QUICK-HIRE CHEAT SHEET (SEO & FAST ATS SCAN) -->
-    <section id="recruiter-summary" class="section recruiter-section" aria-label="Recruiter Quick Reference and Hiring Summary">
-      <div class="container">
-        <div class="recruiter-box card">
-          <div class="recruiter-header">
-            <div class="r-badge-group">
-              <span class="status-dot pulse"></span>
-              <span class="r-tag">HIRING QUICK-REFERENCE</span>
-            </div>
-            <h2 class="r-title">Recruiter &amp; Hiring Manager Cheat Sheet</h2>
-            <p class="r-subtitle">Key qualifications, target roles, and core competencies at a glance.</p>
-          </div>
-
-          <!-- Interactive Role Fit Matcher -->
-          <div class="role-matcher-container">
-            <div class="role-matcher-header">
-              <span class="role-matcher-tag">INTERACTIVE CANDIDATE FIT ASSESSMENT</span>
-              <h3 class="role-matcher-title">Select Your Open Role to Evaluate Alignment:</h3>
-            </div>
-            
-            <div class="role-selector-tabs" role="tablist">
-              <button class="role-tab active" data-role="devops" role="tab" aria-selected="true">
-                🎯 DevOps &amp; CI/CD
-              </button>
-              <button class="role-tab" data-role="sre" role="tab" aria-selected="false">
-                ⚡ Site Reliability (SRE)
-              </button>
-              <button class="role-tab" data-role="cloud" role="tab" aria-selected="false">
-                ☁️ Cloud Infrastructure
-              </button>
-              <button class="role-tab" data-role="platform" role="tab" aria-selected="false">
-                🏗️ Platform &amp; IaC
-              </button>
-            </div>
-
-            <div class="role-evaluation-panel" id="roleEvaluationPanel">
-              <div class="role-score-gauge">
-                <div class="gauge-circle">
-                  <svg viewBox="0 0 100 100" class="gauge-svg">
-                    <circle cx="50" cy="50" r="42" class="gauge-bg"></circle>
-                    <circle cx="50" cy="50" r="42" class="gauge-progress" id="gaugeProgress"></circle>
-                  </svg>
-                  <div class="gauge-value" id="gaugeVal">98%</div>
-                </div>
-                <div class="gauge-label">
-                  <strong class="text-emerald" id="gaugeText">Exceptional Fit</strong>
-                  <span>Production-Proven</span>
-                </div>
-              </div>
-
-              <div class="role-details-content">
-                <h4 class="role-fit-heading" id="roleFitHeading">Senior DevOps &amp; CI/CD Engineer</h4>
-                <ul class="role-fit-bullets" id="roleFitBullets">
-                  <li><strong>Zero Static CI Secrets:</strong> Eradicated IAM access keys across 10+ core repos via GitHub OIDC token federation.</li>
-                  <li><strong>80% CI Rerun Acceleration:</strong> Slashed build retries from 19.5 min to 3.9 min using AWS ECR layer reuse.</li>
-                  <li><strong>Multi-Cloud Pipelines:</strong> Standardized declarative YAML CI/CD pipelines across AWS &amp; Azure for 30+ services.</li>
-                </ul>
-
-                <div class="role-fit-actions">
-                  <button class="btn btn-outline btn-sm" id="btnHighlightMatchingSkills">
-                    <span>⚡ Highlight Matching Skills &amp; Projects on Page</span>
-                  </button>
-                  <a href="mailto:deepanntech@gmail.com?subject=Interview%20Request%20for%20DevOps%20Role" class="btn btn-primary btn-sm" id="roleEmailBtn">
-                    <span>📅 Request 15-Min Quick Screen</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="recruiter-grid">
-            <div class="r-grid-item">
-              <span class="r-label">🎯 Target Roles</span>
-              <strong class="r-value">Senior DevOps Engineer • Cloud Infrastructure Engineer • Site Reliability Engineer (SRE) • Platform Engineer</strong>
-            </div>
-
-            <div class="r-grid-item">
-              <span class="r-label">⏱️ Total Experience</span>
-              <strong class="r-value">3+ Years Production Multi-Cloud (AWS &amp; Azure Enterprise SaaS)</strong>
-            </div>
-
-            <div class="r-grid-item">
-              <span class="r-label">☁️ Primary Cloud Platforms</span>
-              <strong class="r-value">AWS (ECS/Fargate, RDS, Lambda, S3, CloudFront) • Microsoft Azure (App Service, Functions, Key Vault)</strong>
-            </div>
-
-            <div class="r-grid-item">
-              <span class="r-label">⚙️ Core Technologies</span>
-              <strong class="r-value">Terraform (IaC) • GitHub Actions OIDC • Datadog SRE • Docker • Python • Bash • PostgreSQL • Snowflake</strong>
-            </div>
-
-            <div class="r-grid-item">
-              <span class="r-label">🏆 Certifications &amp; Degrees</span>
-              <strong class="r-value">AWS Certified Solutions Architect – Associate • M.Sc. Theoretical Computer Science (PSG Tech, 8.0/10)</strong>
-            </div>
-
-            <div class="r-grid-item">
-              <span class="r-label">📍 Location &amp; Work Preference</span>
-              <strong class="r-value">Chennai / Coimbatore, Tamil Nadu, India • Open to Remote, Hybrid &amp; Relocation</strong>
-            </div>
-          </div>
-
-          <div class="recruiter-actions">
-            <a href="Deepan_Cloud_DevOps_SRE_Resume.pdf" download="Deepan_Narayanamoorthy_DevOps_Resume.pdf" class="btn btn-primary btn-sm">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              <span>Download 1-Page Resume (PDF)</span>
-            </a>
-            <a href="mailto:deepanntech@gmail.com" class="btn btn-secondary btn-sm">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              <span>Email: deepanntech@gmail.com</span>
-            </a>
-            <a href="https://www.linkedin.com/in/deepann/" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-              <span>Connect on LinkedIn</span>
-            </a>
           </div>
         </div>
       </div>
@@ -1082,6 +735,309 @@
                 <span class="tech-pill">SQL</span>
                 <span class="tech-pill">AWS S3</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS MATRIX -->
+    <section id="skills" class="section skills-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">CAPABILITIES</span>
+          <h2 class="section-title">Technical Skills & Tooling</h2>
+          <p class="section-subtitle">
+            Tools, technologies, and paradigms battle-tested across multi-cloud production environments.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+                <!-- Live Instant Skill Search Bar -->
+        <div class="skill-search-container card">
+          <div class="skill-search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="skillSearchInput" class="skill-search-input" placeholder="Type to filter 49+ skills in real time (e.g., Docker, Terraform, OIDC, Datadog, Python...)" autocomplete="off" spellcheck="false">
+            <button id="skillSearchClearBtn" class="skill-clear-btn" style="display: none;" aria-label="Clear search">✕</button>
+          </div>
+          <span class="skill-search-status" id="skillSearchStatus">Showing all 49 skills</span>
+        </div>
+
+        <div class="skills-filter-row">
+          <button class="skill-filter-btn active" data-filter="all">All Skills</button>
+          <button class="skill-filter-btn" data-filter="cloud">Cloud & Platforms</button>
+          <button class="skill-filter-btn" data-filter="iac">IaC & Containers</button>
+          <button class="skill-filter-btn" data-filter="cicd">CI/CD & Security</button>
+          <button class="skill-filter-btn" data-filter="sre">Observability & SRE</button>
+          <button class="skill-filter-btn" data-filter="data">Data & Scripting</button>
+        </div>
+
+        <div class="skills-grid">
+          <!-- AWS -->
+          <div class="skill-category-card" data-category="cloud">
+            <div class="cat-header">
+              <div class="cat-icon text-amber">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+              </div>
+              <h4>Amazon Web Services (AWS)</h4>
+            </div>
+            <div class="skill-pills-list">
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+                ECS / Fargate
+              </span>
+              <span class="badge highlight-badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2"><path d="M4 19l8-14 3 6 5 8M10 13l4 6"/></svg>
+                AWS Lambda
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                CloudFront &amp; Edge
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><rect x="2" y="7" width="6" height="6" rx="1"/><rect x="16" y="7" width="6" height="6" rx="1"/><path d="M8 10h8M12 10v7M9 17h6"/></svg>
+                VPC &amp; NLB/ALB
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><rect x="9" y="10" width="6" height="5" rx="1"/></svg>
+                Security Groups
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM4 7l8-5 8 5"/></svg>
+                S3 &amp; EFS
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                RDS &amp; Aurora
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                AWS DataSync
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Secrets Manager &amp; SSM
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M17 3v6h6M3 13a9 9 0 0 0 15 6.7L23 21"/></svg>
+                AWS DMS
+              </span>
+            </div>
+          </div>
+
+          <!-- Azure -->
+          <div class="skill-category-card" data-category="cloud">
+            <div class="cat-header">
+              <div class="cat-icon text-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              </div>
+              <h4>Microsoft Azure</h4>
+            </div>
+            <div class="skill-pills-list">
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                Azure App Service
+              </span>
+              <span class="badge highlight-badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Azure Functions
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M21 2l-2 2m-2-2l2 2M3 11a8 8 0 0 1 15.3-3.3L22 11l-3.3 3.3A8 8 0 1 1 3 11z"/></svg>
+                Azure Key Vault
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                Azure Monitor &amp; App Insights
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><circle cx="11.5" cy="14.5" r="2.5"/><path d="M13.5 16.5L16 19"/></svg>
+                Log Analytics &amp; KQL
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>
+                Storage Accounts
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                Event Hubs &amp; MSI
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                Azure RBAC
+              </span>
+            </div>
+          </div>
+
+          <!-- IaC & Containers -->
+          <div class="skill-category-card" data-category="iac">
+            <div class="cat-header">
+              <div class="cat-icon text-purple">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              </div>
+              <h4>IaC &amp; Containers</h4>
+            </div>
+            <div class="skill-pills-list">
+              <span class="badge highlight-badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="#a855f7"><path d="M15.5 8.5L22 4.7v7.6l-6.5 3.8zm-7 0l6.5-3.8v7.6L8.5 16.1zm0 7.8l6.5-3.8v7.6L8.5 24zm-7-4.1l6.5-3.8v7.6L1.5 16z"/></svg>
+                Terraform (HCL)
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                AWS CloudFormation
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                Azure ARM Templates
+              </span>
+              <span class="badge highlight-badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="#38bdf8"><path d="M13.9 11.2c-.4 0-.8.3-.8.8v1.7c0 .4.4.8.8.8h1.7c.4 0 .8-.4.8-.8V12c0-.5-.4-.8-.8-.8h-1.7zm-3.3 0c-.5 0-.8.3-.8.8v1.7c0 .4.3.8.8.8h1.7c.4 0 .8-.4.8-.8V12c0-.5-.4-.8-.8-.8h-1.7zm-3.3 0c-.5 0-.8.3-.8.8v1.7c0 .4.3.8.8.8h1.7c.4 0 .8-.4.8-.8V12c0-.5-.4-.8-.8-.8H7.3zm-3.3 0c-.4 0-.8.3-.8.8v1.7c0 .4.4.8.8.8h1.7c.4 0 .8-.4.8-.8V12c0-.5-.4-.8-.8-.8H4zm6.6-3.3c-.4 0-.8.3-.8.8v1.7c0 .4.4.8.8.8h1.7c.4 0 .8-.4.8-.8V8.7c0-.5-.4-.8-.8-.8h-1.7zm-3.3 0c-.5 0-.8.3-.8.8v1.7c0 .4.3.8.8.8h1.7c.4 0 .8-.4.8-.8V8.7c0-.5-.4-.8-.8-.8H7.3zm-3.3 0c-.5 0-.8.3-.8.8v1.7c0 .4.3.8.8.8h1.7c.4 0 .8-.4.8-.8V8.7c0-.5-.4-.8-.8-.8H4zm6.6-3.4c-.4 0-.8.4-.8.8v1.8c0 .4.4.8.8.8h1.7c.4 0 .8-.4.8-.8V6.1c0-.4-.4-.8-.8-.8h-1.7zm11.5 8.7c-.5-.4-1.3-.5-2-.2-.2-.6-.7-1-1.3-1.1-.3 0-.6.1-.8.2-.1-.6-.5-1.1-1.1-1.4l-.5-.3v2.7h-9.9c-.3 0-.6.1-.8.3-.4.4-.7 1.1-.7 2 0 1.9 1.1 3.8 2.6 4.9 1.5 1.1 3.5 1.5 5.5 1.5 4.6 0 8.5-2.6 9.8-6.9.1-.5 0-1-.3-1.3l-.5-.4z"/></svg>
+                Docker
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/></svg>
+                Multi-arch Builds (amd64)
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                AWS ECR
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                State Management
+              </span>
+            </div>
+          </div>
+
+          <!-- CI/CD & Security -->
+          <div class="skill-category-card" data-category="cicd">
+            <div class="cat-header">
+              <div class="cat-icon text-emerald">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h4>CI/CD &amp; DevSecOps</h4>
+            </div>
+            <div class="skill-pills-list">
+              <span class="badge highlight-badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+                GitHub Actions
+              </span>
+              <span class="badge highlight-badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                GitHub OIDC
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
+                Azure DevOps Pipelines
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                AWS IAM Roles / STS
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Auth0 Authentication
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                SonarQube
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/></svg>
+                PrismaScan
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="#34d399"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M6 14c0 3 2.7 5 6 5s6-2 6-5"/></svg>
+                JFrog Artifactory
+              </span>
+            </div>
+          </div>
+
+          <!-- SRE & Observability -->
+          <div class="skill-category-card" data-category="sre">
+            <div class="cat-header">
+              <div class="cat-icon text-rose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <h4>Observability &amp; SRE</h4>
+            </div>
+            <div class="skill-pills-list">
+              <span class="badge highlight-badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="#c084fc"><path d="M19 5h-2V3a1 1 0 0 0-2 0v2H9V3a1 1 0 0 0-2 0v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H5V9h14v12z"/></svg>
+                Datadog Synthetics
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                Datadog Monitors &amp; Alerts
+              </span>
+              <span class="badge highlight-badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                Atlassian Statuspage
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                AWS CloudWatch
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                SLI / SLO Tracking
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                On-Call Incident Triage
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                Root Cause Analysis (RCA)
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14l2 2 4-4"/></svg>
+                Postmortem Leadership
+              </span>
+            </div>
+          </div>
+
+          <!-- Scripting & Data Systems -->
+          <div class="skill-category-card" data-category="data">
+            <div class="cat-header">
+              <div class="cat-icon text-cyan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              </div>
+              <h4>Scripting &amp; Data Systems</h4>
+            </div>
+            <div class="skill-pills-list">
+              <span class="badge highlight-badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="#38bdf8"><path d="M11.9 1a5 5 0 0 0-5 5v2h5v1H4a5 5 0 0 0-5 5 5 5 0 0 0 5 5h2v-2a3 3 0 0 1 3-3h5a3 3 0 0 0 3-3V6a5 5 0 0 0-5-5zm-2.5 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm10.6 6.5a5 5 0 0 0-5-5h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 0-3 3v5a5 5 0 0 0 5 5h5v-1h7a5 5 0 0 0 5-5 5 5 0 0 0-5-5zm-3.1 11.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+                Python
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                Bash / Linux Shell
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><polyline points="4 8 10 12 4 16"/><line x1="12" y1="16" x2="20" y2="16"/></svg>
+                PowerShell
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                SQL &amp; PostgreSQL
+              </span>
+              <span class="badge highlight-badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/></svg>
+                Snowflake
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="#10b981"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Supabase
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                Typesense
+              </span>
+              <span class="badge">
+                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                YAML / JSON
+              </span>
             </div>
           </div>
         </div>
@@ -1482,304 +1438,76 @@
           </div>
     </section>
 
-    <!-- TECHNICAL SKILLS MATRIX -->
-    <section id="skills" class="section skills-section">
+    <!-- CORE PHILOSOPHY & PILLARS -->
+    <section id="about" class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">CAPABILITIES</span>
-          <h2 class="section-title">Technical Skills & Tooling</h2>
+          <span class="section-tag">ENGINEERING PILLARS</span>
+          <h2 class="section-title">How I Build & Operate Cloud Platforms</h2>
           <p class="section-subtitle">
-            Tools, technologies, and paradigms battle-tested across multi-cloud production environments.
+            Reliability isn't an afterthought. It is architected into every Terraform module, CI/CD pipeline, and monitor.
           </p>
         </div>
 
-        <!-- Filter Buttons -->
-                <!-- Live Instant Skill Search Bar -->
-        <div class="skill-search-container card">
-          <div class="skill-search-box">
-            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" id="skillSearchInput" class="skill-search-input" placeholder="Type to filter 49+ skills in real time (e.g., Docker, Terraform, OIDC, Datadog, Python...)" autocomplete="off" spellcheck="false">
-            <button id="skillSearchClearBtn" class="skill-clear-btn" style="display: none;" aria-label="Clear search">✕</button>
-          </div>
-          <span class="skill-search-status" id="skillSearchStatus">Showing all 49 skills</span>
-        </div>
-
-        <div class="skills-filter-row">
-          <button class="skill-filter-btn active" data-filter="all">All Skills</button>
-          <button class="skill-filter-btn" data-filter="cloud">Cloud & Platforms</button>
-          <button class="skill-filter-btn" data-filter="iac">IaC & Containers</button>
-          <button class="skill-filter-btn" data-filter="cicd">CI/CD & Security</button>
-          <button class="skill-filter-btn" data-filter="sre">Observability & SRE</button>
-          <button class="skill-filter-btn" data-filter="data">Data & Scripting</button>
-        </div>
-
-        <div class="skills-grid">
-          <!-- AWS -->
-          <div class="skill-category-card" data-category="cloud">
-            <div class="cat-header">
-              <div class="cat-icon text-amber">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-              </div>
-              <h4>Amazon Web Services (AWS)</h4>
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             </div>
-            <div class="skill-pills-list">
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
-                ECS / Fargate
-              </span>
-              <span class="badge highlight-badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2"><path d="M4 19l8-14 3 6 5 8M10 13l4 6"/></svg>
-                AWS Lambda
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                CloudFront &amp; Edge
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><rect x="2" y="7" width="6" height="6" rx="1"/><rect x="16" y="7" width="6" height="6" rx="1"/><path d="M8 10h8M12 10v7M9 17h6"/></svg>
-                VPC &amp; NLB/ALB
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><rect x="9" y="10" width="6" height="5" rx="1"/></svg>
-                Security Groups
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM4 7l8-5 8 5"/></svg>
-                S3 &amp; EFS
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-                RDS &amp; Aurora
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                AWS DataSync
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                Secrets Manager &amp; SSM
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M17 3v6h6M3 13a9 9 0 0 0 15 6.7L23 21"/></svg>
-                AWS DMS
-              </span>
-            </div>
+            <h3>Infrastructure as Code First</h3>
+            <p>
+              Every resource is defined declaratively using <strong>Terraform</strong>, <strong>AWS CloudFormation</strong>, or <strong>Azure ARM</strong>. Zero console drift, repeatable multi-account environments, and automated state synchronization across regions.
+            </p>
+            <ul class="pillar-checklist">
+              <li>Multi-account VPC peering & networking topologies</li>
+              <li>Role-separated database & secrets isolation</li>
+              <li>Preflight automated validation before apply</li>
+            </ul>
           </div>
 
-          <!-- Azure -->
-          <div class="skill-category-card" data-category="cloud">
-            <div class="cat-header">
-              <div class="cat-icon text-blue">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-              </div>
-              <h4>Microsoft Azure</h4>
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             </div>
-            <div class="skill-pills-list">
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                Azure App Service
-              </span>
-              <span class="badge highlight-badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                Azure Functions
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M21 2l-2 2m-2-2l2 2M3 11a8 8 0 0 1 15.3-3.3L22 11l-3.3 3.3A8 8 0 1 1 3 11z"/></svg>
-                Azure Key Vault
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                Azure Monitor &amp; App Insights
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><circle cx="11.5" cy="14.5" r="2.5"/><path d="M13.5 16.5L16 19"/></svg>
-                Log Analytics &amp; KQL
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>
-                Storage Accounts
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-                Event Hubs &amp; MSI
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
-                Azure RBAC
-              </span>
-            </div>
+            <h3>Zero Static Cloud Credentials</h3>
+            <p>
+              Pioneered the elimination of long-lived AWS IAM access keys in CI/CD. Leveraged <strong>GitHub OIDC</strong> federation with short-lived STS tokens, private-key Snowflake auth, and automated secret expiry alerts.
+            </p>
+            <ul class="pillar-checklist">
+              <li>Ephemeral token exchange via OpenID Connect</li>
+              <li>Least-privilege scoped IAM & Azure RBAC roles</li>
+              <li>Automated Key Vault & SAS token renewal bots</li>
+            </ul>
           </div>
 
-          <!-- IaC & Containers -->
-          <div class="skill-category-card" data-category="iac">
-            <div class="cat-header">
-              <div class="cat-icon text-purple">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-              </div>
-              <h4>IaC &amp; Containers</h4>
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
             </div>
-            <div class="skill-pills-list">
-              <span class="badge highlight-badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="#a855f7"><path d="M15.5 8.5L22 4.7v7.6l-6.5 3.8zm-7 0l6.5-3.8v7.6L8.5 16.1zm0 7.8l6.5-3.8v7.6L8.5 24zm-7-4.1l6.5-3.8v7.6L1.5 16z"/></svg>
-                Terraform (HCL)
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                AWS CloudFormation
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-                Azure ARM Templates
-              </span>
-              <span class="badge highlight-badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="#38bdf8"><path d="M13.9 11.2c-.4 0-.8.3-.8.8v1.7c0 .4.4.8.8.8h1.7c.4 0 .8-.4.8-.8V12c0-.5-.4-.8-.8-.8h-1.7zm-3.3 0c-.5 0-.8.3-.8.8v1.7c0 .4.3.8.8.8h1.7c.4 0 .8-.4.8-.8V12c0-.5-.4-.8-.8-.8h-1.7zm-3.3 0c-.5 0-.8.3-.8.8v1.7c0 .4.3.8.8.8h1.7c.4 0 .8-.4.8-.8V12c0-.5-.4-.8-.8-.8H7.3zm-3.3 0c-.4 0-.8.3-.8.8v1.7c0 .4.4.8.8.8h1.7c.4 0 .8-.4.8-.8V12c0-.5-.4-.8-.8-.8H4zm6.6-3.3c-.4 0-.8.3-.8.8v1.7c0 .4.4.8.8.8h1.7c.4 0 .8-.4.8-.8V8.7c0-.5-.4-.8-.8-.8h-1.7zm-3.3 0c-.5 0-.8.3-.8.8v1.7c0 .4.3.8.8.8h1.7c.4 0 .8-.4.8-.8V8.7c0-.5-.4-.8-.8-.8H7.3zm-3.3 0c-.5 0-.8.3-.8.8v1.7c0 .4.3.8.8.8h1.7c.4 0 .8-.4.8-.8V8.7c0-.5-.4-.8-.8-.8H4zm6.6-3.4c-.4 0-.8.4-.8.8v1.8c0 .4.4.8.8.8h1.7c.4 0 .8-.4.8-.8V6.1c0-.4-.4-.8-.8-.8h-1.7zm11.5 8.7c-.5-.4-1.3-.5-2-.2-.2-.6-.7-1-1.3-1.1-.3 0-.6.1-.8.2-.1-.6-.5-1.1-1.1-1.4l-.5-.3v2.7h-9.9c-.3 0-.6.1-.8.3-.4.4-.7 1.1-.7 2 0 1.9 1.1 3.8 2.6 4.9 1.5 1.1 3.5 1.5 5.5 1.5 4.6 0 8.5-2.6 9.8-6.9.1-.5 0-1-.3-1.3l-.5-.4z"/></svg>
-                Docker
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/></svg>
-                Multi-arch Builds (amd64)
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                AWS ECR
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-                State Management
-              </span>
-            </div>
+            <h3>SLI/SLO Observability & SRE</h3>
+            <p>
+              Designed synthetic end-to-end user checks, alert routing to reduce noise, and deep integration between <strong>Datadog</strong> and <strong>Atlassian Statuspage</strong> for automated public incident transparency and L1 triage runbooks.
+            </p>
+            <ul class="pillar-checklist">
+              <li>Synthetic probes & customer impact monitors</li>
+              <li>Automated incident lifecycle & root cause analysis</li>
+              <li>Monthly availability & uptime reporting for finance</li>
+            </ul>
           </div>
 
-          <!-- CI/CD & Security -->
-          <div class="skill-category-card" data-category="cicd">
-            <div class="cat-header">
-              <div class="cat-icon text-emerald">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <h4>CI/CD &amp; DevSecOps</h4>
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
             </div>
-            <div class="skill-pills-list">
-              <span class="badge highlight-badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
-                GitHub Actions
-              </span>
-              <span class="badge highlight-badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                GitHub OIDC
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
-                Azure DevOps Pipelines
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                AWS IAM Roles / STS
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Auth0 Authentication
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                SonarQube
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/></svg>
-                PrismaScan
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="#34d399"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M6 14c0 3 2.7 5 6 5s6-2 6-5"/></svg>
-                JFrog Artifactory
-              </span>
-            </div>
-          </div>
-
-          <!-- SRE & Observability -->
-          <div class="skill-category-card" data-category="sre">
-            <div class="cat-header">
-              <div class="cat-icon text-rose">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-              </div>
-              <h4>Observability &amp; SRE</h4>
-            </div>
-            <div class="skill-pills-list">
-              <span class="badge highlight-badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="#c084fc"><path d="M19 5h-2V3a1 1 0 0 0-2 0v2H9V3a1 1 0 0 0-2 0v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H5V9h14v12z"/></svg>
-                Datadog Synthetics
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                Datadog Monitors &amp; Alerts
-              </span>
-              <span class="badge highlight-badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-                Atlassian Statuspage
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                AWS CloudWatch
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                SLI / SLO Tracking
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                On-Call Incident Triage
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                Root Cause Analysis (RCA)
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14l2 2 4-4"/></svg>
-                Postmortem Leadership
-              </span>
-            </div>
-          </div>
-
-          <!-- Scripting & Data Systems -->
-          <div class="skill-category-card" data-category="data">
-            <div class="cat-header">
-              <div class="cat-icon text-cyan">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-              </div>
-              <h4>Scripting &amp; Data Systems</h4>
-            </div>
-            <div class="skill-pills-list">
-              <span class="badge highlight-badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="#38bdf8"><path d="M11.9 1a5 5 0 0 0-5 5v2h5v1H4a5 5 0 0 0-5 5 5 5 0 0 0 5 5h2v-2a3 3 0 0 1 3-3h5a3 3 0 0 0 3-3V6a5 5 0 0 0-5-5zm-2.5 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm10.6 6.5a5 5 0 0 0-5-5h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 0-3 3v5a5 5 0 0 0 5 5h5v-1h7a5 5 0 0 0 5-5 5 5 0 0 0-5-5zm-3.1 11.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
-                Python
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-                Bash / Linux Shell
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><polyline points="4 8 10 12 4 16"/><line x1="12" y1="16" x2="20" y2="16"/></svg>
-                PowerShell
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-                SQL &amp; PostgreSQL
-              </span>
-              <span class="badge highlight-badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/></svg>
-                Snowflake
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="#10b981"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                Supabase
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                Typesense
-              </span>
-              <span class="badge">
-                <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                YAML / JSON
-              </span>
-            </div>
+            <h3>Multi-Tenant Cloud Isolation</h3>
+            <p>
+              Engineered isolated Customer Sandboxes across US & EU clusters for tier-1 enterprise clients, with deterministic DNS hashing, dedicated database instances, and cross-account DataSync.
+            </p>
+            <ul class="pillar-checklist">
+              <li>Tenant-isolated analytics & microservices</li>
+              <li>Fail-fast guardrails preventing cross-tenant bleed</li>
+              <li>Auto-parking idle environments saving cloud spend</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -2009,6 +1737,279 @@
       </div>
     </section>
 
+    <!-- RECRUITER QUICK-HIRE CHEAT SHEET (SEO & FAST ATS SCAN) -->
+    <section id="recruiter-summary" class="section recruiter-section" aria-label="Recruiter Quick Reference and Hiring Summary">
+      <div class="container">
+        <div class="recruiter-box card">
+          <div class="recruiter-header">
+            <div class="r-badge-group">
+              <span class="status-dot pulse"></span>
+              <span class="r-tag">HIRING QUICK-REFERENCE</span>
+            </div>
+            <h2 class="r-title">Recruiter &amp; Hiring Manager Cheat Sheet</h2>
+            <p class="r-subtitle">Key qualifications, target roles, and core competencies at a glance.</p>
+          </div>
+
+          <!-- Interactive Role Fit Matcher -->
+          <div class="role-matcher-container">
+            <div class="role-matcher-header">
+              <span class="role-matcher-tag">INTERACTIVE CANDIDATE FIT ASSESSMENT</span>
+              <h3 class="role-matcher-title">Select Your Open Role to Evaluate Alignment:</h3>
+            </div>
+            
+            <div class="role-selector-tabs" role="tablist">
+              <button class="role-tab active" data-role="devops" role="tab" aria-selected="true">
+                🎯 DevOps &amp; CI/CD
+              </button>
+              <button class="role-tab" data-role="sre" role="tab" aria-selected="false">
+                ⚡ Site Reliability (SRE)
+              </button>
+              <button class="role-tab" data-role="cloud" role="tab" aria-selected="false">
+                ☁️ Cloud Infrastructure
+              </button>
+              <button class="role-tab" data-role="platform" role="tab" aria-selected="false">
+                🏗️ Platform &amp; IaC
+              </button>
+            </div>
+
+            <div class="role-evaluation-panel" id="roleEvaluationPanel">
+              <div class="role-score-gauge">
+                <div class="gauge-circle">
+                  <svg viewBox="0 0 100 100" class="gauge-svg">
+                    <circle cx="50" cy="50" r="42" class="gauge-bg"></circle>
+                    <circle cx="50" cy="50" r="42" class="gauge-progress" id="gaugeProgress"></circle>
+                  </svg>
+                  <div class="gauge-value" id="gaugeVal">98%</div>
+                </div>
+                <div class="gauge-label">
+                  <strong class="text-emerald" id="gaugeText">Exceptional Fit</strong>
+                  <span>Production-Proven</span>
+                </div>
+              </div>
+
+              <div class="role-details-content">
+                <h4 class="role-fit-heading" id="roleFitHeading">Senior DevOps &amp; CI/CD Engineer</h4>
+                <ul class="role-fit-bullets" id="roleFitBullets">
+                  <li><strong>Zero Static CI Secrets:</strong> Eradicated IAM access keys across 10+ core repos via GitHub OIDC token federation.</li>
+                  <li><strong>80% CI Rerun Acceleration:</strong> Slashed build retries from 19.5 min to 3.9 min using AWS ECR layer reuse.</li>
+                  <li><strong>Multi-Cloud Pipelines:</strong> Standardized declarative YAML CI/CD pipelines across AWS &amp; Azure for 30+ services.</li>
+                </ul>
+
+                <div class="role-fit-actions">
+                  <button class="btn btn-outline btn-sm" id="btnHighlightMatchingSkills">
+                    <span>⚡ Highlight Matching Skills &amp; Projects on Page</span>
+                  </button>
+                  <a href="mailto:deepanntech@gmail.com?subject=Interview%20Request%20for%20DevOps%20Role" class="btn btn-primary btn-sm" id="roleEmailBtn">
+                    <span>📅 Request 15-Min Quick Screen</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="recruiter-grid">
+            <div class="r-grid-item">
+              <span class="r-label">🎯 Target Roles</span>
+              <strong class="r-value">Senior DevOps Engineer • Cloud Infrastructure Engineer • Site Reliability Engineer (SRE) • Platform Engineer</strong>
+            </div>
+
+            <div class="r-grid-item">
+              <span class="r-label">⏱️ Total Experience</span>
+              <strong class="r-value">3+ Years Production Multi-Cloud (AWS &amp; Azure Enterprise SaaS)</strong>
+            </div>
+
+            <div class="r-grid-item">
+              <span class="r-label">☁️ Primary Cloud Platforms</span>
+              <strong class="r-value">AWS (ECS/Fargate, RDS, Lambda, S3, CloudFront) • Microsoft Azure (App Service, Functions, Key Vault)</strong>
+            </div>
+
+            <div class="r-grid-item">
+              <span class="r-label">⚙️ Core Technologies</span>
+              <strong class="r-value">Terraform (IaC) • GitHub Actions OIDC • Datadog SRE • Docker • Python • Bash • PostgreSQL • Snowflake</strong>
+            </div>
+
+            <div class="r-grid-item">
+              <span class="r-label">🏆 Certifications &amp; Degrees</span>
+              <strong class="r-value">AWS Certified Solutions Architect – Associate • M.Sc. Theoretical Computer Science (PSG Tech, 8.0/10)</strong>
+            </div>
+
+            <div class="r-grid-item">
+              <span class="r-label">📍 Location &amp; Work Preference</span>
+              <strong class="r-value">Chennai / Coimbatore, Tamil Nadu, India • Open to Remote, Hybrid &amp; Relocation</strong>
+            </div>
+          </div>
+
+          <div class="recruiter-actions">
+            <a href="Deepan_Cloud_DevOps_SRE_Resume.pdf" download="Deepan_Narayanamoorthy_DevOps_Resume.pdf" class="btn btn-primary btn-sm">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download 1-Page Resume (PDF)</span>
+            </a>
+            <a href="mailto:deepanntech@gmail.com" class="btn btn-secondary btn-sm">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>Email: deepanntech@gmail.com</span>
+            </a>
+            <a href="https://www.linkedin.com/in/deepann/" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              <span>Connect on LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE SRE LAB & FINOPS ROI CALCULATOR -->
+    <section id="sre-lab" class="section sre-lab-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">LIVE INTERACTIVE PLAYGROUND</span>
+          <h2 class="section-title">SRE Chaos Lab &amp; Cloud FinOps Calculator</h2>
+          <p class="section-subtitle">
+            Experience first-hand how Deepan architects self-healing cloud platforms and drives tangible FinOps cost optimization.
+          </p>
+        </div>
+
+        <div class="lab-grid">
+          <!-- SRE Chaos Lab Card -->
+          <div class="lab-card card" id="chaosLabCard">
+            <div class="lab-card-header">
+              <div class="lab-title-group">
+                <span class="status-dot pulse" id="chaosStatusDot"></span>
+                <h3 class="lab-title">SRE Incident &amp; Auto-Heal Simulator</h3>
+              </div>
+              <span class="lab-badge badge-green" id="chaosStateBadge">🟢 SYSTEM HEALTHY</span>
+            </div>
+
+            <p class="lab-desc">
+              Test Deepan's multi-AZ high-availability architecture. Trigger a simulated AWS Zone failure and watch the automated self-healing pipeline restore 100% service availability.
+            </p>
+
+            <!-- Live Telemetry Monitor -->
+            <div class="telemetry-grid">
+              <div class="telemetry-item" id="telemUptime">
+                <span class="telem-label">Uptime SLO</span>
+                <span class="telem-val text-emerald" id="telemUptimeVal">99.9%</span>
+                <span class="telem-sub">Multi-Region Active</span>
+              </div>
+              <div class="telemetry-item" id="telemLatency">
+                <span class="telem-label">P99 Latency</span>
+                <span class="telem-val text-cyan" id="telemLatencyVal">18 ms</span>
+                <span class="telem-sub">Nominal SLA</span>
+              </div>
+              <div class="telemetry-item" id="telemErrors">
+                <span class="telem-label">5xx Error Rate</span>
+                <span class="telem-val text-emerald" id="telemErrorsVal">0.01%</span>
+                <span class="telem-sub">Healthy Ingress</span>
+              </div>
+              <div class="telemetry-item" id="telemPods">
+                <span class="telem-label">Healthy Pods</span>
+                <span class="telem-val text-blue" id="telemPodsVal">6 / 6</span>
+                <span class="telem-sub">us-east-1a &amp; 1b</span>
+              </div>
+            </div>
+
+            <!-- Incident Alert Banner (Hidden by default) -->
+            <div class="incident-alert-banner" id="incidentAlertBanner" style="display: none;">
+              <div class="alert-icon">🚨</div>
+              <div class="alert-content">
+                <strong>P2 INCIDENT IN PROGRESS:</strong> Datadog alert #492 triggered! Pod crash in us-east-1a, Latency spike to 465ms, HTTP 502 errors detected.
+              </div>
+            </div>
+
+            <!-- Auto-Heal Live Console -->
+            <div class="heal-console" id="healConsole" style="display: none;">
+              <div class="heal-console-header">
+                <span>automated-remediation.log</span>
+                <span class="heal-pulse">EXEC</span>
+              </div>
+              <div class="heal-console-body" id="healConsoleBody"></div>
+            </div>
+
+            <!-- Interactive Action Controls -->
+            <div class="lab-actions">
+              <button class="btn btn-danger btn-sm" id="btnInjectChaos">
+                <span>💣 Inject Chaos: Simulate AZ Outage</span>
+              </button>
+              <button class="btn btn-success btn-sm pulse-btn" id="btnAutoHeal" style="display: none;">
+                <span>🛡️ Trigger Auto-Heal (Terraform HPA)</span>
+              </button>
+              <button class="btn btn-outline btn-sm" id="btnResetChaos" style="display: none;">
+                <span>🔄 Reset Environment</span>
+              </button>
+            </div>
+            <div class="lab-footnote" id="chaosFootnote">
+              Simulates automated Datadog webhook ➔ Terraform Auto-Scaling Policy ➔ ALB target group failover.
+            </div>
+          </div>
+
+          <!-- FinOps Cloud ROI Calculator -->
+          <div class="lab-card card" id="finopsCard">
+            <div class="lab-card-header">
+              <div class="lab-title-group">
+                <span class="lab-icon-finops">💰</span>
+                <h3 class="lab-title">Interactive Cloud FinOps Calculator</h3>
+              </div>
+              <span class="lab-badge text-amber">FINOPS SAVINGS</span>
+            </div>
+
+            <p class="lab-desc">
+              Estimate quantifiable cost savings and engineering velocity reclaimed by adding Deepan to your cloud platform team.
+            </p>
+
+            <div class="finops-sliders">
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="monthlySpendSlider" class="slider-label">Current Monthly Cloud Spend (AWS/Azure):</label>
+                  <span class="slider-display" id="spendDisplay">$35,000 / mo</span>
+                </div>
+                <input type="range" id="monthlySpendSlider" min="5000" max="150000" step="2500" value="35000" class="finops-range">
+                <div class="slider-ticks">
+                  <span>$5K</span>
+                  <span>$50K</span>
+                  <span>$100K</span>
+                  <span>$150K</span>
+                </div>
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="teamSizeSlider" class="slider-label">Engineering Team Size (Developers):</label>
+                  <span class="slider-display" id="teamDisplay">30 Developers</span>
+                </div>
+                <input type="range" id="teamSizeSlider" min="5" max="150" step="5" value="30" class="finops-range">
+                <div class="slider-ticks">
+                  <span>5 devs</span>
+                  <span>50 devs</span>
+                  <span>100 devs</span>
+                  <span>150 devs</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dynamic ROI Results Grid -->
+            <div class="roi-results-grid">
+              <div class="roi-item">
+                <span class="roi-metric" id="roiAnnualSavings">$92,400</span>
+                <span class="roi-label">Est. Annual Cloud Savings</span>
+                <span class="roi-detail">Via EFS rightsizing &amp; auto-parked sandboxes</span>
+              </div>
+              <div class="roi-item">
+                <span class="roi-metric" id="roiHoursSaved">135 hrs</span>
+                <span class="roi-label">Dev Hours Reclaimed / Mo</span>
+                <span class="roi-detail">Via 80% CI rerun acceleration &amp; OIDC</span>
+              </div>
+            </div>
+
+            <div class="finops-verdict-box">
+              <span class="verdict-icon">⚡</span>
+              <p class="verdict-text" id="verdictText">
+                <strong>FinOps ROI:</strong> Deepan pays for his own compensation within the first <strong>75 days</strong> through automated infrastructure rightsizing alone.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACT & CONNECT SECTION -->
     <section id="contact" class="section contact-section">
       <div class="container">
@@ -2072,6 +2073,23 @@
               <div class="quick-mail-box">
                 <h3 class="mail-box-title">Send a Quick Message</h3>
                 <p class="mail-box-sub">Fires an email directly with your mail client or webmail:</p>
+
+                <!-- Quick Inquiry Topic Presets -->
+                <div class="quick-inquiry-presets">
+                  <span class="preset-label">⚡ 1-Click Inquiry Templates:</span>
+                  <div class="preset-chips">
+                    <button type="button" class="preset-chip" data-subject="Interview Request - DevOps / SRE Role" data-msg="Hi Deepan, we reviewed your multi-cloud architecture and SRE background and would love to schedule an introductory interview regarding an open senior engineering opportunity on our team.">
+                      📅 Schedule Interview
+                    </button>
+                    <button type="button" class="preset-chip" data-subject="Cloud Platform Architecture Discussion" data-msg="Hi Deepan, I was impressed by your multi-tenant sandbox and GitHub OIDC implementations. Would love to connect and exchange thoughts on cloud platform design.">
+                      ☁️ Discuss Architecture
+                    </button>
+                    <button type="button" class="preset-chip" data-subject="Compensation &amp; Role Fit Inquiry" data-msg="Hi Deepan, we have an open Platform / Cloud Engineer position matching your tech stack (Terraform, AWS, Datadog) and wanted to discuss role parameters and timeline.">
+                      💼 Role &amp; Comp Fit
+                    </button>
+                  </div>
+                </div>
+
                 <form id="contactForm" class="contact-form">
                   <div class="form-group">
                     <label for="senderName">Your Name</label>
