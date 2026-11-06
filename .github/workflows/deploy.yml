@@ -25,12 +25,18 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
+
+      - name: Prepare clean static bundle
+        run: |
+          mkdir -p _site
+          cp index.html styles.css script.js deepan_headshot.png Deepan_Cloud_DevOps_SRE_Resume.pdf _site/
+          touch _site/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
