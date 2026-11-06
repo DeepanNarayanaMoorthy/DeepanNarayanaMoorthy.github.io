@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollSpy();
   
   // High-Impact Interactive Recruiter Features
+  initTypewriterEffect();
   initAudioSynthesizer();
   initChaosLab();
   initFinOpsCalculator();
@@ -142,6 +143,22 @@ function playClickSound() {
     gain.connect(audioCtx.destination);
     osc.start();
     osc.stop(audioCtx.currentTime + 0.04);
+  } catch (e) {}
+}
+
+function playTypingSound() {
+  if (!soundEnabled || !audioCtx) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(1000 + Math.random() * 350, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.02);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.02);
   } catch (e) {}
 }
 
@@ -1333,4 +1350,62 @@ function initContactForm() {
 
     window.location.href = mailtoUrl;
   });
+}
+
+/**
+ * Typewriter Effect (Dynamic Revealing Text for Hero Headline)
+ */
+function initTypewriterEffect() {
+  const el = document.getElementById('typewriterText');
+  if (!el) return;
+
+  const phrases = [
+    "DevOps & Cloud Infrastructure",
+    "Site Reliability Engineering (SRE)",
+    "Multi-Region Terraform (IaC)",
+    "Zero-Trust GitHub OIDC CI/CD",
+    "FinOps & Cloud Cost Optimization",
+    "High-Availability AWS & Azure Systems",
+    "Datadog Observability & Statuspage"
+  ];
+
+  let phraseIndex = 0;
+  let charIndex = phrases[0].length;
+  let isDeleting = false;
+  let typingSpeed = 70;
+
+  // Initial pause on the first phrase before deleting
+  setTimeout(tick, 2200);
+
+  function tick() {
+    const currentPhrase = phrases[phraseIndex];
+
+    if (isDeleting) {
+      charIndex--;
+      typingSpeed = 32; // Fast deletion
+    } else {
+      charIndex++;
+      typingSpeed = 65 + Math.random() * 35; // Natural human typing cadence
+    }
+
+    el.textContent = currentPhrase.substring(0, charIndex);
+
+    // Audio click feedback if enabled
+    if (!isDeleting && charIndex % 2 === 0) {
+      playTypingSound();
+    }
+
+    if (!isDeleting && charIndex === currentPhrase.length) {
+      // Finished typing phrase -> pause to let user read
+      typingSpeed = 2200;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      // Finished deleting -> cycle to next phrase
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      typingSpeed = 400; // Brief pause before next phrase starts
+    }
+
+    setTimeout(tick, typingSpeed);
+  }
 }
