@@ -1250,9 +1250,9 @@ function initTypewriterEffect() {
     "99.9% Production Uptime & SRE",
     "AWS & Azure Microservices",
     "FinOps & $1.8K/mo Cloud Savings",
-    "Datadog Observability & Statuspage",
-    "Zero-Downtime Blue/Green Releases",
-    "Automated Self-Healing Architecture"
+    "Datadog Observability & APM",
+    "Zero-Downtime Blue/Green Deploys",
+    "Self-Healing Cloud Platforms"
   ];
 
   let phraseIndex = 0;

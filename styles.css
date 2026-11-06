@@ -540,8 +540,16 @@ a {
 .hero-subtitle {
   font-size: 1.35rem;
   font-weight: 500;
+  line-height: 1.45;
   color: var(--text-secondary);
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+  min-height: 4.3rem; /* Reserves space for 2 full lines to permanently eliminate layout shifts */
+}
+
+.hero-subtitle-prefix {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-secondary);
 }
 
 .hero-description {
@@ -609,41 +617,47 @@ a {
 .profile-card {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 22px;
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   backdrop-filter: blur(12px);
   border-radius: var(--radius-lg);
-  padding: 16px 20px;
+  padding: 18px 24px;
   box-shadow: var(--shadow-md);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.profile-card:hover {
+  border-color: rgba(56, 189, 248, 0.4);
 }
 
 .profile-avatar-container {
   position: relative;
-  width: 90px;
-  height: 90px;
+  width: 125px;
+  height: 125px;
   flex-shrink: 0;
 }
 
 .profile-avatar {
-  width: 90px;
-  height: 90px;
+  width: 125px;
+  height: 125px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
-  border: 2px solid var(--accent-cyan);
+  border: 3px solid var(--accent-cyan);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .avatar-glow-ring {
   position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(129, 140, 248, 0.4));
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.45), rgba(129, 140, 248, 0.45));
   z-index: -1;
-  filter: blur(6px);
+  filter: blur(8px);
 }
 
 .profile-card-meta {
@@ -651,15 +665,17 @@ a {
 }
 
 .meta-title {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #fff;
+  margin-bottom: 2px;
 }
 
 .meta-role {
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   color: var(--accent-cyan);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 
 .meta-tags {
@@ -1012,8 +1028,8 @@ a {
 .company-badge-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 4px;
+  gap: 16px;
+  margin-bottom: 6px;
 }
 
 .company-name {
@@ -1917,29 +1933,30 @@ a {
 
 /* Company Logos and Market Context */
 .company-logo-wrap {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--radius-md);
+  width: 130px;
+  height: 46px;
+  border-radius: 8px;
   background: #ffffff;
-  padding: 5px;
+  padding: 4px 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   overflow: hidden;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .company-logo-wrap:hover {
-  transform: scale(1.06);
-  box-shadow: 0 6px 18px rgba(56, 189, 248, 0.35);
+  transform: scale(1.04);
+  box-shadow: 0 6px 18px rgba(56, 189, 248, 0.4);
 }
 
 .company-logo-img {
   width: 100%;
   height: 100%;
+  max-height: 36px;
   object-fit: contain;
   display: block;
 }
@@ -2078,6 +2095,17 @@ a {
 
   .hero-subtitle {
     font-size: 1.15rem;
+    line-height: 1.4;
+    min-height: 4.8rem;
+  }
+
+  .typewriter-wrap {
+    white-space: normal;
+  }
+
+  .company-badge-row {
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   .timeline-item {
@@ -2109,6 +2137,21 @@ a {
 @media (max-width: 480px) {
   .hero-title {
     font-size: 1.9rem;
+  }
+
+  .profile-card {
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .profile-avatar-container {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
   }
 
   .metrics-grid {
@@ -3123,9 +3166,11 @@ a {
   letter-spacing: -0.01em;
 }
 .typewriter-wrap {
-  display: inline;
+  display: inline-block;
   position: relative;
-  white-space: normal;
+  min-height: 1.6em;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
 .typewriter-text {
