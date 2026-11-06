@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- Primary Meta Tags -->
+  <title>Deepan Narayanamoorthy | DevOps, Cloud & SRE Engineer</title>
+  <meta name="title" content="Deepan Narayanamoorthy | DevOps, Cloud & SRE Engineer">
+  <meta name="description" content="Portfolio of Deepan Narayanamoorthy — DevOps and Cloud Engineer at Everstage, ex-Caterpillar. Specializing in AWS, Azure, Terraform, GitHub Actions OIDC, Datadog SRE, and resilient multi-tenant cloud platforms.">
+  <meta name="author" content="Deepan Narayanamoorthy">
+  <meta name="keywords" content="Deepan Narayanamoorthy, DevOps Engineer, Cloud Engineer, Site Reliability Engineer, SRE, AWS Solutions Architect, Terraform, Azure, GitHub Actions OIDC, Datadog, Everstage, Caterpillar, Chennai, India">
+  
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://deepannarayanamoorthy.github.io/Deepan-portfolio/">
+  <meta property="og:title" content="Deepan Narayanamoorthy | DevOps, Cloud & SRE Engineer">
+  <meta property="og:description" content="Production-focused DevOps & Cloud Engineer owning IaC (Terraform), CI/CD (GitHub Actions OIDC), multi-tenant cloud infrastructure, and observability (Datadog).">
+  <meta property="og:image" content="deepan_headshot.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://deepannarayanamoorthy.github.io/Deepan-portfolio/">
+  <meta property="twitter:title" content="Deepan Narayanamoorthy | DevOps, Cloud & SRE Engineer">
+  <meta property="twitter:description" content="DevOps & Cloud Engineer at Everstage. AWS Certified Solutions Architect. Expert in Terraform, AWS/Azure, OIDC, and SRE.">
+  <meta property="twitter:image" content="deepan_headshot.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='bold' font-size='44' fill='%2338bdf8'>DN_</text></svg>">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Deepan Narayanamoorthy",
+    "jobTitle": "DevOps & Cloud Engineer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Everstage"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "PSG College of Technology"
+    },
+    "email": "deepanntech@gmail.com",
+    "url": "https://deepannarayanamoorthy.github.io/Deepan-portfolio/",
+    "sameAs": [
+      "https://www.linkedin.com/in/deepann/",
+      "https://github.com/DeepanNarayanaMoorthy",
+      "https://www.credly.com/badges/3be2db96-3394-4eb4-ac1f-1734905cf01d/public_url"
+    ],
+    "knowsAbout": ["Amazon Web Services", "Microsoft Azure", "Terraform", "GitHub Actions OIDC", "Datadog", "Docker", "SRE", "CI/CD", "Site Reliability Engineering", "Kubernetes", "Linux", "Python", "Observability"]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Background Decorative Canvas Grid -->
+  <div class="bg-glow-orb orb-1" aria-hidden="true"></div>
+  <div class="bg-glow-orb orb-2" aria-hidden="true"></div>
+  <div class="bg-glow-orb orb-3" aria-hidden="true"></div>
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+
+  <!-- Announcement / Status Banner -->
+  <header class="top-status-bar">
+    <div class="container status-bar-content">
+      <div class="status-indicator">
+        <span class="status-dot pulse"></span>
+        <span class="status-label">All Systems Operational</span>
+        <span class="status-slo">99.9% Uptime SLO</span>
+      </div>
+      <div class="status-quick-links">
+        <a href="https://www.credly.com/badges/3be2db96-3394-4eb4-ac1f-1734905cf01d/public_url" target="_blank" rel="noopener" class="cert-pill">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          AWS Certified Solutions Architect – Associate
+        </a>
+        <span class="location-badge">📍 Chennai / Coimbatore, India</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-content">
+      <a href="#hero" class="nav-logo" aria-label="Deepan Narayanamoorthy Homepage">
+        <span class="logo-bracket">&lt;</span><span class="logo-text">DN</span><span class="logo-cursor">_</span><span class="logo-bracket">&gt;</span>
+      </a>
+
+      <div class="nav-menu" id="navMenu">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#case-studies" class="nav-link">Case Studies</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#certifications" class="nav-link">Certifications</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="Deepan_Cloud_DevOps_SRE_Resume.pdf" download="Deepan_Narayanamoorthy_DevOps_Resume.pdf" class="btn btn-outline btn-sm" id="navResumeBtn">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Resume PDF</span>
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-container">
+        <div class="hero-text-col">
+          <div class="availability-badge">
+            <span class="badge-dot"></span>
+            <span>Cloud & DevOps Engineer @ <strong>Everstage</strong></span>
+          </div>
+
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text">Deepan Narayanamoorthy</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Software Engineer specializing in <span class="highlight">DevOps, Cloud Infrastructure & SRE</span>.
+          </p>
+
+          <p class="hero-description">
+            Production-focused engineer with <strong>3+ years</strong> architecting multi-region <strong>IaC (Terraform, CloudFormation, ARM)</strong>, hardening zero-trust <strong>CI/CD via GitHub OIDC</strong>, orchestrating <strong>AWS & Azure</strong> microservices, and leading observability & incident triage with <strong>Datadog & Atlassian Statuspage</strong>.
+          </p>
+
+          <!-- Quick CTA Buttons -->
+          <div class="hero-cta-group">
+            <a href="#experience" class="btn btn-primary">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Explore Career History</span>
+            </a>
+            <a href="#case-studies" class="btn btn-secondary">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              <span>Architecture Deep Dives</span>
+            </a>
+            <a href="Deepan_Cloud_DevOps_SRE_Resume.pdf" download="Deepan_Narayanamoorthy_DevOps_Resume.pdf" class="btn btn-glass">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              <span>Download Resume</span>
+            </a>
+          </div>
+
+          <!-- Social / Quick Connect Links -->
+          <div class="hero-social-links">
+            <a href="https://github.com/DeepanNarayanaMoorthy" target="_blank" rel="noopener" class="social-icon-btn" aria-label="GitHub Profile">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/deepann/" target="_blank" rel="noopener" class="social-icon-btn" aria-label="LinkedIn Profile">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="mailto:deepanntech@gmail.com" class="social-icon-btn" aria-label="Direct Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>deepanntech@gmail.com</span>
+            </a>
+            <a href="https://www.credly.com/badges/3be2db96-3394-4eb4-ac1f-1734905cf01d/public_url" target="_blank" rel="noopener" class="social-icon-btn" aria-label="Credly Certification">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              <span>AWS Certified</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Visual: Headshot + Interactive Terminal -->
+        <div class="hero-visual-col">
+          <div class="profile-card-wrapper">
+            <div class="profile-card">
+              <div class="profile-avatar-container">
+                <img src="deepan_headshot.png" alt="Deepan Narayanamoorthy portrait" class="profile-avatar" width="300" height="375" loading="eager">
+                <div class="avatar-glow-ring"></div>
+              </div>
+              <div class="profile-card-meta">
+                <div class="meta-title">Deepan Narayanamoorthy</div>
+                <div class="meta-role">DevOps & Cloud Engineer</div>
+                <div class="meta-tags">
+                  <span class="mini-tag">AWS</span>
+                  <span class="mini-tag">Azure</span>
+                  <span class="mini-tag">Terraform</span>
+                  <span class="mini-tag">GitHub OIDC</span>
+                  <span class="mini-tag">SRE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive SRE Devops Terminal -->
+          <div class="terminal-card">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <span class="terminal-title">deepan@cloud-sre:~</span>
+              <span class="terminal-badge">bash</span>
+            </div>
+            <div class="terminal-body" id="terminalOutput">
+              <div class="terminal-line"><span class="term-prompt">$</span> <span class="term-cmd">curl -s https://deepan.infra/status.json</span></div>
+              <div class="terminal-output term-json">
+{
+  <span class="json-key">"engineer"</span>: <span class="json-str">"Deepan Narayanamoorthy"</span>,
+  <span class="json-key">"current_role"</span>: <span class="json-str">"DevOps & Cloud Engineer @ Everstage"</span>,
+  <span class="json-key">"credentials"</span>: <span class="json-str">"AWS Solutions Architect Associate"</span>,
+  <span class="json-key">"core_stack"</span>: [<span class="json-str">"Terraform"</span>, <span class="json-str">"AWS"</span>, <span class="json-str">"Azure"</span>, <span class="json-str">"OIDC"</span>, <span class="json-str">"Datadog"</span>],
+  <span class="json-key">"prod_uptime_slo"</span>: <span class="json-str">"99.9%"</span>,
+  <span class="json-key">"status"</span>: <span class="json-str text-green">"Available for High-Impact Platform/SRE Roles"</span>
+}</div>
+              <div class="terminal-line active-line"><span class="term-prompt">$</span> <span class="term-cmd" id="terminalInteractiveText">help</span><span class="term-cursor">█</span></div>
+            </div>
+            <div class="terminal-quick-actions">
+              <span class="term-hint">Quick commands:</span>
+              <button class="term-pill" data-cmd="metrics">metrics</button>
+              <button class="term-pill" data-cmd="experience">experience</button>
+              <button class="term-pill" data-cmd="security">security</button>
+              <button class="term-pill" data-cmd="contact">contact</button>
+              <button class="term-pill" data-cmd="clear">clear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- METRICS & IMPACT COUNTERS -->
+    <section class="metrics-section">
+      <div class="container">
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-icon-wrap text-blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div class="metric-value">99.9%</div>
+            <div class="metric-label">Production Uptime</div>
+            <div class="metric-desc">High-availability deployments & SLI/SLO incident recovery</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-wrap text-emerald">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div class="metric-value">80%</div>
+            <div class="metric-label">CI/CD Rerun Reduction</div>
+            <div class="metric-desc">Cut deployment retries from 19.5 min to 3.9 min via ECR caching</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-wrap text-purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            </div>
+            <div class="metric-value">30+</div>
+            <div class="metric-label">Microservices Standardized</div>
+            <div class="metric-desc">AWS ECS/Lambda & Azure Functions/App Services via IaC</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-wrap text-amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="metric-value">$1.8K+</div>
+            <div class="metric-label">Monthly Cloud Savings</div>
+            <div class="metric-desc">EFS volume rightsizing (1.44 TiB → 73 GiB) & idle resource teardowns</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-wrap text-rose">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="metric-value">50+</div>
+            <div class="metric-label">Vulnerabilities Cleared</div>
+            <div class="metric-desc">Static key eradication via OIDC & automated secret expiry monitoring</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-wrap text-cyan">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="metric-value">1,000+</div>
+            <div class="metric-label">Annual Hours Automated</div>
+            <div class="metric-desc">Python & shell automation replacing tedious manual workflows</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE PHILOSOPHY & PILLARS -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">ENGINEERING PILLARS</span>
+          <h2 class="section-title">How I Build & Operate Cloud Platforms</h2>
+          <p class="section-subtitle">
+            Reliability isn't an afterthought. It is architected into every Terraform module, CI/CD pipeline, and monitor.
+          </p>
+        </div>
+
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3>Infrastructure as Code First</h3>
+            <p>
+              Every resource is defined declaratively using <strong>Terraform</strong>, <strong>AWS CloudFormation</strong>, or <strong>Azure ARM</strong>. Zero console drift, repeatable multi-account environments, and automated state synchronization across regions.
+            </p>
+            <ul class="pillar-checklist">
+              <li>Multi-account VPC peering & networking topologies</li>
+              <li>Role-separated database & secrets isolation</li>
+              <li>Preflight automated validation before apply</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h3>Zero Static Cloud Credentials</h3>
+            <p>
+              Pioneered the elimination of long-lived AWS IAM access keys in CI/CD. Leveraged <strong>GitHub OIDC</strong> federation with short-lived STS tokens, private-key Snowflake auth, and automated secret expiry alerts.
+            </p>
+            <ul class="pillar-checklist">
+              <li>Ephemeral token exchange via OpenID Connect</li>
+              <li>Least-privilege scoped IAM & Azure RBAC roles</li>
+              <li>Automated Key Vault & SAS token renewal bots</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+            </div>
+            <h3>SLI/SLO Observability & SRE</h3>
+            <p>
+              Designed synthetic end-to-end user checks, alert routing to reduce noise, and deep integration between <strong>Datadog</strong> and <strong>Atlassian Statuspage</strong> for automated public incident transparency and L1 triage runbooks.
+            </p>
+            <ul class="pillar-checklist">
+              <li>Synthetic probes & customer impact monitors</li>
+              <li>Automated incident lifecycle & root cause analysis</li>
+              <li>Monthly availability & uptime reporting for finance</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            </div>
+            <h3>Multi-Tenant Cloud Isolation</h3>
+            <p>
+              Engineered isolated Customer Sandboxes across US & EU clusters for enterprise clients (Avaya, Sprout Social, GrayTV), with deterministic DNS hashing, dedicated database instances, and cross-account DataSync.
+            </p>
+            <ul class="pillar-checklist">
+              <li>Tenant-isolated analytics & microservices</li>
+              <li>Fail-fast guardrails preventing cross-tenant bleed</li>
+              <li>Auto-parking idle environments saving cloud spend</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAREER HISTORY & TIMELINE -->
+    <section id="experience" class="section experience-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">TRACK RECORD</span>
+          <h2 class="section-title">Professional Experience</h2>
+          <p class="section-subtitle">
+            Hands-on technical contributions across high-growth SaaS and enterprise engineering organizations.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <!-- EVERSTAGE -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span class="marker-dot"></span>
+              <span class="marker-line"></span>
+            </div>
+            <div class="timeline-content card">
+              <div class="exp-header">
+                <div>
+                  <div class="company-badge-row">
+                    <h3 class="company-name"><a href="https://www.everstage.com" target="_blank" rel="noopener">EVERSTAGE</a></h3>
+                    <span class="job-badge active-badge">Current</span>
+                  </div>
+                  <div class="job-role">DevOps & Cloud Engineer <span class="role-sub">(Senior Software Engineer 1)</span></div>
+                </div>
+                <div class="exp-meta">
+                  <span class="exp-date">Nov 2025 – Present</span>
+                  <span class="exp-location">Coimbatore / Chennai, India (Hybrid)</span>
+                </div>
+              </div>
+
+              <!-- Manager Endorsement Quote Callout -->
+              <div class="quote-callout">
+                <div class="quote-icon">“</div>
+                <div class="quote-body">
+                  <p>
+                    <strong>Feedback from Sukanya S (Engineering Lead / Manager):</strong>
+                    <em>"The impact was critical and reflected across teams. Highlighted for the Sales Copilot setup, Sandbox environment setup, #help-sre and ops responsibilities handled. Ownership and dependability is commendable. Deepan has been the go-to person for any infra issues."</em>
+                  </p>
+                </div>
+              </div>
+
+              <div class="exp-bullets">
+                <ul>
+                  <li>
+                    <strong>Enterprise Multi-Tenant Infrastructure:</strong> Architected multi-account, multi-region <strong>Terraform</strong> modules to provision isolated Customer Sandboxes (US & EU) for high-value enterprise accounts (Avaya, Sprout Social, GrayTV, Biotissue) with tenant-isolated Superset clusters, deterministic DNS-safe hostnames, and cross-account <strong>AWS DataSync</strong> over VPC peering.
+                  </li>
+                  <li>
+                    <strong>Org-Wide CI/CD Security Modernization:</strong> Led the organization-wide migration of CI/CD workflows across 10+ core repositories from static AWS IAM access keys to <strong>GitHub Actions OIDC</strong> with role assumption, eliminating long-lived credentials and introducing private-key Snowflake authentication.
+                  </li>
+                  <li>
+                    <strong>Optimized CI/CD & Deploy Reruns:</strong> Reduced deployment rerun times by <strong>80% (from 19.5 min to 3.9 min)</strong> by landing an idempotent ECR container image reuse strategy on retriggers; authored timeout guardrails and CI preflight checks to catch misconfigurations early.
+                  </li>
+                  <li>
+                    <strong>SRE, Incident Response & Observability:</strong> Replaced legacy ping monitors with an automated <strong>Atlassian Statuspage</strong> operating model integrated with <strong>Datadog</strong> for Prod US/EU; created automated incident resolution, L1 runbooks, and monthly uptime reports; cut production release downtime by <strong>2 hours</strong>.
+                  </li>
+                  <li>
+                    <strong>Cloud Cost Optimization & Rightsizing:</strong> Led SPM EFS rightsizing across Staging, QA, and Sandbox environments, shrinking disk consumption from <strong>1.44 TiB down to 73.48 GiB</strong>; parked idle customer sandbox EU clusters to save <strong>~$1,800/month</strong> in AWS spend.
+                  </li>
+                  <li>
+                    <strong>Production Escalation Lead & RCA:</strong> Led diagnosis, live mitigation, and permanent root-cause remediation for critical production incidents (nginx 502 buffer overflows, WAF AdminProtection false-positives, Snowflake JWT private-key discrepancies, and cross-repo secret rotation).
+                  </li>
+                </ul>
+              </div>
+
+              <div class="tech-stack-row">
+                <span class="tech-pill">Terraform</span>
+                <span class="tech-pill">AWS ECS/Fargate</span>
+                <span class="tech-pill">GitHub OIDC</span>
+                <span class="tech-pill">Datadog</span>
+                <span class="tech-pill">Snowflake</span>
+                <span class="tech-pill">Supabase</span>
+                <span class="tech-pill">Typesense</span>
+                <span class="tech-pill">Atlassian Statuspage</span>
+                <span class="tech-pill">AWS DataSync</span>
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">Docker</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CATERPILLAR INC -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span class="marker-dot"></span>
+              <span class="marker-line"></span>
+            </div>
+            <div class="timeline-content card">
+              <div class="exp-header">
+                <div>
+                  <div class="company-badge-row">
+                    <h3 class="company-name"><a href="https://www.caterpillar.com" target="_blank" rel="noopener">CATERPILLAR INC.</a></h3>
+                    <span class="job-badge">2 Years 9 Months</span>
+                  </div>
+                  <div class="job-role">Cloud and DevOps Engineer <span class="role-sub">(Cloud Operations)</span></div>
+                </div>
+                <div class="exp-meta">
+                  <span class="exp-date">Feb 2023 – Oct 2025</span>
+                  <span class="exp-location">Chennai, India</span>
+                </div>
+              </div>
+
+              <div class="exp-bullets">
+                <ul>
+                  <li>
+                    <strong>Standardized Multi-Cloud Infrastructure:</strong> Provisioned and standardized infrastructure for <strong>30+ microservices</strong> across <strong>AWS</strong> (ECS/Fargate, RDS, Lambda) and <strong>Azure</strong> (Functions, App Services, VMs) using AWS CloudFormation and Azure ARM templates.
+                  </li>
+                  <li>
+                    <strong>Dynamic Autoscaling & Incident Reduction:</strong> Designed autoscaling templates and metrics-based scaling strategies for AWS Fargate and Azure WebApps, eliminating ThousandEye alert bottlenecks and cutting system performance incidents by <strong>20%</strong>.
+                  </li>
+                  <li>
+                    <strong>Global Edge UI Delivery Pattern:</strong> Delivered a repeatable <strong>S3 + CloudFront + Lambda@Edge</strong> pattern for static frontend delivery across multiple services (Cat® MineStar™ Solutions, VisionLink, and Operator Management System 2.0), enabling automated edge cache invalidation and high global throughput.
+                  </li>
+                  <li>
+                    <strong>Zero-Downtime Blue/Green Deployments:</strong> Owned release execution for downtime-sensitive systems using automated blue-green cutovers and validated rollback plans across <strong>10+ major production releases</strong>, reducing release downtime by <strong>3 hours per iteration</strong>.
+                  </li>
+                  <li>
+                    <strong>Security & Compliance Automation:</strong> Developed custom PowerShell and Python utilities for <strong>Azure Key Vault secret expiration alerts</strong>, SAS token epoch auto-renewal, and SQL/KV IP whitelisting verification—resolving <strong>50+ vulnerabilities</strong> and saving 10–15 hours of manual engineering effort per sprint.
+                  </li>
+                  <li>
+                    <strong>Lambda LogGroup Migration Pipeline:</strong> Automated the migration of standalone CloudWatch log groups into Lambda deployment stacks, parallelizing deployments and saving developers <strong>1 hour per release</strong>.
+                  </li>
+                  <li>
+                    <strong>Multi-Cloud Cost Reduction:</strong> Spearheaded 3 internal Azure and Azure-to-AWS workload migrations, rightsizing overprovisioned app service plans and reducing monthly operational cloud spend by <strong>~12%</strong> ($1,800+ annually).
+                  </li>
+                </ul>
+              </div>
+
+              <div class="tech-stack-row">
+                <span class="tech-pill">AWS CloudFormation</span>
+                <span class="tech-pill">Azure ARM</span>
+                <span class="tech-pill">AWS ECS/Fargate</span>
+                <span class="tech-pill">CloudFront</span>
+                <span class="tech-pill">Lambda@Edge</span>
+                <span class="tech-pill">Azure DevOps</span>
+                <span class="tech-pill">Azure Key Vault</span>
+                <span class="tech-pill">CloudWatch</span>
+                <span class="tech-pill">Azure Monitor</span>
+                <span class="tech-pill">PowerShell</span>
+                <span class="tech-pill">SonarQube</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- JPMORGAN CHASE -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span class="marker-dot"></span>
+              <span class="marker-line"></span>
+            </div>
+            <div class="timeline-content card">
+              <div class="exp-header">
+                <div>
+                  <div class="company-badge-row">
+                    <h3 class="company-name"><a href="https://www.jpmorganchase.com" target="_blank" rel="noopener">JPMORGAN CHASE & CO.</a></h3>
+                    <span class="job-badge">Internship</span>
+                  </div>
+                  <div class="job-role">Junior Analyst Intern</div>
+                </div>
+                <div class="exp-meta">
+                  <span class="exp-date">May 2021 – Nov 2021</span>
+                  <span class="exp-location">Mumbai, India</span>
+                </div>
+              </div>
+
+              <div class="exp-bullets">
+                <ul>
+                  <li>
+                    <strong>Pitch Deck Automation Engine:</strong> Built and optimized automated workflow scripts using <strong>Python, VBA, and Selenium</strong> for investment bankers, reducing manual preparation time and saving <strong>1,000+ hours per year</strong> across firm-wide deals.
+                  </li>
+                  <li>
+                    <strong>Geospatial Analytics Plugin:</strong> Developed a Python-based <strong>QGIS plugin</strong> for the Oil and Gas team to forecast and model potential bore wells across licensed acreage by executing multi-variable coordinate transformation algorithms.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="tech-stack-row">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">Selenium</span>
+                <span class="tech-pill">QGIS</span>
+                <span class="tech-pill">VBA</span>
+                <span class="tech-pill">Data Automation</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- EARLIER INTERNSHIPS -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span class="marker-dot"></span>
+            </div>
+            <div class="timeline-content card">
+              <div class="exp-header">
+                <div>
+                  <h3 class="company-name">SirpiDataScience & Profit Plug</h3>
+                  <div class="job-role">Data Science & Software Development Intern</div>
+                </div>
+                <div class="exp-meta">
+                  <span class="exp-date">2020</span>
+                  <span class="exp-location">India</span>
+                </div>
+              </div>
+              <div class="exp-bullets">
+                <ul>
+                  <li>Optimized wind mast time-series telemetry pipelines in R and maintained AWS S3 lake storage.</li>
+                  <li>Built ERP database schemas in SQL and interactive desktop management tools using Python & PyQt5.</li>
+                </ul>
+              </div>
+              <div class="tech-stack-row">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">R / R Shiny</span>
+                <span class="tech-pill">SQL</span>
+                <span class="tech-pill">AWS S3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE CASE STUDIES -->
+    <section id="case-studies" class="section case-studies-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">DEEP DIVES</span>
+          <h2 class="section-title">Architectural Case Studies</h2>
+          <p class="section-subtitle">
+            A closer look at key production systems, security overhauls, and infrastructure challenges I solved.
+          </p>
+        </div>
+
+        <div class="case-studies-grid">
+          <!-- Case Study 1 -->
+          <div class="case-card">
+            <div class="case-card-top">
+              <span class="case-tag tag-blue">Cloud Architecture</span>
+              <span class="case-org">Everstage</span>
+            </div>
+            <h3 class="case-title">Multi-Tenant Customer Sandbox & Isolated Analytics</h3>
+            <p class="case-summary">
+              Architected isolated customer sandbox environments (US/EU) for enterprise prospects (Avaya, Sprout Social, GrayTV). Resolved Superset multi-tenant data bleed by designing per-tenant ECS/RDS clusters with deterministic DNS-safe hashing from client IDs.
+            </p>
+            <div class="case-highlights">
+              <div class="case-highlight-item">
+                <span class="hl-title">Tech:</span>
+                <span class="hl-desc">Terraform, AWS ECS/Fargate, RDS, DataSync, Supabase, Typesense</span>
+              </div>
+              <div class="case-highlight-item">
+                <span class="hl-title">Outcome:</span>
+                <span class="hl-desc">Zero cross-tenant data bleed, unblocked 4+ enterprise deals, EFS rightsizing shrank storage from 1.44 TiB to 73 GiB</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Case Study 2 -->
+          <div class="case-card">
+            <div class="case-card-top">
+              <span class="case-tag tag-purple">Security & DevSecOps</span>
+              <span class="case-org">Everstage</span>
+            </div>
+            <h3 class="case-title">Organization-Wide CI/CD Security: Static Keys to GitHub OIDC</h3>
+            <p class="case-summary">
+              Spearheaded company-wide eradication of static AWS IAM access keys in CI secrets across SPM, public-api, superset, and microservices. Replaced with short-lived STS tokens via GitHub OIDC, Snowflake key-pair authentication, and CI preflight guardrails.
+            </p>
+            <div class="case-highlights">
+              <div class="case-highlight-item">
+                <span class="hl-title">Tech:</span>
+                <span class="hl-desc">GitHub Actions, AWS STS, IAM OIDC Federation, Snowflake Key-Pair Auth</span>
+              </div>
+              <div class="case-highlight-item">
+                <span class="hl-title">Outcome:</span>
+                <span class="hl-desc">100% long-lived CI secret elimination; 80% deployment rerun acceleration (19.5m → 3.9m) with ECR reuse</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Case Study 3 -->
+          <div class="case-card">
+            <div class="case-card-top">
+              <span class="case-tag tag-emerald">Reliability & Release Engineering</span>
+              <span class="case-org">Caterpillar Inc.</span>
+            </div>
+            <h3 class="case-title">Zero-Downtime Blue/Green Release & Global Edge Delivery</h3>
+            <p class="case-summary">
+              Engineered zero-downtime release pipelines for mission-critical industrial applications (Cat MineStar, OMS 2.0). Implemented automated blue/green cutovers with instant health verification and tested rollback triggers, paired with an S3 + CloudFront + Lambda@Edge static UI pattern.
+            </p>
+            <div class="case-highlights">
+              <div class="case-highlight-item">
+                <span class="hl-title">Tech:</span>
+                <span class="hl-desc">AWS CloudFront, Lambda@Edge, S3, Azure DevOps, Blue/Green Deployments</span>
+              </div>
+              <div class="case-highlight-item">
+                <span class="hl-title">Outcome:</span>
+                <span class="hl-desc">Slashing release downtime by 3 hours per iteration across 10+ major downtime-sensitive releases</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Case Study 4 -->
+          <div class="case-card">
+            <div class="case-card-top">
+              <span class="case-tag tag-amber">Compliance & Monitoring</span>
+              <span class="case-org">Caterpillar Inc.</span>
+            </div>
+            <h3 class="case-title">Automated Cloud Compliance & Secret Expiry Guardrails</h3>
+            <p class="case-summary">
+              Created an internal compliance framework that monitored Key Vault secret expiration dates, automated SAS token epoch updates, verified SQL/KV IP whitelisting before release days, and purged orphaned Azure alert rules via Log Analytics KQL queries.
+            </p>
+            <div class="case-highlights">
+              <div class="case-highlight-item">
+                <span class="hl-title">Tech:</span>
+                <span class="hl-desc">Azure Key Vault, PowerShell, Python, Azure Monitor, KQL, Azure Functions</span>
+              </div>
+              <div class="case-highlight-item">
+                <span class="hl-title">Outcome:</span>
+                <span class="hl-desc">Remediated 50+ vulnerabilities and saved 10-15 manual engineering hours per release cycle</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS MATRIX -->
+    <section id="skills" class="section skills-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">CAPABILITIES</span>
+          <h2 class="section-title">Technical Skills & Tooling</h2>
+          <p class="section-subtitle">
+            Tools, technologies, and paradigms battle-tested across multi-cloud production environments.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="skills-filter-row">
+          <button class="skill-filter-btn active" data-filter="all">All Skills</button>
+          <button class="skill-filter-btn" data-filter="cloud">Cloud & Platforms</button>
+          <button class="skill-filter-btn" data-filter="iac">IaC & Containers</button>
+          <button class="skill-filter-btn" data-filter="cicd">CI/CD & Security</button>
+          <button class="skill-filter-btn" data-filter="sre">Observability & SRE</button>
+          <button class="skill-filter-btn" data-filter="data">Data & Scripting</button>
+        </div>
+
+        <div class="skills-grid">
+          <!-- AWS -->
+          <div class="skill-category-card" data-category="cloud">
+            <div class="cat-header">
+              <div class="cat-icon text-amber">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+              </div>
+              <h4>Amazon Web Services (AWS)</h4>
+            </div>
+            <div class="skill-pills-list">
+              <span class="badge">ECS / Fargate</span>
+              <span class="badge">AWS Lambda</span>
+              <span class="badge">CloudFront & Edge</span>
+              <span class="badge">VPC & NLB/ALB</span>
+              <span class="badge">Security Groups</span>
+              <span class="badge">S3 & EFS</span>
+              <span class="badge">RDS & Aurora</span>
+              <span class="badge">AWS DataSync</span>
+              <span class="badge">Secrets Manager & SSM</span>
+              <span class="badge">AWS DMS</span>
+            </div>
+          </div>
+
+          <!-- Azure -->
+          <div class="skill-category-card" data-category="cloud">
+            <div class="cat-header">
+              <div class="cat-icon text-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              </div>
+              <h4>Microsoft Azure</h4>
+            </div>
+            <div class="skill-pills-list">
+              <span class="badge">Azure App Service</span>
+              <span class="badge">Azure Functions</span>
+              <span class="badge">Azure Key Vault</span>
+              <span class="badge">Azure Monitor & App Insights</span>
+              <span class="badge">Log Analytics & KQL</span>
+              <span class="badge">Storage Accounts</span>
+              <span class="badge">Event Hubs & MSI</span>
+              <span class="badge">Azure RBAC</span>
+            </div>
+          </div>
+
+          <!-- IaC & Containers -->
+          <div class="skill-category-card" data-category="iac">
+            <div class="cat-header">
+              <div class="cat-icon text-purple">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              </div>
+              <h4>IaC & Containers</h4>
+            </div>
+            <div class="skill-pills-list">
+              <span class="badge highlight-badge">Terraform (HCL)</span>
+              <span class="badge">AWS CloudFormation</span>
+              <span class="badge">Azure ARM Templates</span>
+              <span class="badge">Docker</span>
+              <span class="badge">Multi-arch Builds (amd64)</span>
+              <span class="badge">AWS ECR</span>
+              <span class="badge">State Management</span>
+            </div>
+          </div>
+
+          <!-- CI/CD & Security -->
+          <div class="skill-category-card" data-category="cicd">
+            <div class="cat-header">
+              <div class="cat-icon text-emerald">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h4>CI/CD & DevSecOps</h4>
+            </div>
+            <div class="skill-pills-list">
+              <span class="badge highlight-badge">GitHub Actions</span>
+              <span class="badge highlight-badge">GitHub OIDC</span>
+              <span class="badge">Azure DevOps Pipelines</span>
+              <span class="badge">AWS IAM Roles / STS</span>
+              <span class="badge">Auth0 Authentication</span>
+              <span class="badge">SonarQube</span>
+              <span class="badge">PrismaScan</span>
+              <span class="badge">JFrog Artifactory</span>
+            </div>
+          </div>
+
+          <!-- SRE & Observability -->
+          <div class="skill-category-card" data-category="sre">
+            <div class="cat-header">
+              <div class="cat-icon text-rose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <h4>Observability & SRE</h4>
+            </div>
+            <div class="skill-pills-list">
+              <span class="badge highlight-badge">Datadog Synthetics</span>
+              <span class="badge">Datadog Monitors & Alerts</span>
+              <span class="badge">Atlassian Statuspage</span>
+              <span class="badge">AWS CloudWatch</span>
+              <span class="badge">SLI / SLO Tracking</span>
+              <span class="badge">On-Call Incident Triage</span>
+              <span class="badge">Root Cause Analysis (RCA)</span>
+              <span class="badge">Postmortem Leadership</span>
+            </div>
+          </div>
+
+          <!-- Scripting & Data Systems -->
+          <div class="skill-category-card" data-category="data">
+            <div class="cat-header">
+              <div class="cat-icon text-cyan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              </div>
+              <h4>Scripting & Data Systems</h4>
+            </div>
+            <div class="skill-pills-list">
+              <span class="badge highlight-badge">Python</span>
+              <span class="badge">Bash / Linux Shell</span>
+              <span class="badge">PowerShell</span>
+              <span class="badge">SQL & PostgreSQL</span>
+              <span class="badge">Snowflake</span>
+              <span class="badge">Supabase</span>
+              <span class="badge">Typesense</span>
+              <span class="badge">YAML / JSON</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS & HACKATHONS -->
+    <section id="projects" class="section projects-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">PORTFOLIO</span>
+          <h2 class="section-title">Projects & Hackathon Wins</h2>
+          <p class="section-subtitle">
+            Selected engineering builds, competitive hackathons, and systems projects.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1: Ergonomics & Emotion Monitoring -->
+          <div class="project-card">
+            <div class="project-card-header">
+              <div class="project-award-tag">
+                <svg class="award-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                Winner: Best Healthcare Hack
+              </div>
+              <a href="https://devpost.com/software/employee-wellness-monitor-app" target="_blank" rel="noopener" class="project-ext-link" aria-label="Devpost link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+            <h3 class="project-title">Ergonomics & Emotion Workplace Wellness App</h3>
+            <p class="project-desc">
+              Computer vision workplace wellness monitor that assesses seated posture using MediaPipe with industry-standard RULA & REBA ergonomic algorithms. Features drowsiness detection via transfer learning and cloud sync via AWS Cognito & DynamoDB.
+            </p>
+            <div class="project-tags">
+              <span>MediaPipe</span>
+              <span>Python</span>
+              <span>AWS Cognito</span>
+              <span>DynamoDB</span>
+              <span>OpenCV</span>
+            </div>
+          </div>
+
+          <!-- Project 2: ClimateWatch Insights -->
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-type-tag">Data Analytics & ML</span>
+            </div>
+            <h3 class="project-title">ClimateWatch Insights Dashboard</h3>
+            <p class="project-desc">
+              Time-series predictive analytics dashboard forecasting socio-economic emission indicators across 140 nations. Implemented Recurrent Neural Networks (RNN), seasonal autocorrelation decomposition, and Kalman filter estimators for anomaly detection.
+            </p>
+            <div class="project-tags">
+              <span>Python</span>
+              <span>Plotly</span>
+              <span>Kalman Filters</span>
+              <span>RNNs</span>
+              <span>REST APIs</span>
+            </div>
+          </div>
+
+          <!-- Project 3: JournalBuddy -->
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-type-tag">Distributed Systems</span>
+            </div>
+            <h3 class="project-title">JournalBuddy Research Search Engine</h3>
+            <p class="project-desc">
+              High-throughput document retrieval system for research papers utilizing TF-IDF ranking. Engineered an inverted index engine powered by Java Callable & Future concurrency with parallel stream MapReduce pipelines and Levenshtein distance matching.
+            </p>
+            <div class="project-tags">
+              <span>Java Concurrency</span>
+              <span>MapReduce</span>
+              <span>TF-IDF</span>
+              <span>SQL</span>
+            </div>
+          </div>
+
+          <!-- Project 4: GamerHood -->
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-type-tag">Big Data & Spark</span>
+            </div>
+            <h3 class="project-title">GamerHood Recommendation Engine</h3>
+            <p class="project-desc">
+              Distributed big data recommendation engine trained on millions of gamer ratings and preferences. Leveraged PySpark Alternating Least Squares (ALS) collaborative filtering and MongoDB Atlas for high-throughput trend speculation.
+            </p>
+            <div class="project-tags">
+              <span>PySpark</span>
+              <span>MongoDB Atlas</span>
+              <span>Machine Learning</span>
+              <span>Python</span>
+            </div>
+          </div>
+
+          <!-- Project 5: Icebox Password Protector -->
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-type-tag">Cryptography & Security</span>
+            </div>
+            <h3 class="project-title">Icebox Cryptographic Vault</h3>
+            <p class="project-desc">
+              Multi-file binary stream encryption utility built in Python. Employs AES-256-CBC cipher blocks with salted PBKDF2 key derivation and a normalized SQL backend for tamper-evident data protection.
+            </p>
+            <div class="project-tags">
+              <span>Python</span>
+              <span>AES-256-CBC</span>
+              <span>SQL</span>
+              <span>Cryptography</span>
+            </div>
+          </div>
+
+          <!-- Project 6: QGIS Geospatial Bore Well Forecaster (JPMorgan Chase) -->
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-type-tag">Enterprise Geospatial</span>
+            </div>
+            <h3 class="project-title">Geospatial Well Proximity Forecaster</h3>
+            <p class="project-desc">
+              Automated geospatial transformation plugin developed at JPMorgan Chase for acreage exploration. Leveraged QGIS Python bindings to model spatial coordinate bounds, proximity contours, and prospective drilling locations.
+            </p>
+            <div class="project-tags">
+              <span>Python</span>
+              <span>QGIS</span>
+              <span>Spatial Algorithms</span>
+              <span>Automation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS, HONORS & EDUCATION -->
+    <section id="certifications" class="section cert-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">CREDENTIALS & HONORS</span>
+          <h2 class="section-title">Certifications, Honors & Education</h2>
+        </div>
+
+        <div class="cert-grid">
+          <!-- AWS Certification -->
+          <div class="cert-card featured-cert">
+            <div class="cert-badge-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="cert-content">
+              <span class="cert-issuer">Amazon Web Services</span>
+              <h3 class="cert-name">AWS Certified Solutions Architect – Associate</h3>
+              <p class="cert-meta">Issued May 2025 • Expires May 2028</p>
+              <a href="https://www.credly.com/badges/3be2db96-3394-4eb4-ac1f-1734905cf01d/public_url" target="_blank" rel="noopener" class="cert-link">
+                <span>Verify on Credly</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hackathon 1 -->
+          <div class="cert-card">
+            <div class="cert-badge-icon text-amber">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="cert-content">
+              <span class="cert-issuer">Break the Barrier Hackathon • Aug 2022</span>
+              <h3 class="cert-name">Winner: Best Healthcare Hack & First Runner-Up</h3>
+              <p class="cert-meta">Awarded by LDRP Institute of Technology & Research for workplace ergonomics & emotion monitoring AI.</p>
+              <a href="https://devpost.com/software/employee-wellness-monitor-app" target="_blank" rel="noopener" class="cert-link">
+                <span>View on Devpost</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- HackBMU -->
+          <div class="cert-card">
+            <div class="cert-badge-icon text-purple">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="cert-content">
+              <span class="cert-issuer">HackBMU 5.0 (MLH) • Feb 2022</span>
+              <h3 class="cert-name">Winner — HackBMU 5.0</h3>
+              <p class="cert-meta">National level hackathon organized by the Major League Hacking (MLH) chapter of BML Munjal University.</p>
+            </div>
+          </div>
+
+          <!-- MUJ HACKS -->
+          <div class="cert-card">
+            <div class="cert-badge-icon text-blue">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="cert-content">
+              <span class="cert-issuer">MUJ HACKS 6.0 (ACM) • Feb 2022</span>
+              <h3 class="cert-name">First Runner-Up — MUJ Hacks</h3>
+              <p class="cert-meta">Hackathon conducted by the ACM Student Chapter at Manipal University, Jaipur.</p>
+            </div>
+          </div>
+
+          <!-- Additional Certifications -->
+          <div class="cert-card">
+            <div class="cert-badge-icon text-cyan">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+            </div>
+            <div class="cert-content">
+              <span class="cert-issuer">Coursera & Industry Credentials</span>
+              <h3 class="cert-name">Specialized Technical Credentials</h3>
+              <p class="cert-meta">
+                • Linux Server Management & Security (ID: X8LHM9ZHDLF4)<br>
+                • Applied Machine Learning in Python (ID: CG7PLSUTLK8X)<br>
+                • JPMorgan Chase Software Engineering Virtual Experience
+              </p>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div class="cert-card education-card">
+            <div class="cert-badge-icon text-emerald">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div class="cert-content">
+              <span class="cert-issuer">PSG College of Technology • 2018 – 2023</span>
+              <h3 class="cert-name">M.Sc. (Integrated) Theoretical Computer Science</h3>
+              <p class="cert-meta">
+                <strong>GPA: 8.0 / 10.0</strong> • Coimbatore, India<br>
+                <em>Coursework:</em> Cloud Computing, Data Science, Distributed Systems, Computer Networks, Operating Systems, Database Management Systems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT & CONNECT SECTION -->
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <div class="contact-card-wrapper">
+          <div class="contact-card">
+            <div class="contact-info-col">
+              <span class="section-tag">LET'S CONNECT</span>
+              <h2 class="contact-heading">Looking to level up your cloud infra, CI/CD, or reliability?</h2>
+              <p class="contact-subtext">
+                Whether you want to discuss multi-tenant SaaS architecture, zero-trust OIDC CI/CD migrations, SRE best practices, or high-impact opportunities, I'd love to connect.
+              </p>
+
+              <div class="contact-items-list">
+                <div class="contact-item">
+                  <div class="c-icon text-blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  </div>
+                  <div class="c-details">
+                    <span class="c-label">Direct Email</span>
+                    <a href="mailto:deepanntech@gmail.com" class="c-value">deepanntech@gmail.com</a>
+                  </div>
+                  <button class="copy-btn" id="copyEmailBtn" aria-label="Copy Email address" title="Copy to clipboard">
+                    <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  </button>
+                </div>
+
+                <div class="contact-item">
+                  <div class="c-icon text-emerald">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  </div>
+                  <div class="c-details">
+                    <span class="c-label">Phone</span>
+                    <a href="tel:+919514668683" class="c-value">+91 9514668683</a>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <div class="c-icon text-purple">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                  </div>
+                  <div class="c-details">
+                    <span class="c-label">LinkedIn Profile</span>
+                    <a href="https://www.linkedin.com/in/deepann/" target="_blank" rel="noopener" class="c-value">linkedin.com/in/deepann</a>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <div class="c-icon text-cyan">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                  </div>
+                  <div class="c-details">
+                    <span class="c-label">GitHub Portfolio</span>
+                    <a href="https://github.com/DeepanNarayanaMoorthy" target="_blank" rel="noopener" class="c-value">github.com/DeepanNarayanaMoorthy</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Email Composer Card -->
+            <div class="contact-form-col">
+              <div class="quick-mail-box">
+                <h3 class="mail-box-title">Send a Quick Message</h3>
+                <p class="mail-box-sub">Fires an email directly with your mail client or webmail:</p>
+                <form id="contactForm" class="contact-form">
+                  <div class="form-group">
+                    <label for="senderName">Your Name</label>
+                    <input type="text" id="senderName" placeholder="e.g. Alex Miller" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="senderSubject">Subject</label>
+                    <input type="text" id="senderSubject" placeholder="e.g. DevOps Role / Cloud Architecture Discussion" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="senderMessage">Message</label>
+                    <textarea id="senderMessage" rows="4" placeholder="Hi Deepan, let's talk about..." required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    <span>Launch Direct Email</span>
+                  </button>
+                </form>
+
+                <div class="resume-download-banner">
+                  <div class="r-text">
+                    <strong>Need a PDF resume copy?</strong>
+                    <span>Updated for 2026 • ATS-Optimized</span>
+                  </div>
+                  <a href="Deepan_Cloud_DevOps_SRE_Resume.pdf" download="Deepan_Narayanamoorthy_DevOps_Resume.pdf" class="btn btn-outline btn-sm">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>Download</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <a href="#hero" class="footer-logo">
+          <span class="logo-bracket">&lt;</span>DN_<span class="logo-bracket">&gt;</span>
+        </a>
+        <p class="footer-copyright">
+          © 2026 Deepan Narayanamoorthy. Architected for speed, reliability, and security.
+        </p>
+      </div>
+
+      <div class="footer-center">
+        <span class="footer-stat-badge">
+          <span class="status-dot pulse"></span>
+          Deployed to GitHub Pages
+        </span>
+      </div>
+
+      <div class="footer-right">
+        <a href="#hero" class="back-to-top" id="backToTop" aria-label="Back to top">
+          <span>Back to Top</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
