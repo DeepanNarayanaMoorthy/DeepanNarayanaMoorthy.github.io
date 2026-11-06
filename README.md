@@ -21,8 +21,8 @@ Live Demo: [https://deepannarayanamoorthy.github.io/](https://deepannarayanamoor
 - **99.9% Production Uptime:** Maintained resilient high availability across AWS ECS/Fargate, RDS, and Azure App Services.
 - **80% CI/CD Deployment Rerun Acceleration:** Cut deployment retry latency from 19.5 min to 3.9 min via smart ECR layer and image caching.
 - **Organization-Wide GitHub OIDC Modernization:** Eradicated static AWS access keys and passwords across 10+ core repositories with AWS STS and IAM role assumption.
-- **Multi-Tenant Customer Sandbox Architecture:** Architected isolated AWS sandbox environments across US & EU clusters for enterprise accounts (Avaya, Sprout Social, GrayTV, Biotissue) with deterministic DNS-safe host hashing.
-- **$1,800+/Month Cloud Spend Optimization:** Led SPM EFS rightsizing (1.44 TiB down to 73.48 GiB) and automated parking of idle EU sandbox clusters.
+- **Multi-Tenant Customer Sandbox Architecture:** Architected isolated AWS sandbox environments across US & EU clusters for tier-1 enterprise SaaS accounts with deterministic DNS-safe host hashing.
+- **$1,800+/Month Cloud Spend Optimization:** Led multi-environment EFS rightsizing (1.44 TiB down to 73.48 GiB) and automated parking of idle EU sandbox clusters.
 - **50+ Security Vulnerabilities Resolved:** Automated Azure Key Vault secret expiration alerts, SAS token renewal, and SQL/KV IP whitelisting compliance tools.
 
 ---

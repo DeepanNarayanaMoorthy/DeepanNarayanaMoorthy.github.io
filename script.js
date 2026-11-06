@@ -100,7 +100,7 @@ function initDevOpsTerminal() {
     metrics: `[SYSTEM METRICS & KPI AUDIT]
   • Uptime SLO:             <span class="text-emerald">99.9% High Availability</span>
   • Deploy Retrigger Time:  <span class="text-emerald">19.5 min ➔ 3.9 min (80% faster via ECR reuse)</span>
-  • EFS Storage Rightsizing:<span class="text-emerald">1.44 TiB ➔ 73.48 GiB (SPM sandbox)</span>
+  • EFS Storage Rightsizing:<span class="text-emerald">1.44 TiB ➔ 73.48 GiB (multi-env sandbox)</span>
   • Monthly Cloud Savings:  <span class="text-emerald">~$1,800/mo saved on idle sandbox teardown</span>
   • Microservices Managed:  <span class="text-cyan">30+ (AWS ECS/Lambda, Azure Functions/Apps)</span>
   • Incidents Reduced:      <span class="text-cyan">20% cut via dynamic autoscaling templates</span>`,

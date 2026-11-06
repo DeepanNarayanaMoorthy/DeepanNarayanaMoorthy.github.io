@@ -362,7 +362,7 @@
             </div>
             <h3>Multi-Tenant Cloud Isolation</h3>
             <p>
-              Engineered isolated Customer Sandboxes across US & EU clusters for enterprise clients (Avaya, Sprout Social, GrayTV), with deterministic DNS hashing, dedicated database instances, and cross-account DataSync.
+              Engineered isolated Customer Sandboxes across US & EU clusters for tier-1 enterprise clients, with deterministic DNS hashing, dedicated database instances, and cross-account DataSync.
             </p>
             <ul class="pillar-checklist">
               <li>Tenant-isolated analytics & microservices</li>
@@ -407,21 +407,10 @@
                 </div>
               </div>
 
-              <!-- Manager Endorsement Quote Callout -->
-              <div class="quote-callout">
-                <div class="quote-icon">“</div>
-                <div class="quote-body">
-                  <p>
-                    <strong>Feedback from Sukanya S (Engineering Lead / Manager):</strong>
-                    <em>"The impact was critical and reflected across teams. Highlighted for the Sales Copilot setup, Sandbox environment setup, #help-sre and ops responsibilities handled. Ownership and dependability is commendable. Deepan has been the go-to person for any infra issues."</em>
-                  </p>
-                </div>
-              </div>
-
               <div class="exp-bullets">
                 <ul>
                   <li>
-                    <strong>Enterprise Multi-Tenant Infrastructure:</strong> Architected multi-account, multi-region <strong>Terraform</strong> modules to provision isolated Customer Sandboxes (US & EU) for high-value enterprise accounts (Avaya, Sprout Social, GrayTV, Biotissue) with tenant-isolated Superset clusters, deterministic DNS-safe hostnames, and cross-account <strong>AWS DataSync</strong> over VPC peering.
+                    <strong>Enterprise Multi-Tenant Infrastructure:</strong> Architected multi-account, multi-region <strong>Terraform</strong> modules to provision isolated Customer Sandboxes (US & EU) for high-value enterprise accounts with tenant-isolated Superset clusters, deterministic DNS-safe hostnames, and cross-account <strong>AWS DataSync</strong> over VPC peering.
                   </li>
                   <li>
                     <strong>Org-Wide CI/CD Security Modernization:</strong> Led the organization-wide migration of CI/CD workflows across 10+ core repositories from static AWS IAM access keys to <strong>GitHub Actions OIDC</strong> with role assumption, eliminating long-lived credentials and introducing private-key Snowflake authentication.
@@ -433,7 +422,7 @@
                     <strong>SRE, Incident Response & Observability:</strong> Replaced legacy ping monitors with an automated <strong>Atlassian Statuspage</strong> operating model integrated with <strong>Datadog</strong> for Prod US/EU; created automated incident resolution, L1 runbooks, and monthly uptime reports; cut production release downtime by <strong>2 hours</strong>.
                   </li>
                   <li>
-                    <strong>Cloud Cost Optimization & Rightsizing:</strong> Led SPM EFS rightsizing across Staging, QA, and Sandbox environments, shrinking disk consumption from <strong>1.44 TiB down to 73.48 GiB</strong>; parked idle customer sandbox EU clusters to save <strong>~$1,800/month</strong> in AWS spend.
+                    <strong>Cloud Cost Optimization & Rightsizing:</strong> Led multi-environment EFS rightsizing across Staging, QA, and Sandbox environments, shrinking disk consumption from <strong>1.44 TiB down to 73.48 GiB</strong>; parked idle customer sandbox EU clusters to save <strong>~$1,800/month</strong> in AWS spend.
                   </li>
                   <li>
                     <strong>Production Escalation Lead & RCA:</strong> Led diagnosis, live mitigation, and permanent root-cause remediation for critical production incidents (nginx 502 buffer overflows, WAF AdminProtection false-positives, Snowflake JWT private-key discrepancies, and cross-repo secret rotation).
@@ -616,7 +605,7 @@
             </div>
             <h3 class="case-title">Multi-Tenant Customer Sandbox & Isolated Analytics</h3>
             <p class="case-summary">
-              Architected isolated customer sandbox environments (US/EU) for enterprise prospects (Avaya, Sprout Social, GrayTV). Resolved Superset multi-tenant data bleed by designing per-tenant ECS/RDS clusters with deterministic DNS-safe hashing from client IDs.
+              Architected isolated customer sandbox environments (US/EU) for enterprise clients. Resolved multi-tenant analytics data bleed by designing per-tenant ECS/RDS clusters with deterministic DNS-safe hashing from client IDs.
             </p>
             <div class="case-highlights">
               <div class="case-highlight-item">
@@ -638,7 +627,7 @@
             </div>
             <h3 class="case-title">Organization-Wide CI/CD Security: Static Keys to GitHub OIDC</h3>
             <p class="case-summary">
-              Spearheaded company-wide eradication of static AWS IAM access keys in CI secrets across SPM, public-api, superset, and microservices. Replaced with short-lived STS tokens via GitHub OIDC, Snowflake key-pair authentication, and CI preflight guardrails.
+              Spearheaded company-wide eradication of static AWS IAM access keys in CI secrets across core applications, APIs, analytics, and microservices. Replaced with short-lived STS tokens via GitHub OIDC, Snowflake key-pair authentication, and CI preflight guardrails.
             </p>
             <div class="case-highlights">
               <div class="case-highlight-item">
