@@ -2,7 +2,7 @@
 
 > Production-focused DevOps, Cloud & Site Reliability Engineer (AWS, Azure, Terraform, GitHub OIDC, Datadog)
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Site-38bdf8?style=flat&logo=github)](https://deepannarayanamoorthy.github.io/Deepan-portfolio/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Site-38bdf8?style=flat&logo=github)](https://deepannarayanamoorthy.github.io/)
 [![AWS Certified](https://img.shields.io/badge/AWS%20Certified-Solutions%20Architect%20Associate-ff9900?style=flat&logo=amazon-aws)](https://www.credly.com/badges/3be2db96-3394-4eb4-ac1f-1734905cf01d/public_url)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-deepann-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/deepann/)
 
@@ -12,7 +12,7 @@
 
 This repository hosts the personal engineering portfolio of **Deepan Narayanamoorthy**, showcasing production achievements, architecture case studies, technical skills matrix, hackathon honors, and career history across **Everstage**, **Caterpillar Inc.**, and **JPMorgan Chase & Co.**
 
-Live Demo: [https://deepannarayanamoorthy.github.io/Deepan-portfolio/](https://deepannarayanamoorthy.github.io/Deepan-portfolio/)
+Live Demo: [https://deepannarayanamoorthy.github.io/](https://deepannarayanamoorthy.github.io/)
 
 ---
 
@@ -30,7 +30,7 @@ Live Demo: [https://deepannarayanamoorthy.github.io/Deepan-portfolio/](https://d
 ## 📁 Repository Structure
 
 ```text
-Deepan-portfolio/
+DeepanNarayanaMoorthy.github.io/
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml              # Automated GitHub Pages CI/CD deployment
