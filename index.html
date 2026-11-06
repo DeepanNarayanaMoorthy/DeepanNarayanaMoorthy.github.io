@@ -163,6 +163,10 @@
         <span class="status-slo">99.9% Uptime SLO</span>
       </div>
       <div class="status-quick-links">
+        <button id="audioToggleBtn" class="audio-toggle-btn" aria-label="Toggle cyber sound effects">
+          <span id="audioIcon">🔇</span>
+          <span id="audioText">SFX: OFF</span>
+        </button>
         <a href="https://www.credly.com/badges/3be2db96-3394-4eb4-ac1f-1734905cf01d/public_url" target="_blank" rel="noopener" class="cert-pill">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           AWS Certified Solutions Architect – Associate
@@ -182,6 +186,7 @@
       <div class="nav-menu" id="navMenu">
         <a href="#about" class="nav-link">About</a>
         <a href="#recruiter-summary" class="nav-link">For Recruiters</a>
+        <a href="#sre-lab" class="nav-link">SRE Lab</a>
         <a href="#experience" class="nav-link">Experience</a>
         <a href="#case-studies" class="nav-link">Case Studies</a>
         <a href="#skills" class="nav-link">Skills</a>
@@ -307,12 +312,20 @@
   <span class="json-key">"prod_uptime_slo"</span>: <span class="json-str">"99.9%"</span>,
   <span class="json-key">"status"</span>: <span class="json-str text-green">"Available for High-Impact Platform/SRE Roles"</span>
 }</div>
-              <div class="terminal-line active-line"><span class="term-prompt">$</span> <span class="term-cmd" id="terminalInteractiveText">help</span><span class="term-cursor">█</span></div>
+              <div class="terminal-line active-line">
+                <span class="term-prompt">$</span>
+                <input type="text" id="terminalInput" class="term-input" placeholder="type 'help' or click pills below..." autocomplete="off" spellcheck="false">
+                <span class="term-cursor">█</span>
+              </div>
             </div>
             <div class="terminal-quick-actions">
               <span class="term-hint">Quick commands:</span>
               <button class="term-pill" data-cmd="metrics">metrics</button>
               <button class="term-pill" data-cmd="experience">experience</button>
+              <button class="term-pill highlight-pill" data-cmd="hire">hire deepan 🎉</button>
+              <button class="term-pill" data-cmd="htop">htop</button>
+              <button class="term-pill" data-cmd="joke">joke</button>
+              <button class="term-pill" data-cmd="matrix">matrix 🌧️</button>
               <button class="term-pill" data-cmd="security">security</button>
               <button class="term-pill" data-cmd="contact">contact</button>
               <button class="term-pill" data-cmd="clear">clear</button>
@@ -429,6 +442,159 @@
       </div>
     </section>
 
+    <!-- INTERACTIVE SRE LAB & FINOPS ROI CALCULATOR -->
+    <section id="sre-lab" class="section sre-lab-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">LIVE INTERACTIVE PLAYGROUND</span>
+          <h2 class="section-title">SRE Chaos Lab &amp; Cloud FinOps Calculator</h2>
+          <p class="section-subtitle">
+            Experience first-hand how Deepan architects self-healing cloud platforms and drives tangible FinOps cost optimization.
+          </p>
+        </div>
+
+        <div class="lab-grid">
+          <!-- SRE Chaos Lab Card -->
+          <div class="lab-card card" id="chaosLabCard">
+            <div class="lab-card-header">
+              <div class="lab-title-group">
+                <span class="status-dot pulse" id="chaosStatusDot"></span>
+                <h3 class="lab-title">SRE Incident &amp; Auto-Heal Simulator</h3>
+              </div>
+              <span class="lab-badge badge-green" id="chaosStateBadge">🟢 SYSTEM HEALTHY</span>
+            </div>
+
+            <p class="lab-desc">
+              Test Deepan's multi-AZ high-availability architecture. Trigger a simulated AWS Zone failure and watch the automated self-healing pipeline restore 100% service availability.
+            </p>
+
+            <!-- Live Telemetry Monitor -->
+            <div class="telemetry-grid">
+              <div class="telemetry-item" id="telemUptime">
+                <span class="telem-label">Uptime SLO</span>
+                <span class="telem-val text-emerald" id="telemUptimeVal">99.9%</span>
+                <span class="telem-sub">Multi-Region Active</span>
+              </div>
+              <div class="telemetry-item" id="telemLatency">
+                <span class="telem-label">P99 Latency</span>
+                <span class="telem-val text-cyan" id="telemLatencyVal">18 ms</span>
+                <span class="telem-sub">Nominal SLA</span>
+              </div>
+              <div class="telemetry-item" id="telemErrors">
+                <span class="telem-label">5xx Error Rate</span>
+                <span class="telem-val text-emerald" id="telemErrorsVal">0.01%</span>
+                <span class="telem-sub">Healthy Ingress</span>
+              </div>
+              <div class="telemetry-item" id="telemPods">
+                <span class="telem-label">Healthy Pods</span>
+                <span class="telem-val text-blue" id="telemPodsVal">6 / 6</span>
+                <span class="telem-sub">us-east-1a &amp; 1b</span>
+              </div>
+            </div>
+
+            <!-- Incident Alert Banner (Hidden by default) -->
+            <div class="incident-alert-banner" id="incidentAlertBanner" style="display: none;">
+              <div class="alert-icon">🚨</div>
+              <div class="alert-content">
+                <strong>P2 INCIDENT IN PROGRESS:</strong> Datadog alert #492 triggered! Pod crash in us-east-1a, Latency spike to 465ms, HTTP 502 errors detected.
+              </div>
+            </div>
+
+            <!-- Auto-Heal Live Console -->
+            <div class="heal-console" id="healConsole" style="display: none;">
+              <div class="heal-console-header">
+                <span>automated-remediation.log</span>
+                <span class="heal-pulse">EXEC</span>
+              </div>
+              <div class="heal-console-body" id="healConsoleBody"></div>
+            </div>
+
+            <!-- Interactive Action Controls -->
+            <div class="lab-actions">
+              <button class="btn btn-danger btn-sm" id="btnInjectChaos">
+                <span>💣 Inject Chaos: Simulate AZ Outage</span>
+              </button>
+              <button class="btn btn-success btn-sm pulse-btn" id="btnAutoHeal" style="display: none;">
+                <span>🛡️ Trigger Auto-Heal (Terraform HPA)</span>
+              </button>
+              <button class="btn btn-outline btn-sm" id="btnResetChaos" style="display: none;">
+                <span>🔄 Reset Environment</span>
+              </button>
+            </div>
+            <div class="lab-footnote" id="chaosFootnote">
+              Simulates automated Datadog webhook ➔ Terraform Auto-Scaling Policy ➔ ALB target group failover.
+            </div>
+          </div>
+
+          <!-- FinOps Cloud ROI Calculator -->
+          <div class="lab-card card" id="finopsCard">
+            <div class="lab-card-header">
+              <div class="lab-title-group">
+                <span class="lab-icon-finops">💰</span>
+                <h3 class="lab-title">Interactive Cloud FinOps Calculator</h3>
+              </div>
+              <span class="lab-badge text-amber">FINOPS SAVINGS</span>
+            </div>
+
+            <p class="lab-desc">
+              Estimate quantifiable cost savings and engineering velocity reclaimed by adding Deepan to your cloud platform team.
+            </p>
+
+            <div class="finops-sliders">
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="monthlySpendSlider" class="slider-label">Current Monthly Cloud Spend (AWS/Azure):</label>
+                  <span class="slider-display" id="spendDisplay">$35,000 / mo</span>
+                </div>
+                <input type="range" id="monthlySpendSlider" min="5000" max="150000" step="2500" value="35000" class="finops-range">
+                <div class="slider-ticks">
+                  <span>$5K</span>
+                  <span>$50K</span>
+                  <span>$100K</span>
+                  <span>$150K</span>
+                </div>
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="teamSizeSlider" class="slider-label">Engineering Team Size (Developers):</label>
+                  <span class="slider-display" id="teamDisplay">30 Developers</span>
+                </div>
+                <input type="range" id="teamSizeSlider" min="5" max="150" step="5" value="30" class="finops-range">
+                <div class="slider-ticks">
+                  <span>5 devs</span>
+                  <span>50 devs</span>
+                  <span>100 devs</span>
+                  <span>150 devs</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dynamic ROI Results Grid -->
+            <div class="roi-results-grid">
+              <div class="roi-item">
+                <span class="roi-metric" id="roiAnnualSavings">$92,400</span>
+                <span class="roi-label">Est. Annual Cloud Savings</span>
+                <span class="roi-detail">Via EFS rightsizing &amp; auto-parked sandboxes</span>
+              </div>
+              <div class="roi-item">
+                <span class="roi-metric" id="roiHoursSaved">135 hrs</span>
+                <span class="roi-label">Dev Hours Reclaimed / Mo</span>
+                <span class="roi-detail">Via 80% CI rerun acceleration &amp; OIDC</span>
+              </div>
+            </div>
+
+            <div class="finops-verdict-box">
+              <span class="verdict-icon">⚡</span>
+              <p class="verdict-text" id="verdictText">
+                <strong>FinOps ROI:</strong> Deepan pays for his own compensation within the first <strong>75 days</strong> through automated infrastructure rightsizing alone.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CORE PHILOSOPHY & PILLARS -->
     <section id="about" class="section">
       <div class="container">
@@ -517,6 +683,63 @@
             <p class="r-subtitle">Key qualifications, target roles, and core competencies at a glance.</p>
           </div>
 
+          <!-- Interactive Role Fit Matcher -->
+          <div class="role-matcher-container">
+            <div class="role-matcher-header">
+              <span class="role-matcher-tag">INTERACTIVE CANDIDATE FIT ASSESSMENT</span>
+              <h3 class="role-matcher-title">Select Your Open Role to Evaluate Alignment:</h3>
+            </div>
+            
+            <div class="role-selector-tabs" role="tablist">
+              <button class="role-tab active" data-role="devops" role="tab" aria-selected="true">
+                🎯 DevOps &amp; CI/CD
+              </button>
+              <button class="role-tab" data-role="sre" role="tab" aria-selected="false">
+                ⚡ Site Reliability (SRE)
+              </button>
+              <button class="role-tab" data-role="cloud" role="tab" aria-selected="false">
+                ☁️ Cloud Infrastructure
+              </button>
+              <button class="role-tab" data-role="platform" role="tab" aria-selected="false">
+                🏗️ Platform &amp; IaC
+              </button>
+            </div>
+
+            <div class="role-evaluation-panel" id="roleEvaluationPanel">
+              <div class="role-score-gauge">
+                <div class="gauge-circle">
+                  <svg viewBox="0 0 100 100" class="gauge-svg">
+                    <circle cx="50" cy="50" r="42" class="gauge-bg"></circle>
+                    <circle cx="50" cy="50" r="42" class="gauge-progress" id="gaugeProgress"></circle>
+                  </svg>
+                  <div class="gauge-value" id="gaugeVal">98%</div>
+                </div>
+                <div class="gauge-label">
+                  <strong class="text-emerald" id="gaugeText">Exceptional Fit</strong>
+                  <span>Production-Proven</span>
+                </div>
+              </div>
+
+              <div class="role-details-content">
+                <h4 class="role-fit-heading" id="roleFitHeading">Senior DevOps &amp; CI/CD Engineer</h4>
+                <ul class="role-fit-bullets" id="roleFitBullets">
+                  <li><strong>Zero Static CI Secrets:</strong> Eradicated IAM access keys across 10+ core repos via GitHub OIDC token federation.</li>
+                  <li><strong>80% CI Rerun Acceleration:</strong> Slashed build retries from 19.5 min to 3.9 min using AWS ECR layer reuse.</li>
+                  <li><strong>Multi-Cloud Pipelines:</strong> Standardized declarative YAML CI/CD pipelines across AWS &amp; Azure for 30+ services.</li>
+                </ul>
+
+                <div class="role-fit-actions">
+                  <button class="btn btn-outline btn-sm" id="btnHighlightMatchingSkills">
+                    <span>⚡ Highlight Matching Skills &amp; Projects on Page</span>
+                  </button>
+                  <a href="mailto:deepanntech@gmail.com?subject=Interview%20Request%20for%20DevOps%20Role" class="btn btn-primary btn-sm" id="roleEmailBtn">
+                    <span>📅 Request 15-Min Quick Screen</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="recruiter-grid">
             <div class="r-grid-item">
               <span class="r-label">🎯 Target Roles</span>
@@ -594,7 +817,7 @@
                     </div>
                     <div>
                       <h3 class="company-name"><a href="https://www.everstage.com" target="_blank" rel="noopener">EVERSTAGE</a></h3>
-                      <div class="company-meta-sub">Enterprise Sales Performance Management (SPM) Platform • Series B ($30M+ Venture Funding)</div>
+                      <div class="company-meta-sub">Enterprise Sales Performance Management Platform • Series B ($30M+ Venture Funding)</div>
                     </div>
                     <span class="job-badge active-badge">Current</span>
                   </div>
@@ -608,7 +831,7 @@
 
               <!-- Company Scale & Market Context -->
               <div class="company-market-context">
-                <p><strong>Scale &amp; Coexisting Landscape:</strong> High-growth global B2B SaaS platform processing mission-critical commission and revenue data for global enterprises worldwide. Operates in the enterprise SPM space alongside legacy platforms like SAP Commissions (CallidusCloud), Salesforce Spiff, and CaptivateIQ.</p>
+                <p><strong>Scale &amp; Coexisting Landscape:</strong> High-growth global B2B SaaS platform processing mission-critical commission and revenue data for global enterprises worldwide. Operates in the enterprise Sales Performance Management space alongside platforms like SAP Commissions, Salesforce Spiff, and CaptivateIQ.</p>
               </div>
 
               <div class="exp-bullets">
@@ -836,7 +1059,7 @@
 
         <div class="case-studies-grid">
           <!-- Case Study 1 (Impact: Tier 1) -->
-          <div class="case-card">
+          <div class="case-card interactive-case-card" data-case-index="0" role="button" tabindex="0" aria-label="Open architecture deep dive">
             <div class="case-card-top">
               <span class="case-tag tag-blue">Cloud Architecture</span>
               <span class="case-org">Everstage</span>
@@ -855,10 +1078,14 @@
                 <span class="hl-desc">Zero cross-tenant data bleed, unblocked 4+ enterprise deals, EFS rightsizing shrank storage from 1.44 TiB to 73 GiB</span>
               </div>
             </div>
+          
+            <div class="case-card-action">
+              <span class="case-expand-btn">Architecture Specs &amp; Flow ↗</span>
+            </div>
           </div>
 
           <!-- Case Study 2 (Impact: Tier 1) -->
-          <div class="case-card">
+          <div class="case-card interactive-case-card" data-case-index="1" role="button" tabindex="0" aria-label="Open architecture deep dive">
             <div class="case-card-top">
               <span class="case-tag tag-purple">Security &amp; DevSecOps</span>
               <span class="case-org">Everstage</span>
@@ -877,10 +1104,14 @@
                 <span class="hl-desc">100% long-lived CI secret elimination; 80% deployment rerun acceleration (19.5m → 3.9m) with ECR reuse</span>
               </div>
             </div>
+          
+            <div class="case-card-action">
+              <span class="case-expand-btn">Architecture Specs &amp; Flow ↗</span>
+            </div>
           </div>
 
           <!-- Case Study 3 (Impact: Tier 1) -->
-          <div class="case-card">
+          <div class="case-card interactive-case-card" data-case-index="2" role="button" tabindex="0" aria-label="Open architecture deep dive">
             <div class="case-card-top">
               <span class="case-tag tag-emerald">Reliability &amp; Release</span>
               <span class="case-org">Caterpillar Inc.</span>
@@ -899,10 +1130,14 @@
                 <span class="hl-desc">Slashing release downtime by 3 hours per iteration across 10+ major downtime-sensitive releases</span>
               </div>
             </div>
+          
+            <div class="case-card-action">
+              <span class="case-expand-btn">Architecture Specs &amp; Flow ↗</span>
+            </div>
           </div>
 
           <!-- Case Study 4 (Impact: Tier 1) -->
-          <div class="case-card">
+          <div class="case-card interactive-case-card" data-case-index="3" role="button" tabindex="0" aria-label="Open architecture deep dive">
             <div class="case-card-top">
               <span class="case-tag tag-amber">Cloud FinOps</span>
               <span class="case-org">Everstage</span>
@@ -921,10 +1156,14 @@
                 <span class="hl-desc">Shrank storage from 1.44 TiB down to 73.48 GiB; saved ~$1,800/mo on idle EU clusters</span>
               </div>
             </div>
+          
+            <div class="case-card-action">
+              <span class="case-expand-btn">Architecture Specs &amp; Flow ↗</span>
+            </div>
           </div>
 
           <!-- Case Study 5 (Impact: Tier 2) -->
-          <div class="case-card">
+          <div class="case-card interactive-case-card" data-case-index="4" role="button" tabindex="0" aria-label="Open architecture deep dive">
             <div class="case-card-top">
               <span class="case-tag tag-purple">CI/CD &amp; Velocity</span>
               <span class="case-org">Everstage</span>
@@ -943,10 +1182,14 @@
                 <span class="hl-desc">Cut deployment retries from ~19.5 min to ~3.9 min (80% acceleration); eliminated hung CI pipelines</span>
               </div>
             </div>
+          
+            <div class="case-card-action">
+              <span class="case-expand-btn">Architecture Specs &amp; Flow ↗</span>
+            </div>
           </div>
 
           <!-- Case Study 6 (Impact: Tier 2) -->
-          <div class="case-card">
+          <div class="case-card interactive-case-card" data-case-index="5" role="button" tabindex="0" aria-label="Open architecture deep dive">
             <div class="case-card-top">
               <span class="case-tag tag-blue">Observability &amp; SRE</span>
               <span class="case-org">Everstage</span>
@@ -965,10 +1208,14 @@
                 <span class="hl-desc">Real-time customer status during incidents; reduced on-call alert noise; automated Finance SLA reports</span>
               </div>
             </div>
+          
+            <div class="case-card-action">
+              <span class="case-expand-btn">Architecture Specs &amp; Flow ↗</span>
+            </div>
           </div>
 
           <!-- Case Study 7 (Impact: Tier 2) -->
-          <div class="case-card">
+          <div class="case-card interactive-case-card" data-case-index="6" role="button" tabindex="0" aria-label="Open architecture deep dive">
             <div class="case-card-top">
               <span class="case-tag tag-emerald">Performance &amp; Scale</span>
               <span class="case-org">Caterpillar Inc.</span>
@@ -987,10 +1234,14 @@
                 <span class="hl-desc">Resolved 2 critical ThousandEye alert bottlenecks on Auth APIs; slashed performance incidents by 20%</span>
               </div>
             </div>
+          
+            <div class="case-card-action">
+              <span class="case-expand-btn">Architecture Specs &amp; Flow ↗</span>
+            </div>
           </div>
 
           <!-- Case Study 8 (Impact: Tier 2) -->
-          <div class="case-card">
+          <div class="case-card interactive-case-card" data-case-index="7" role="button" tabindex="0" aria-label="Open architecture deep dive">
             <div class="case-card-top">
               <span class="case-tag tag-amber">Governance &amp; Security</span>
               <span class="case-org">Caterpillar Inc.</span>
@@ -1009,10 +1260,14 @@
                 <span class="hl-desc">Resolved 50+ compliance vulnerabilities; saved 10-15 manual engineering hours per sprint</span>
               </div>
             </div>
+          
+            <div class="case-card-action">
+              <span class="case-expand-btn">Architecture Specs &amp; Flow ↗</span>
+            </div>
           </div>
 
           <!-- Case Study 9 (Impact: Tier 3) -->
-          <div class="case-card">
+          <div class="case-card interactive-case-card" data-case-index="8" role="button" tabindex="0" aria-label="Open architecture deep dive">
             <div class="case-card-top">
               <span class="case-tag tag-blue">Cross-Layer SRE</span>
               <span class="case-org">Everstage</span>
@@ -1031,10 +1286,14 @@
                 <span class="hl-desc">Permanently patched recurring 502/403 failure modes; produced client-shareable root-cause postmortems</span>
               </div>
             </div>
+          
+            <div class="case-card-action">
+              <span class="case-expand-btn">Architecture Specs &amp; Flow ↗</span>
+            </div>
           </div>
 
           <!-- Case Study 10 (Impact: Tier 3) -->
-          <div class="case-card">
+          <div class="case-card interactive-case-card" data-case-index="9" role="button" tabindex="0" aria-label="Open architecture deep dive">
             <div class="case-card-top">
               <span class="case-tag tag-purple">IaC &amp; Multi-Cloud</span>
               <span class="case-org">Caterpillar Inc.</span>
@@ -1053,10 +1312,14 @@
                 <span class="hl-desc">Unified multi-cloud IaC patterns; boosted release velocity 3x; cut manual configuration errors by 85%</span>
               </div>
             </div>
+          
+            <div class="case-card-action">
+              <span class="case-expand-btn">Architecture Specs &amp; Flow ↗</span>
+            </div>
           </div>
 
           <!-- Case Study 11 (Impact: Tier 3) -->
-          <div class="case-card">
+          <div class="case-card interactive-case-card" data-case-index="10" role="button" tabindex="0" aria-label="Open architecture deep dive">
             <div class="case-card-top">
               <span class="case-tag tag-emerald">Build &amp; Telemetry</span>
               <span class="case-org">Caterpillar Inc.</span>
@@ -1075,10 +1338,14 @@
                 <span class="hl-desc">Saved developers 1 hour per deployment; eliminated test data extraction network failures</span>
               </div>
             </div>
+          
+            <div class="case-card-action">
+              <span class="case-expand-btn">Architecture Specs &amp; Flow ↗</span>
+            </div>
           </div>
 
           <!-- Case Study 12 (Impact: Tier 3) -->
-          <div class="case-card">
+          <div class="case-card interactive-case-card" data-case-index="11" role="button" tabindex="0" aria-label="Open architecture deep dive">
             <div class="case-card-top">
               <span class="case-tag tag-amber">Enterprise Automation</span>
               <span class="case-org">JPMorgan Chase</span>
@@ -1099,7 +1366,11 @@
             </div>
           </div>
         </div>
-      </div>
+      
+            <div class="case-card-action">
+              <span class="case-expand-btn">Architecture Specs &amp; Flow ↗</span>
+            </div>
+          </div>
     </section>
 
     <!-- TECHNICAL SKILLS MATRIX -->
@@ -1749,6 +2020,101 @@
 
   <!-- Toast Notification -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+
+  <!-- ARCHITECTURE DEEP DIVE MODAL -->
+  <div class="modal-backdrop" id="caseModalBackdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-dialog card">
+      <div class="modal-header">
+        <div class="modal-badge-group">
+          <span class="case-tag tag-blue" id="modalTag">Cloud Architecture</span>
+          <span class="case-org" id="modalOrg">Everstage</span>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <h3 class="modal-title" id="modalTitle">System Architecture Blueprint</h3>
+
+        <!-- Interactive Architecture Diagram Box -->
+        <div class="arch-diagram-box">
+          <div class="arch-diagram-header">
+            <span>System Architecture Flow</span>
+            <span class="arch-tag">ASCII HIGH-AVAILABILITY BLUEPRINT</span>
+          </div>
+          <pre class="arch-diagram-code" id="modalDiagram"></pre>
+        </div>
+
+        <div class="modal-grid-details">
+          <div class="modal-detail-col">
+            <h4 class="modal-subhead">The Engineering Challenge</h4>
+            <p id="modalChallenge"></p>
+          </div>
+          <div class="modal-detail-col">
+            <h4 class="modal-subhead">Architectural Implementation</h4>
+            <p id="modalSolution"></p>
+          </div>
+        </div>
+
+        <div class="modal-impact-banner">
+          <div class="impact-badge">VERIFIED QUANTIFIED IMPACT</div>
+          <p id="modalImpact"></p>
+        </div>
+
+        <div class="modal-stack-section">
+          <span class="modal-stack-label">Technologies &amp; Cloud Services:</span>
+          <div class="modal-stack-pills" id="modalStack"></div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <a href="mailto:deepanntech@gmail.com" class="btn btn-primary btn-sm" id="modalContactBtn">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>Discuss this Architecture with Deepan</span>
+        </a>
+        <button class="btn btn-outline btn-sm" id="modalDismissBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATRIX CYBER RAIN CANVAS OVERLAY -->
+  <div class="matrix-overlay" id="matrixOverlay" aria-hidden="true">
+    <canvas id="matrixCanvas"></canvas>
+    <div class="matrix-hud">
+      <div class="matrix-status">
+        <span class="matrix-dot"></span>
+        <span>MATRIX RAIN ACTIVE // SRE CYBERSPACE</span>
+      </div>
+      <button class="matrix-exit-btn" id="matrixExitBtn">✕ Exit Matrix (Esc)</button>
+    </div>
+  </div>
+
+  <!-- LIGHTWEIGHT PURE JS CONFETTI CANVAS -->
+  <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- EASTER EGG GOD MODE MODAL -->
+  <div class="modal-backdrop" id="easterEggBackdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-dialog card text-center easter-modal">
+      <div class="easter-badge">🎮 SECRET EASTER EGG UNLOCKED</div>
+      <h3 class="modal-title gradient-text">SRE GOD MODE ACTIVATED!</h3>
+      <p class="modal-sub">You entered the classic Konami Code (↑ ↑ ↓ ↓ ← → ← → B A)!</p>
+      <div class="easter-trophy">🏆</div>
+      <p class="easter-quote">
+        "Any sufficiently advanced DevOps automation is indistinguishable from magic."
+      </p>
+      <div class="easter-achievements">
+        <div class="easter-item">✨ <strong>100% Production Resilient</strong></div>
+        <div class="easter-item">⚡ <strong>Zero Static Credentials</strong></div>
+        <div class="easter-item">🚀 <strong>Hire Candidate Deepan Narayanamoorthy</strong></div>
+      </div>
+      <div class="modal-footer justify-center">
+        <a href="mailto:deepanntech@gmail.com?subject=God%20Mode%20Unlocked%20-%20Let's%20Talk" class="btn btn-primary btn-sm">
+          <span>Schedule an Interview 🚀</span>
+        </a>
+        <button class="btn btn-outline btn-sm" id="easterCloseBtn">Back to Reality</button>
+      </div>
+    </div>
+  </div>
 
   <!-- JavaScript -->
   <script src="script.js"></script>
