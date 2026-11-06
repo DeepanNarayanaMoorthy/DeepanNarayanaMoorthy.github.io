@@ -3126,6 +3126,11 @@ a {
 }
 
 /* Typewriter Effect (Revealing Text) */
+.role-lead {
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -0.01em;
+}
 .typewriter-wrap {
   display: inline;
   position: relative;

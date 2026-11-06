@@ -1369,56 +1369,60 @@ function initTypewriterEffect() {
   if (!el) return;
 
   const phrases = [
-    "DevOps & Cloud Infrastructure",
-    "Site Reliability Engineering (SRE)",
-    "Multi-Region Terraform (IaC)",
+    "Multi-Region Terraform & IaC",
     "Zero-Trust GitHub OIDC CI/CD",
-    "FinOps & Cloud Cost Optimization",
-    "High-Availability AWS & Azure Systems",
-    "Datadog Observability & Statuspage"
+    "99.9% Production Uptime & SRE",
+    "AWS & Azure Microservices",
+    "FinOps & $1.8K/mo Cloud Savings",
+    "Datadog Observability & Statuspage",
+    "Zero-Downtime Blue/Green Releases",
+    "Automated Self-Healing Architecture"
   ];
 
   let phraseIndex = 0;
-  let charIndex = phrases[0].length;
+  let charIndex = 0;
   let isDeleting = false;
-  let typingSpeed = 70;
 
-  // Initial pause on the first phrase before deleting
-  setTimeout(tick, 2200);
+  // Clear initially so visitor immediately sees the live typing animation
+  el.textContent = "";
 
   function tick() {
     const currentPhrase = phrases[phraseIndex];
 
     if (isDeleting) {
-      charIndex--;
-      typingSpeed = 32; // Fast deletion
+      charIndex = Math.max(0, charIndex - 1);
+      el.textContent = currentPhrase.substring(0, charIndex);
+
+      if (charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(tick, 350); // Pause before starting next phrase
+        return;
+      }
+      setTimeout(tick, 28); // Snappy deletion speed
     } else {
-      charIndex++;
-      typingSpeed = 65 + Math.random() * 35; // Natural human typing cadence
+      charIndex = Math.min(currentPhrase.length, charIndex + 1);
+      el.textContent = currentPhrase.substring(0, charIndex);
+
+      // Audio click feedback if enabled
+      if (charIndex % 2 === 0 && typeof playTypingSound === 'function') {
+        playTypingSound();
+      }
+
+      if (charIndex === currentPhrase.length) {
+        isDeleting = true;
+        setTimeout(tick, 2200); // Hold completed phrase for 2.2 seconds
+        return;
+      }
+      // Natural human typing rhythm
+      const typingSpeed = 50 + Math.random() * 30;
+      setTimeout(tick, typingSpeed);
     }
-
-    el.textContent = currentPhrase.substring(0, charIndex);
-
-    // Audio click feedback if enabled
-    if (!isDeleting && charIndex % 2 === 0) {
-      playTypingSound();
-    }
-
-    if (!isDeleting && charIndex === currentPhrase.length) {
-      // Finished typing phrase -> pause to let user read
-      typingSpeed = 2200;
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      // Finished deleting -> cycle to next phrase
-      isDeleting = false;
-      phraseIndex = (phraseIndex + 1) % phrases.length;
-      typingSpeed = 400; // Brief pause before next phrase starts
-    }
-
-    setTimeout(tick, typingSpeed);
   }
-}
 
+  // Start typing immediately after short 200ms page render settling
+  setTimeout(tick, 200);
+}
 
 /**
  * Top Reading Scroll Progress Bar
