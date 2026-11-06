@@ -23,6 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initMatrixRain();
   initCard3DTilt();
   initKonamiCode();
+  // Page-Wide Immersive Interactive Features
+  initScrollProgressBar();
+  initCursorSpotlight();
+  initFloatingDock();
+  initExperienceTechFilter();
+  initArchitectureTopology();
+  initSkillSearch();
+  initMetricCardDetails();
+  initContactPresets();
 });
 
 /**
@@ -1408,4 +1417,487 @@ function initTypewriterEffect() {
 
     setTimeout(tick, typingSpeed);
   }
+}
+
+
+/**
+ * Top Reading Scroll Progress Bar
+ */
+function initScrollProgressBar() {
+  const bar = document.getElementById('scrollProgressBar');
+  if (!bar) return;
+
+  window.addEventListener('scroll', () => {
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (totalHeight > 0) {
+      const progress = (window.scrollY / totalHeight) * 100;
+      bar.style.width = `${progress}%`;
+    }
+  }, { passive: true });
+}
+
+/**
+ * Interactive Cyber Mouse Cursor Spotlight Follower
+ */
+function initCursorSpotlight() {
+  const spotlight = document.getElementById('cursorSpotlight');
+  if (!spotlight || !window.matchMedia('(pointer: fine)').matches) return;
+
+  document.addEventListener('mousemove', (e) => {
+    spotlight.style.left = `${e.clientX}px`;
+    spotlight.style.top = `${e.clientY}px`;
+  }, { passive: true });
+}
+
+/**
+ * Floating Recruiter Command Bar & Persona Dock
+ */
+function initFloatingDock() {
+  const personaBtns = document.querySelectorAll('.dock-persona-btn');
+  if (!personaBtns.length) return;
+
+  personaBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      playClickSound();
+      personaBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const persona = btn.getAttribute('data-persona');
+
+      if (persona === 'recruiter') {
+        const recruiterSec = document.getElementById('recruiter-summary');
+        if (recruiterSec) recruiterSec.scrollIntoView({ behavior: 'smooth' });
+        showToast("Switched to Recruiter Mode: Quick ATS qualifications & role fit!");
+      } else if (persona === 'techlead') {
+        const caseSec = document.getElementById('case-studies');
+        if (caseSec) caseSec.scrollIntoView({ behavior: 'smooth' });
+        showToast("Switched to Tech Lead Mode: Highlighting 12 system architecture deep dives!");
+      } else if (persona === 'executive') {
+        const sreLabSec = document.getElementById('sre-lab');
+        if (sreLabSec) sreLabSec.scrollIntoView({ behavior: 'smooth' });
+        showToast("Switched to Executive Mode: Inspecting FinOps ROI & cloud savings!");
+      }
+    });
+  });
+}
+
+/**
+ * Experience Technology Filter Bar
+ */
+function initExperienceTechFilter() {
+  const filterBtns = document.querySelectorAll('.exp-filter-btn');
+  const bullets = document.querySelectorAll('.exp-bullets li[data-tech]');
+  const counter = document.getElementById('expMatchCounter');
+
+  if (!filterBtns.length) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      playClickSound();
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-exp-filter');
+      let matchCount = 0;
+
+      bullets.forEach(li => {
+        const tech = li.getAttribute('data-tech') || '';
+        if (filter === 'all' || tech.includes(filter)) {
+          li.classList.remove('dimmed');
+          if (filter !== 'all') {
+            li.classList.add('highlighted');
+          } else {
+            li.classList.remove('highlighted');
+          }
+          matchCount++;
+        } else {
+          li.classList.add('dimmed');
+          li.classList.remove('highlighted');
+        }
+      });
+
+      if (counter) {
+        if (filter === 'all') {
+          counter.textContent = 'Showing all 18 verified achievements';
+        } else {
+          counter.textContent = `Highlighted ${matchCount} achievements aligned with ${btn.textContent}`;
+        }
+      }
+    });
+  });
+}
+
+/**
+ * Multi-Cloud System Architecture Topology Explorer
+ */
+const topologyNodesData = {
+  dns: {
+    tag: "LAYER 1 • GLOBAL INGRESS",
+    title: "Route 53 Global Routing & Deterministic DNS Hashing",
+    desc: "Engineered deterministic DNS-safe hashing from enterprise client identifiers, routing multi-tenant SaaS traffic seamlessly across isolated US and European clusters with zero route collisions.",
+    metricNum: "99.9%",
+    metricLabel: "Routing SLA",
+    caseIndex: 0
+  },
+  edge: {
+    tag: "LAYER 2 • CONTENT & EDGE COMPUTING",
+    title: "AWS CloudFront CDN, S3 Storage & Lambda@Edge",
+    desc: "Architected static UI edge distribution with Lambda@Edge header transformations and security policies, slashing page load latency across global industrial telematics fleets.",
+    metricNum: "3 hrs",
+    metricLabel: "Downtime Cut / Release",
+    caseIndex: 2
+  },
+  security: {
+    tag: "LAYER 3 • ZERO-TRUST IDENTITY & WAF",
+    title: "GitHub Actions OIDC Federation & AWS WAF Guardrails",
+    desc: "Eradicated permanent IAM keys across 10+ core repositories using short-lived STS tokens. Tuned AWS WAF AdminProtection rule false-positives protecting enterprise customer portals.",
+    metricNum: "100%",
+    metricLabel: "Static Keys Eradicated",
+    caseIndex: 1
+  },
+  compute: {
+    tag: "LAYER 4 • CONTAINER COMPUTE & AUTOSCALING",
+    title: "AWS ECS Fargate & Azure App Service Microservices",
+    desc: "Standardized container deployments across 30+ microservices with dynamic metric-based autoscaling policies that eliminated peak telematics latency spikes.",
+    metricNum: "20%",
+    metricLabel: "Incident Reduction",
+    caseIndex: 6
+  },
+  storage: {
+    tag: "LAYER 5 • PERSISTENT DATA & FINOPS RIGHTSIZING",
+    title: "AWS EFS Storage Rightsizing & PostgreSQL RDS",
+    desc: "Right-sized multi-environment EFS file storage from 1.44 TiB down to 73.48 GiB, saving ~$1,800/mo while ensuring zero cross-tenant database bleed over VPC peering.",
+    metricNum: "$1.8K+",
+    metricLabel: "Monthly Cloud Savings",
+    caseIndex: 3
+  },
+  sre: {
+    tag: "LAYER 6 • OBSERVABILITY & INCIDENT OPERATIONS",
+    title: "Datadog Synthetics, Atlassian Statuspage & SLO Monitoring",
+    desc: "Automated end-to-end user synthetic probes with webhook integration into Atlassian Statuspage for real-time customer incident status and P1/P2 runbooks.",
+    metricNum: "40%",
+    metricLabel: "Alert Noise Reduced",
+    caseIndex: 5
+  }
+};
+
+function initArchitectureTopology() {
+  const nodes = document.querySelectorAll('.topology-node');
+  const nodeTag = document.getElementById('nodeTag');
+  const nodeTitle = document.getElementById('nodeTitle');
+  const nodeDesc = document.getElementById('nodeDesc');
+  const nodeMetricNum = document.getElementById('nodeMetricNum');
+  const nodeMetricLabel = document.getElementById('nodeMetricLabel');
+  const nodeFilterBtn = document.getElementById('nodeFilterBtn');
+
+  if (!nodes.length) return;
+
+  let activeCaseIndex = 0;
+
+  nodes.forEach(node => {
+    node.addEventListener('click', () => {
+      playClickSound();
+      nodes.forEach(n => n.classList.remove('active'));
+      node.classList.add('active');
+
+      const nodeKey = node.getAttribute('data-node');
+      const data = topologyNodesData[nodeKey];
+      if (!data) return;
+
+      if (nodeTag) nodeTag.textContent = data.tag;
+      if (nodeTitle) nodeTitle.textContent = data.title;
+      if (nodeDesc) nodeDesc.textContent = data.desc;
+      if (nodeMetricNum) nodeMetricNum.textContent = data.metricNum;
+      if (nodeMetricLabel) nodeMetricLabel.textContent = data.metricLabel;
+      activeCaseIndex = data.caseIndex;
+    });
+  });
+
+  if (nodeFilterBtn) {
+    nodeFilterBtn.addEventListener('click', () => {
+      playClickSound();
+      const targetCard = document.querySelector(`.interactive-case-card[data-case-index="${activeCaseIndex}"]`);
+      if (targetCard) {
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetCard.classList.add('matched-highlight');
+        setTimeout(() => targetCard.classList.remove('matched-highlight'), 3000);
+      }
+    });
+  }
+}
+
+/**
+ * Live Instant Skill Search Bar
+ */
+function initSkillSearch() {
+  const input = document.getElementById('skillSearchInput');
+  const clearBtn = document.getElementById('skillSearchClearBtn');
+  const status = document.getElementById('skillSearchStatus');
+  const badges = document.querySelectorAll('.skill-pills-list .badge');
+  const categoryCards = document.querySelectorAll('.skill-category-card');
+
+  if (!input) return;
+
+  input.addEventListener('input', () => {
+    const query = input.value.trim().toLowerCase();
+
+    if (clearBtn) {
+      clearBtn.style.display = query ? 'inline-block' : 'none';
+    }
+
+    if (!query) {
+      badges.forEach(b => {
+        b.classList.remove('search-matched', 'search-dimmed');
+      });
+      categoryCards.forEach(c => {
+        c.style.display = 'block';
+        c.style.opacity = '1';
+      });
+      if (status) status.textContent = 'Showing all 49 skills';
+      return;
+    }
+
+    let matchCount = 0;
+
+    categoryCards.forEach(card => {
+      const cardBadges = card.querySelectorAll('.badge');
+      let cardHasMatch = false;
+
+      cardBadges.forEach(badge => {
+        const text = badge.textContent.trim().toLowerCase();
+        if (text.includes(query)) {
+          badge.classList.add('search-matched');
+          badge.classList.remove('search-dimmed');
+          matchCount++;
+          cardHasMatch = true;
+        } else {
+          badge.classList.remove('search-matched');
+          badge.classList.add('search-dimmed');
+        }
+      });
+
+      if (cardHasMatch) {
+        card.style.display = 'block';
+        card.style.opacity = '1';
+      } else {
+        card.style.display = 'none';
+        card.style.opacity = '0';
+      }
+    });
+
+    if (status) {
+      status.textContent = `Found ${matchCount} matching skill${matchCount === 1 ? '' : 's'}`;
+    }
+  });
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      playClickSound();
+      input.value = '';
+      input.dispatchEvent(new Event('input'));
+      input.focus();
+    });
+  }
+}
+
+/**
+ * Metric Card Interactive Breakdown Modal
+ */
+const metricsData = [
+  {
+    title: "Production Uptime SLO & Resilience",
+    val: "99.9%",
+    before: "Single-AZ deployment risks and manual incident triage via Slack channels.",
+    after: "Multi-region AWS ECS and Azure App Services with Datadog Synthetics health probes.",
+    mechanism: "Engineered automated target-group failover, zero-downtime blue/green cutovers, and proactive multi-step synthetic monitors triggering automated status pages.",
+    stack: ["AWS ECS Fargate", "Azure App Services", "Route 53", "Datadog Synthetics", "ALB"],
+    caseIndex: 2
+  },
+  {
+    title: "CI/CD Deployment Rerun Acceleration",
+    val: "80%",
+    before: "Developer deployment retries averaged ~19.5 minutes due to redundant container builds.",
+    after: "Retrigger workflow latency dropped to 3.9 minutes via idempotent layer reuse.",
+    mechanism: "Diagnosed build bottlenecks and implemented ECR image manifest caching with Docker BuildKit, reusing validated layers instead of rebuilding from scratch.",
+    stack: ["GitHub Actions", "AWS ECR", "Docker BuildKit", "Bash Automation"],
+    caseIndex: 4
+  },
+  {
+    title: "Microservices Standardization & Modernization",
+    val: "30+",
+    before: "Disparate classic GUI deployment pipelines with manual configuration drift.",
+    after: "Standardized Infrastructure as Code provisioning across AWS and Azure.",
+    mechanism: "Built modular Terraform, AWS CloudFormation, and Azure ARM templates paired with declarative Azure DevOps YAML pipelines.",
+    stack: ["Terraform", "AWS CloudFormation", "Azure ARM", "Azure DevOps YAML"],
+    caseIndex: 9
+  },
+  {
+    title: "Monthly Cloud Infrastructure Savings",
+    val: "$1.8K+",
+    before: "Non-production staging and sandbox environments cloning full production disks.",
+    after: "EFS volume rightsized from 1.44 TiB down to 73 GiB, plus automated idle teardowns.",
+    mechanism: "Profiled microservice file access with Linux disk utilities, migrating only essential files. Implemented serverless auto-parking for idle test environments.",
+    stack: ["AWS EFS", "AWS DataSync", "AWS Cost Explorer", "AWS Lambda"],
+    caseIndex: 3
+  },
+  {
+    title: "Zero-Trust CI/CD Vulnerabilities Cleared",
+    val: "50+",
+    before: "Static, long-lived AWS IAM access keys stored in CI repository secrets.",
+    after: "100% eradication of permanent credentials across 10+ core repositories.",
+    mechanism: "Spearheaded organization-wide migration to GitHub Actions OIDC federation with short-lived 15-min STS tokens and automated secret expiry alerts.",
+    stack: ["GitHub OIDC", "AWS IAM", "AWS STS", "Snowflake Key-Pair", "Azure Key Vault"],
+    caseIndex: 1
+  },
+  {
+    title: "Annual Engineering Hours Automated",
+    val: "1,000+",
+    before: "Manual compilation, formatting, and proofing of executive client financial decks.",
+    after: "Automated end-to-end Python pipelines generating presentation decks dynamically.",
+    mechanism: "Engineered Python & VBA automation integrating deal databases, financial APIs, and valuation multiple chart generators.",
+    stack: ["Python", "Pandas", "Matplotlib", "VBA", "SQL"],
+    caseIndex: 11
+  },
+  {
+    title: "Production Incident Reduction",
+    val: "20%",
+    before: "Heavy telematics traffic spikes creating chronic latency and ThousandEyes alerts.",
+    after: "Slashed performance alerts via dynamic target-tracking autoscaling templates.",
+    mechanism: "Tuned metric-based autoscaling thresholds for AWS Fargate and Azure App Services based on CPU, memory, and concurrent connection metrics.",
+    stack: ["AWS Fargate", "Azure App Services", "CloudWatch Alarms", "Azure Monitor"],
+    caseIndex: 6
+  },
+  {
+    title: "Release Downtime Slashed per Deployment",
+    val: "2-3 Hours",
+    before: "Industrial telematics platforms requiring up to 3 hours of offline maintenance windows.",
+    after: "Zero-downtime Blue/Green releases with instantaneous 1-click rollback verification.",
+    mechanism: "Engineered weighted traffic shifting via CloudFront + Lambda@Edge and Route 53 with automated synthetic health checks before 100% cutover.",
+    stack: ["AWS CloudFront", "Lambda@Edge", "Route 53", "Azure DevOps"],
+    caseIndex: 2
+  },
+  {
+    title: "Multi-Environment Storage Rightsizing",
+    val: "1.4T➔73G",
+    before: "AWS EFS storage ballooned to 1.44 TiB accumulating significant monthly spend.",
+    after: "Shrunk footprint to 73.48 GiB (95% storage reduction) with zero microservice impact.",
+    mechanism: "Built targeted synchronization routines copying only files microservices actively consume rather than cloning full multi-terabyte filesystems.",
+    stack: ["AWS EFS", "AWS DataSync", "Linux Profiler", "AWS Lambda"],
+    caseIndex: 3
+  },
+  {
+    title: "Zero-Downtime Blue/Green Releases Executed",
+    val: "10+",
+    before: "High-risk production releases impacting industrial telematics ingestion.",
+    after: "Executed 10+ major production cutovers with 0 minutes downtime and zero data drops.",
+    mechanism: "Combined AWS S3 + CloudFront static UI delivery with automated target group swapping and preflight staging verification.",
+    stack: ["AWS S3", "AWS CloudFront", "Azure DevOps", "Blue/Green"],
+    caseIndex: 2
+  }
+];
+
+function initMetricCardDetails() {
+  const cards = document.querySelectorAll('.interactive-metric-card');
+  const backdrop = document.getElementById('metricModalBackdrop');
+  const closeBtn = document.getElementById('metricModalCloseBtn');
+  const dismissBtn = document.getElementById('metricModalDismissBtn');
+
+  const modalVal = document.getElementById('metricModalVal');
+  const modalTitle = document.getElementById('metricModalTitle');
+  const modalBefore = document.getElementById('metricModalBefore');
+  const modalAfter = document.getElementById('metricModalAfter');
+  const modalMechanism = document.getElementById('metricModalMechanism');
+  const modalStack = document.getElementById('metricModalStack');
+  const modalActionBtn = document.getElementById('metricModalActionBtn');
+
+  if (!backdrop) return;
+
+  let activeRelatedCaseIndex = 0;
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      playClickSound();
+      const idx = parseInt(card.getAttribute('data-metric-index'), 10);
+      const data = metricsData[idx];
+      if (!data) return;
+
+      if (modalVal) modalVal.textContent = data.val;
+      if (modalTitle) modalTitle.textContent = data.title;
+      if (modalBefore) modalBefore.textContent = data.before;
+      if (modalAfter) modalAfter.textContent = data.after;
+      if (modalMechanism) modalMechanism.textContent = data.mechanism;
+      if (modalStack) {
+        modalStack.innerHTML = data.stack.map(s => `<span class="badge">${s}</span>`).join('');
+      }
+
+      activeRelatedCaseIndex = data.caseIndex;
+
+      backdrop.classList.add('open');
+      backdrop.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    });
+
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
+
+  function closeMetricModal() {
+    playClickSound();
+    backdrop.classList.remove('open');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeMetricModal);
+  if (dismissBtn) dismissBtn.addEventListener('click', closeMetricModal);
+
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) closeMetricModal();
+  });
+
+  if (modalActionBtn) {
+    modalActionBtn.addEventListener('click', () => {
+      closeMetricModal();
+      const targetCard = document.querySelector(`.interactive-case-card[data-case-index="${activeRelatedCaseIndex}"]`);
+      if (targetCard) {
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetCard.click();
+      }
+    });
+  }
+}
+
+/**
+ * 1-Click Contact Template Presets
+ */
+function initContactPresets() {
+  const chips = document.querySelectorAll('.preset-chip');
+  const subjectInput = document.getElementById('senderSubject');
+  const messageInput = document.getElementById('senderMessage');
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      playClickSound();
+      const subject = chip.getAttribute('data-subject') || '';
+      const msg = chip.getAttribute('data-msg') || '';
+
+      if (subjectInput) {
+        subjectInput.value = subject;
+        subjectInput.classList.add('matched-highlight');
+        setTimeout(() => subjectInput.classList.remove('matched-highlight'), 1200);
+      }
+      if (messageInput) {
+        messageInput.value = msg;
+        messageInput.classList.add('matched-highlight');
+        setTimeout(() => messageInput.classList.remove('matched-highlight'), 1200);
+        messageInput.focus();
+      }
+
+      showToast(`Loaded template: "${chip.textContent.trim()}"!`);
+    });
+  });
 }

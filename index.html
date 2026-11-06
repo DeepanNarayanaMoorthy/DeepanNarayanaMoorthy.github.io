@@ -148,6 +148,12 @@
 </head>
 <body>
 
+  <!-- Top Reading Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
+
+  <!-- Interactive Cyber Mouse Cursor Spotlight Follower -->
+  <div class="cursor-spotlight" id="cursorSpotlight" aria-hidden="true"></div>
+
   <!-- Background Decorative Canvas Grid -->
   <div class="bg-glow-orb orb-1" aria-hidden="true"></div>
   <div class="bg-glow-orb orb-2" aria-hidden="true"></div>
@@ -340,97 +346,115 @@
       <div class="container">
         <div class="metrics-grid">
           <!-- Metric 1 -->
-          <div class="metric-card">
+          <div class="metric-card interactive-metric-card" data-metric-index="0" role="button" tabindex="0" aria-label="Click to inspect engineering breakdown">
             <div class="metric-icon-wrap text-blue">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             </div>
             <div class="metric-value">99.9%</div>
             <div class="metric-label">Production Uptime</div>
             <div class="metric-desc">High-availability deployments &amp; SLI/SLO incident recovery</div>
+          
+            <div class="metric-card-footer"><span class="metric-cta">Inspect Engineering Breakdown ▾</span></div>
           </div>
 
           <!-- Metric 2 -->
-          <div class="metric-card">
+          <div class="metric-card interactive-metric-card" data-metric-index="1" role="button" tabindex="0" aria-label="Click to inspect engineering breakdown">
             <div class="metric-icon-wrap text-emerald">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             </div>
             <div class="metric-value">80%</div>
             <div class="metric-label">CI/CD Rerun Reduction</div>
             <div class="metric-desc">Cut deployment retries from 19.5 min to 3.9 min via ECR caching</div>
+          
+            <div class="metric-card-footer"><span class="metric-cta">Inspect Engineering Breakdown ▾</span></div>
           </div>
 
           <!-- Metric 3 -->
-          <div class="metric-card">
+          <div class="metric-card interactive-metric-card" data-metric-index="2" role="button" tabindex="0" aria-label="Click to inspect engineering breakdown">
             <div class="metric-icon-wrap text-purple">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
             </div>
             <div class="metric-value">30+</div>
             <div class="metric-label">Microservices Standardized</div>
             <div class="metric-desc">AWS ECS/Lambda &amp; Azure Functions/App Services via IaC</div>
+          
+            <div class="metric-card-footer"><span class="metric-cta">Inspect Engineering Breakdown ▾</span></div>
           </div>
 
           <!-- Metric 4 -->
-          <div class="metric-card">
+          <div class="metric-card interactive-metric-card" data-metric-index="3" role="button" tabindex="0" aria-label="Click to inspect engineering breakdown">
             <div class="metric-icon-wrap text-amber">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             </div>
             <div class="metric-value">$1.8K+</div>
             <div class="metric-label">Monthly Cloud Savings</div>
             <div class="metric-desc">EFS volume rightsizing &amp; idle resource teardowns in AWS &amp; Azure</div>
+          
+            <div class="metric-card-footer"><span class="metric-cta">Inspect Engineering Breakdown ▾</span></div>
           </div>
 
           <!-- Metric 5 -->
-          <div class="metric-card">
+          <div class="metric-card interactive-metric-card" data-metric-index="4" role="button" tabindex="0" aria-label="Click to inspect engineering breakdown">
             <div class="metric-icon-wrap text-rose">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <div class="metric-value">50+</div>
             <div class="metric-label">Vulnerabilities Cleared</div>
             <div class="metric-desc">Static key eradication via OIDC &amp; automated secret expiry monitoring</div>
+          
+            <div class="metric-card-footer"><span class="metric-cta">Inspect Engineering Breakdown ▾</span></div>
           </div>
 
           <!-- Metric 6 -->
-          <div class="metric-card">
+          <div class="metric-card interactive-metric-card" data-metric-index="5" role="button" tabindex="0" aria-label="Click to inspect engineering breakdown">
             <div class="metric-icon-wrap text-cyan">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <div class="metric-value">1,000+</div>
             <div class="metric-label">Annual Hours Automated</div>
             <div class="metric-desc">Python &amp; shell automation replacing tedious manual workflows</div>
+          
+            <div class="metric-card-footer"><span class="metric-cta">Inspect Engineering Breakdown ▾</span></div>
           </div>
 
           <!-- Metric 7 -->
-          <div class="metric-card">
+          <div class="metric-card interactive-metric-card" data-metric-index="6" role="button" tabindex="0" aria-label="Click to inspect engineering breakdown">
             <div class="metric-icon-wrap text-emerald">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-6 6"/></svg>
             </div>
             <div class="metric-value">20%</div>
             <div class="metric-label">Incidents Reduced</div>
             <div class="metric-desc">Dynamic autoscaling policies for AWS Fargate &amp; Azure App Services</div>
+          
+            <div class="metric-card-footer"><span class="metric-cta">Inspect Engineering Breakdown ▾</span></div>
           </div>
 
           <!-- Metric 8 -->
-          <div class="metric-card">
+          <div class="metric-card interactive-metric-card" data-metric-index="7" role="button" tabindex="0" aria-label="Click to inspect engineering breakdown">
             <div class="metric-icon-wrap text-blue">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 8 14"/></svg>
             </div>
             <div class="metric-value">2 Hours</div>
             <div class="metric-label">Release Downtime Saved</div>
             <div class="metric-desc">Per-release downtime slashed via automated blue/green cutovers</div>
+          
+            <div class="metric-card-footer"><span class="metric-cta">Inspect Engineering Breakdown ▾</span></div>
           </div>
 
           <!-- Metric 9 -->
-          <div class="metric-card">
+          <div class="metric-card interactive-metric-card" data-metric-index="8" role="button" tabindex="0" aria-label="Click to inspect engineering breakdown">
             <div class="metric-icon-wrap text-purple">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
             </div>
             <div class="metric-value">1.4T➔73G</div>
             <div class="metric-label">EFS Storage Rightsized</div>
             <div class="metric-desc">Storage footprint shrunk from 1.44 TiB down to 73.48 GiB</div>
+          
+            <div class="metric-card-footer"><span class="metric-cta">Inspect Engineering Breakdown ▾</span></div>
           </div>
 
           <!-- Metric 10 -->
-          <div class="metric-card">
+          <div class="metric-card interactive-metric-card" data-metric-index="9" role="button" tabindex="0" aria-label="Click to inspect engineering breakdown">
             <div class="metric-icon-wrap text-amber">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
             </div>
@@ -801,6 +825,24 @@
           </p>
         </div>
 
+                <!-- Interactive Technology Filter Bar for Experience -->
+        <div class="exp-filter-bar card" role="toolbar" aria-label="Filter experience by technology">
+          <div class="exp-filter-header">
+            <span class="exp-filter-label">⚡ Filter Experience by Tech Stack:</span>
+            <span class="exp-match-counter" id="expMatchCounter">Showing all verified achievements</span>
+          </div>
+          <div class="exp-filter-chips">
+            <button class="exp-filter-btn active" data-exp-filter="all">All Tech (18)</button>
+            <button class="exp-filter-btn" data-exp-filter="aws">AWS Cloud (8)</button>
+            <button class="exp-filter-btn" data-exp-filter="azure">Azure (5)</button>
+            <button class="exp-filter-btn" data-exp-filter="terraform">Terraform &amp; IaC (6)</button>
+            <button class="exp-filter-btn" data-exp-filter="oidc">OIDC &amp; Security (5)</button>
+            <button class="exp-filter-btn" data-exp-filter="datadog">Datadog &amp; SRE (4)</button>
+            <button class="exp-filter-btn" data-exp-filter="finops">FinOps &amp; Cost (3)</button>
+            <button class="exp-filter-btn" data-exp-filter="python">Python Automation (4)</button>
+          </div>
+        </div>
+
         <div class="timeline">
           <!-- EVERSTAGE -->
           <div class="timeline-item">
@@ -836,10 +878,10 @@
 
               <div class="exp-bullets">
                 <ul>
-                  <li>
+                  <li data-tech="aws terraform sandbox datasync">
                     <strong>Enterprise Multi-Tenant Infrastructure:</strong> Architected multi-account, multi-region <strong>Terraform</strong> modules to provision isolated Customer Sandboxes (US &amp; EU) for high-value enterprise accounts with tenant-isolated analytics clusters, deterministic DNS-safe hostnames, and cross-account <strong>AWS DataSync</strong> over VPC peering.
                   </li>
-                  <li>
+                  <li data-tech="aws rds supabase snowflake datasync">
                     <strong>Cross-Account Data Plane Migration:</strong> Migrated the enterprise data plane across RDS (AWS DMS), Supabase, Typesense, Auth0 (tenant/app replication), Snowflake (S3 integration), and EFS via VPC peering and cross-account AWS DataSync, keeping demo and release paths aligned with production.
                   </li>
                   <li>
@@ -1055,6 +1097,73 @@
           <p class="section-subtitle">
             A closer look at key production systems, security overhauls, and infrastructure challenges I solved.
           </p>
+        </div>
+
+                <!-- Interactive Multi-Cloud Architecture Topology Explorer -->
+        <div class="arch-topology-explorer card">
+          <div class="topology-header">
+            <div class="topology-title-group">
+              <span class="status-dot pulse"></span>
+              <span class="topology-title">Interactive Multi-Cloud System Topology</span>
+            </div>
+            <span class="topology-hint">Click any architecture node to inspect Deepan's engineering layer:</span>
+          </div>
+
+          <div class="topology-flow-track">
+            <button class="topology-node active" data-node="dns">
+              <span class="node-icon">🌐</span>
+              <span class="node-name">Route 53 DNS</span>
+              <span class="node-spec">DNS Hashing</span>
+            </button>
+            <div class="topology-arrow">➔</div>
+            <button class="topology-node" data-node="edge">
+              <span class="node-icon">⚡</span>
+              <span class="node-name">CloudFront &amp; Edge</span>
+              <span class="node-spec">Lambda@Edge</span>
+            </button>
+            <div class="topology-arrow">➔</div>
+            <button class="topology-node" data-node="security">
+              <span class="node-icon">🛡️</span>
+              <span class="node-name">WAF &amp; OIDC</span>
+              <span class="node-spec">Zero Static Keys</span>
+            </button>
+            <div class="topology-arrow">➔</div>
+            <button class="topology-node" data-node="compute">
+              <span class="node-icon">📦</span>
+              <span class="node-name">ECS Fargate &amp; K8s</span>
+              <span class="node-spec">Auto-Scaled Pods</span>
+            </button>
+            <div class="topology-arrow">➔</div>
+            <button class="topology-node" data-node="storage">
+              <span class="node-icon">💾</span>
+              <span class="node-name">RDS &amp; EFS 73GB</span>
+              <span class="node-spec">FinOps Rightsized</span>
+            </button>
+            <div class="topology-arrow">➔</div>
+            <button class="topology-node" data-node="sre">
+              <span class="node-icon">📈</span>
+              <span class="node-name">Datadog SRE</span>
+              <span class="node-spec">Statuspage Auto</span>
+            </button>
+          </div>
+
+          <!-- Dynamic Active Node Information Card -->
+          <div class="topology-node-card" id="topologyNodeCard">
+            <div class="node-card-left">
+              <span class="node-card-tag" id="nodeTag">LAYER 1 • GLOBAL INGRESS</span>
+              <h4 class="node-card-title" id="nodeTitle">Route 53 Global Routing &amp; Client DNS Hashing</h4>
+              <p class="node-card-desc" id="nodeDesc">
+                Engineered deterministic DNS-safe hashing from enterprise client identifiers, directing multi-tenant traffic seamlessly across US and European isolated clusters without route collisions.
+              </p>
+            </div>
+            <div class="node-card-right">
+              <div class="node-metric-box">
+                <span class="node-metric-num" id="nodeMetricNum">99.9%</span>
+                <span class="node-metric-label" id="nodeMetricLabel">Availability SLA</span>
+              </div>
+              <button class="btn btn-outline btn-xs" id="nodeFilterBtn">Highlight Layer Case Studies ▾</button>
+            </div>
+          </div>
         </div>
 
         <div class="case-studies-grid">
@@ -1385,6 +1494,16 @@
         </div>
 
         <!-- Filter Buttons -->
+                <!-- Live Instant Skill Search Bar -->
+        <div class="skill-search-container card">
+          <div class="skill-search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="skillSearchInput" class="skill-search-input" placeholder="Type to filter 49+ skills in real time (e.g., Docker, Terraform, OIDC, Datadog, Python...)" autocomplete="off" spellcheck="false">
+            <button id="skillSearchClearBtn" class="skill-clear-btn" style="display: none;" aria-label="Clear search">✕</button>
+          </div>
+          <span class="skill-search-status" id="skillSearchStatus">Showing all 49 skills</span>
+        </div>
+
         <div class="skills-filter-row">
           <button class="skill-filter-btn active" data-filter="all">All Skills</button>
           <button class="skill-filter-btn" data-filter="cloud">Cloud & Platforms</button>
@@ -2112,6 +2231,84 @@
           <span>Schedule an Interview 🚀</span>
         </a>
         <button class="btn btn-outline btn-sm" id="easterCloseBtn">Back to Reality</button>
+      </div>
+    </div>
+  
+            <div class="metric-card-footer"><span class="metric-cta">Inspect Engineering Breakdown ▾</span></div>
+          </div>
+
+
+  <!-- FLOATING RECRUITER COMMAND BAR & PERSONA DOCK -->
+  <div class="floating-recruiter-dock" id="floatingDock">
+    <div class="dock-content">
+      <div class="dock-personas">
+        <span class="dock-label">View As:</span>
+        <button class="dock-persona-btn active" data-persona="recruiter" title="Recruiter View: ATS summary & key qualifications">
+          🎯 Recruiter
+        </button>
+        <button class="dock-persona-btn" data-persona="techlead" title="Tech Lead View: Deep architecture, IaC & SRE">
+          ⚡ Tech Lead
+        </button>
+        <button class="dock-persona-btn" data-persona="executive" title="Executive View: FinOps ROI & Cloud Savings">
+          💼 Executive
+        </button>
+      </div>
+      <div class="dock-divider"></div>
+      <div class="dock-actions">
+        <a href="Deepan_Cloud_DevOps_SRE_Resume.pdf" download="Deepan_Narayanamoorthy_DevOps_Resume.pdf" class="dock-btn btn-resume">
+          <span>📄 1-Page Resume</span>
+        </a>
+        <a href="#contact" class="dock-btn btn-contact">
+          <span>💬 Connect</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- METRIC DETAIL MODAL -->
+  <div class="modal-backdrop" id="metricModalBackdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-dialog card metric-modal-dialog">
+      <div class="modal-header">
+        <div class="modal-badge-group">
+          <span class="case-tag tag-blue" id="metricModalTag">Production Metric</span>
+          <span class="case-org" id="metricModalOrg">Verified Engineering Win</span>
+        </div>
+        <button class="modal-close-btn" id="metricModalCloseBtn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="metric-modal-hero">
+          <div class="metric-modal-num text-emerald" id="metricModalVal">99.9%</div>
+          <h3 class="metric-modal-title" id="metricModalTitle">Production Uptime SLO</h3>
+        </div>
+
+        <div class="metric-modal-grid">
+          <div class="metric-modal-col before-col">
+            <h4 class="metric-modal-sub">Before Optimization</h4>
+            <p id="metricModalBefore"></p>
+          </div>
+          <div class="metric-modal-col after-col">
+            <h4 class="metric-modal-sub">After Deepan's Implementation</h4>
+            <p id="metricModalAfter"></p>
+          </div>
+        </div>
+
+        <div class="metric-modal-section">
+          <h4 class="metric-modal-sub">Engineering Mechanism &amp; Architecture</h4>
+          <p id="metricModalMechanism" class="text-secondary"></p>
+        </div>
+
+        <div class="modal-stack-section">
+          <span class="modal-stack-label">Technologies &amp; Cloud Services:</span>
+          <div class="modal-stack-pills" id="metricModalStack"></div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-sm" id="metricModalActionBtn">
+          <span>Explore Related Case Study ➔</span>
+        </button>
+        <button class="btn btn-outline btn-sm" id="metricModalDismissBtn">Close</button>
       </div>
     </div>
   </div>
