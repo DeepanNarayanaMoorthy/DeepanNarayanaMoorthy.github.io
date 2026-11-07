@@ -1824,7 +1824,12 @@ function initBuddy() {
     setTimeout(() => { delete buddy.dataset[name]; }, ms);
   };
 
-  function say(text, { actions = [], duration = 5200, out = true, wave = false } = {}) {
+  function say(text, { actions = null, duration = 9000, out = true, wave = false } = {}) {
+    // Every bubble carries buttons so visitors never have to guess to click the avatar
+    if (!actions) actions = [
+      { label: 'Another one ›', run: () => nextQuip() },
+      { label: 'Take the tour', run: () => startTour(0) }
+    ];
     clearTimeout(hideTimer);
     clearTimeout(talkTimer);
     if (out) setState('out');
@@ -1874,7 +1879,7 @@ function initBuddy() {
 
   function startTour(i = 0) {
     busy = true;
-    if (i >= tour.length) { busy = false; flag('jump', 800); setTimeout(retreat, 3500); return; }
+    if (i >= tour.length) { busy = false; flag('jump', 800); say('Thanks for sticking around! Want to get in touch?', { actions: [{ label: 'Contact me', run: () => { document.getElementById('contact')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); retreat(); } }, { label: 'Done', run: retreat }] }); return; }
     const step = tour[i];
     const el = document.getElementById(step.id);
     if (el) el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
@@ -1896,6 +1901,11 @@ function initBuddy() {
     { t: 'My favourite number: 19.5 min down to 3.9 min on CI reruns.', fn: () => flag('jump', 800) }
   ];
   let q = 0;
+  function nextQuip() {
+    const x = quips[q++ % quips.length];
+    x.fn();
+    say(x.t);
+  }
 
   body.addEventListener('click', () => {
     clicks++;
@@ -1917,13 +1927,11 @@ function initBuddy() {
         wave: true,
         actions: [
           { label: 'Take the tour', run: () => startTour(0) },
-          { label: 'Nah, just chat', run: () => { const x = quips[q++ % quips.length]; x.fn(); say(x.t); } }
+          { label: 'Just chat', run: () => nextQuip() }
         ]
       });
     } else {
-      const x = quips[q++ % quips.length];
-      x.fn();
-      say(x.t);
+      nextQuip();
     }
   });
 
@@ -1937,13 +1945,14 @@ function initBuddy() {
   });
 
   // Section reactions (once per section, only when idle)
+  const click = sel => () => { const el = document.querySelector(sel); if (el) el.click(); retreat(); };
   const reactions = {
-    'experience': 'This is the good stuff. Try the tech filter chips.',
-    'skills': 'Pro tip: the skill search is live.',
-    'case-studies': 'Click the topology nodes, they are interactive.',
-    'certifications': 'Yes, the AWS cert is real. There is a Credly link.',
-    'sre-lab': 'Go on, inject some chaos. I trained for this.',
-    'contact': 'Say hello! deepanntech@gmail.com'
+    'experience': { t: 'This is the good stuff. Try filtering by tech stack.', actions: [{ label: 'Show AWS work', run: click('[data-exp-filter="aws"]') }, { label: 'Show Azure work', run: click('[data-exp-filter="azure"]') }] },
+    'skills': { t: 'Looking for a specific tool? The skill search is live.', actions: [{ label: 'Search skills', run: () => { const i = document.getElementById('skillSearchInput'); if (i) i.focus({ preventScroll: false }); retreat(); } }] },
+    'case-studies': { t: 'These architecture nodes are clickable. Give one a go.', actions: [{ label: 'Open one for me', run: click('.topology-node[data-node="security"]') }, { label: 'Not now', run: () => retreat() }] },
+    'certifications': { t: 'Yes, the AWS cert is real.', actions: [{ label: 'Verify on Credly', run: () => { window.open('https://www.credly.com/badges/3be2db96-3394-4eb4-ac1f-1734905cf01d/public_url', '_blank', 'noopener'); retreat(); } }] },
+    'sre-lab': { t: 'Go on, inject some chaos. I trained for this.', actions: [{ label: 'Inject chaos', run: click('#btnInjectChaos') }, { label: 'Maybe later', run: () => retreat() }] },
+    'contact': { t: 'Say hello! I reply to every email.', actions: [{ label: 'Email me', run: () => { window.location.href = 'mailto:deepanntech@gmail.com'; retreat(); } }, { label: 'Not now', run: () => retreat() }] }
   };
   const seen = new Set();
   const io = new IntersectionObserver(entries => {
@@ -1952,7 +1961,7 @@ function initBuddy() {
       if (!reactions[en.target.id] || seen.size >= 3) return;
       seen.add(en.target.id);
       flag('jump', 800);
-      say(reactions[en.target.id], { duration: 4200 });
+      say(reactions[en.target.id].t, { actions: reactions[en.target.id].actions });
     });
   }, { threshold: 0.35 });
   Object.keys(reactions).forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
@@ -1960,22 +1969,28 @@ function initBuddy() {
   // Eye helper for scripted glances (mouse tracking takes over afterwards)
   const lookAt = (x, y) => pupils.forEach(p => { p.style.transform = `translate(${x}px, ${y}px)`; });
 
-  // Entrance: grip the edge, lean out, glance around, notice the viewer, pop out and wave
+  // Entrance: starts as soon as the page has loaded and is done within ~2s
   const at = (ms, fn) => setTimeout(() => { if (buddy.dataset.state !== 'dismissed') fn(); }, ms);
-  if (reduce) {
-    at(1500, () => { setState('out'); say("Hi, I'm Deepan! Click me for a tour.", { duration: 6000 }); });
-  } else {
-    at(1500, () => setState('grip'));            // fingers curl over the edge
-    at(2100, () => setState('peek'));            // head leans out
-    at(2900, () => lookAt(3, 0));                // glance toward the page
-    at(3500, () => lookAt(3, 3));                // peek down at the content
-    at(4200, () => lookAt(-2, -1));              // check behind
-    at(4800, () => { lookAt(0, 0); flag('jump', 800); }); // spots the viewer
-    at(5300, () => {
-      setState('out');
-      at(700, () => say("Hi, I'm Deepan! 👋 Welcome to my portfolio. Click me for a tour.", { wave: true, duration: 6000 }));
-    });
-    // Occasional curious lean-out while idle
+  const greet = () => say("Hi, I'm Deepan! 👋 Welcome to my portfolio. Want a quick tour?", {
+    wave: true,
+    actions: [
+      { label: 'Take the tour', run: () => startTour(0) },
+      { label: 'Just browsing', run: () => { busy = false; retreat(); } }
+    ]
+  });
+  const enter = () => {
+    if (reduce) { at(300, () => { setState('out'); greet(); }); return; }
+    setState('grip');                         // fingers curl over the edge
+    at(350, () => { setState('peek'); lookAt(3, 1); });   // leans out, glances at the page
+    at(900, () => lookAt(-2, 0));             // checks behind him
+    at(1300, () => { lookAt(0, 0); setState('out'); }); // notices the viewer and pops out
+    at(1700, greet);
+  };
+  if (document.readyState === 'complete') enter();
+  else window.addEventListener('load', enter, { once: true });
+
+  // Occasional curious lean-out while idle
+  if (!reduce) {
     setInterval(() => {
       if (busy || buddy.dataset.state !== 'peek' || bubble.classList.contains('show')) return;
       buddy.dataset.sneak = '1';
