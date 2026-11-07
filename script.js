@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initSkillSearch();
   initMetricCardDetails();
   initContactPresets();
+  initScrollTopFab();
+  initBuddy();
 });
 
 /**
@@ -1775,4 +1777,189 @@ function initContactPresets() {
       showToast(`Loaded template: "${chip.textContent.trim()}"!`);
     });
   });
+}
+
+/**
+ * Scroll-to-top floating button
+ */
+function initScrollTopFab() {
+  const fab = document.getElementById('scrollTopFab');
+  if (!fab) return;
+  const toggle = () => fab.classList.toggle('visible', window.scrollY > 600);
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+  fab.addEventListener('click', () => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+}
+
+/**
+ * Buddy: a cartoon Deepan that peeks from the left edge, waves, follows the
+ * cursor with his eyes, reacts to sections, and offers a mini guided tour.
+ */
+function initBuddy() {
+  const buddy = document.getElementById('buddy');
+  if (!buddy) return;
+  const body = document.getElementById('buddyBody');
+  const bubble = document.getElementById('buddyBubble');
+  const textEl = document.getElementById('buddyText');
+  const actionsEl = document.getElementById('buddyActions');
+  const closeBtn = document.getElementById('buddyClose');
+  const pupils = buddy.querySelectorAll('.b-pupil');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let dismissed = false;
+  try { dismissed = sessionStorage.getItem('buddyDismissed') === '1'; } catch (e) {}
+  if (dismissed) { buddy.dataset.state = 'dismissed'; return; }
+
+  let hideTimer = null;
+  let talkTimer = null;
+  let busy = false;
+  let clicks = 0;
+
+  const setState = s => { buddy.dataset.state = s; };
+  const flag = (name, ms) => {
+    buddy.dataset[name] = '1';
+    setTimeout(() => { delete buddy.dataset[name]; }, ms);
+  };
+
+  function say(text, { actions = [], duration = 5200, out = true, wave = false } = {}) {
+    clearTimeout(hideTimer);
+    clearTimeout(talkTimer);
+    if (out) setState('out');
+    textEl.textContent = text;
+    actionsEl.innerHTML = '';
+    actions.forEach(a => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = a.label;
+      b.addEventListener('click', e => { e.stopPropagation(); a.run(); });
+      actionsEl.appendChild(b);
+    });
+    bubble.classList.add('show');
+    buddy.dataset.talk = '1';
+    talkTimer = setTimeout(() => { delete buddy.dataset.talk; }, Math.min(2200, text.length * 45));
+    if (wave) flag('wave', 2900);
+    if (duration) hideTimer = setTimeout(retreat, duration);
+  }
+
+  function retreat() {
+    bubble.classList.remove('show');
+    delete buddy.dataset.talk;
+    setTimeout(() => { if (!busy) setState('peek'); }, 300);
+  }
+
+  // Eyes follow the cursor
+  if (!reduce) {
+    document.addEventListener('mousemove', e => {
+      if (buddy.dataset.state === 'dismissed') return;
+      const r = body.getBoundingClientRect();
+      const cx = r.left + r.width * 0.5, cy = r.top + r.height * 0.43;
+      const dx = e.clientX - cx, dy = e.clientY - cy;
+      const d = Math.hypot(dx, dy) || 1;
+      const k = Math.min(2.6, d / 60);
+      pupils.forEach(p => { p.style.transform = `translate(${(dx / d) * k}px, ${(dy / d) * k}px)`; });
+    }, { passive: true });
+  }
+
+  // Guided tour
+  const tour = [
+    { id: 'experience', msg: 'Stop 1: Experience. Everstage, Caterpillar and JPMorgan, with the numbers to back it up.' },
+    { id: 'skills', msg: 'Stop 2: Skills. Try the search box to find a specific tool fast.' },
+    { id: 'case-studies', msg: 'Stop 3: Case studies. Click any architecture node, they open up.' },
+    { id: 'sre-lab', msg: 'Stop 4: The SRE lab. Break an AZ on purpose, then watch it heal.' },
+    { id: 'contact', msg: "That's the tour! Say hi, I reply to every email." }
+  ];
+
+  function startTour(i = 0) {
+    busy = true;
+    if (i >= tour.length) { busy = false; flag('jump', 800); setTimeout(retreat, 3500); return; }
+    const step = tour[i];
+    const el = document.getElementById(step.id);
+    if (el) el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    flag('wave', 1800);
+    say(step.msg, {
+      duration: 0,
+      actions: [
+        { label: i === tour.length - 1 ? 'Finish' : 'Next ›', run: () => startTour(i + 1) },
+        { label: 'Stop', run: () => { busy = false; retreat(); } }
+      ]
+    });
+  }
+
+  const quips = [
+    { t: "I'm Deepan, in cartoon form. Same Terraform, fewer pixels.", fn: () => flag('wave', 2900) },
+    { t: "It works on my machine. Just kidding, it's tested in prod-like staging.", fn: () => flag('jump', 800) },
+    { t: 'Fun fact: I replaced static AWS keys with GitHub OIDC. No keys, no leaks.', fn: () => flag('spin', 900) },
+    { t: 'Try the terminal in the hero. Type "help" or "hire".', fn: () => flag('wave', 2900) },
+    { t: 'My favourite number: 19.5 min down to 3.9 min on CI reruns.', fn: () => flag('jump', 800) }
+  ];
+  let q = 0;
+
+  body.addEventListener('click', () => {
+    clicks++;
+    if (clicks === 6) {
+      clicks = 0;
+      flag('jump', 800);
+      say("Okay okay, you're clearly persistent. Want to talk?", {
+        duration: 0,
+        actions: [
+          { label: 'Contact', run: () => { document.getElementById('contact')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); retreat(); } },
+          { label: 'Later', run: retreat }
+        ]
+      });
+      return;
+    }
+    if (clicks % 3 === 1) {
+      say('Hey! Want a 30-second tour of the page?', {
+        duration: 0,
+        wave: true,
+        actions: [
+          { label: 'Take the tour', run: () => startTour(0) },
+          { label: 'Nah, just chat', run: () => { const x = quips[q++ % quips.length]; x.fn(); say(x.t); } }
+        ]
+      });
+    } else {
+      const x = quips[q++ % quips.length];
+      x.fn();
+      say(x.t);
+    }
+  });
+
+  closeBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    busy = false;
+    bubble.classList.remove('show');
+    setState('hidden');
+    setTimeout(() => { setState('dismissed'); }, 600);
+    try { sessionStorage.setItem('buddyDismissed', '1'); } catch (err) {}
+  });
+
+  // Section reactions (once per section, only when idle)
+  const reactions = {
+    'experience': 'This is the good stuff. Try the tech filter chips.',
+    'skills': 'Pro tip: the skill search is live.',
+    'case-studies': 'Click the topology nodes, they are interactive.',
+    'certifications': 'Yes, the AWS cert is real. There is a Credly link.',
+    'sre-lab': 'Go on, inject some chaos. I trained for this.',
+    'contact': 'Say hello! deepanntech@gmail.com'
+  };
+  const seen = new Set();
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting || busy || seen.has(en.target.id)) return;
+      if (!reactions[en.target.id] || seen.size >= 3) return;
+      seen.add(en.target.id);
+      flag('jump', 800);
+      say(reactions[en.target.id], { duration: 4200 });
+    });
+  }, { threshold: 0.35 });
+  Object.keys(reactions).forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+
+  // Entrance: slide in, wave, greet, then settle into a peek
+  setTimeout(() => {
+    setState('out');
+    setTimeout(() => say("Hi, I'm Deepan! 👋 Welcome to my portfolio. Click me for a tour.", { wave: true, duration: 6000 }), 650);
+  }, 2200);
 }

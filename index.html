@@ -50,7 +50,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=3.0">
+  <link rel="stylesheet" href="styles.css?v=3.2">
 
   <!-- Aggressive Structured Data JSON-LD (Schema.org Graph: ProfilePage + Person + Occupation) -->
   <script type="application/ld+json">
@@ -512,7 +512,7 @@
                     </div>
                     <span class="job-badge active-badge">Current</span>
                   </div>
-                  <div class="job-role">DevOps &amp; Cloud Engineer <span class="role-sub">(Senior Software Engineer 1)</span></div>
+                  <div class="job-role">DevOps &amp; Cloud Engineer</div>
                 </div>
                 <div class="exp-meta">
                   <span class="exp-date">Nov 2025 – Present</span>
@@ -589,7 +589,7 @@
                     </div>
                     <span class="job-badge">2 Years 9 Months</span>
                   </div>
-                  <div class="job-role">Cloud and DevOps Engineer <span class="role-sub">(Cloud Operations)</span></div>
+                  <div class="job-role">Cloud and DevOps Engineer</div>
                 </div>
                 <div class="exp-meta">
                   <span class="exp-date">Feb 2023 – Oct 2025</span>
@@ -2328,6 +2328,68 @@
   </div>
 
   <!-- JavaScript -->
-  <script src="script.js?v=3.1"></script>
+  <!-- Scroll-to-top button -->
+  <button class="scroll-top-fab" id="scrollTopFab" aria-label="Scroll to top" title="Back to top" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- Deepan buddy: cartoon avatar peeking from the left edge -->
+  <div class="buddy" id="buddy" data-state="hidden">
+    <div class="buddy-bubble" id="buddyBubble" role="status" aria-live="polite">
+      <button class="buddy-close" id="buddyClose" aria-label="Dismiss avatar" type="button">&times;</button>
+      <p id="buddyText"></p>
+      <div class="buddy-actions" id="buddyActions"></div>
+    </div>
+    <button class="buddy-body" id="buddyBody" aria-label="Say hi to Deepan's cartoon avatar" type="button">
+      <svg viewBox="0 0 120 170" width="120" height="170" aria-hidden="true">
+        <g class="b-bob">
+          <!-- torso -->
+          <path d="M8 170 C8 132 28 120 60 120 C92 120 112 132 112 170 Z" fill="#1e3a5f"/>
+          <path d="M46 120 L60 150 L74 120 Z" fill="#fff"/>
+          <path d="M46 120 L60 150 L52 120 Z" fill="#e2e8f0"/>
+          <!-- neck -->
+          <rect x="51" y="104" width="18" height="18" rx="6" fill="#b87a52"/>
+          <!-- back arm (resting) -->
+          <path d="M14 140 C10 150 12 164 16 170 L30 170 C30 158 28 148 26 140 Z" fill="#1e3a5f"/>
+          <!-- head -->
+          <ellipse cx="60" cy="76" rx="32" ry="35" fill="#c98f63"/>
+          <ellipse cx="28.5" cy="80" rx="4.5" ry="7" fill="#c98f63"/>
+          <ellipse cx="91.5" cy="80" rx="4.5" ry="7" fill="#c98f63"/>
+          <!-- freckles -->
+          <g fill="#9a5f3c" opacity=".7"><circle cx="40" cy="84" r="1"/><circle cx="45" cy="88" r="1"/><circle cx="38" cy="90" r="1"/><circle cx="49" cy="84" r="1"/><circle cx="80" cy="84" r="1"/><circle cx="75" cy="88" r="1"/><circle cx="82" cy="90" r="1"/><circle cx="71" cy="84" r="1"/></g>
+          <!-- beard -->
+          <path d="M28 78 C28 108 42 112 60 112 C78 112 92 108 92 78 C88 90 80 94 72 95 C68 92 52 92 48 95 C40 94 32 90 28 78 Z" fill="#17120f"/>
+          <path class="b-mouth" d="M50 96 Q60 104 70 96 Q60 99 50 96 Z" fill="#fff" stroke="#17120f" stroke-width="1.2" stroke-linejoin="round"/>
+          <!-- nose -->
+          <path d="M57 82 Q60 88 63 82" fill="none" stroke="#9a5f3c" stroke-width="1.6" stroke-linecap="round"/>
+          <!-- eyes -->
+          <g class="b-eyes">
+            <ellipse cx="46" cy="72" rx="6" ry="6.5" fill="#fff"/>
+            <ellipse cx="74" cy="72" rx="6" ry="6.5" fill="#fff"/>
+            <circle class="b-pupil" cx="46" cy="72.5" r="3" fill="#2a1a10"/>
+            <circle class="b-pupil" cx="74" cy="72.5" r="3" fill="#2a1a10"/>
+          </g>
+          <path d="M38 62 Q46 57 54 62" fill="none" stroke="#17120f" stroke-width="3" stroke-linecap="round"/>
+          <path d="M66 62 Q74 57 82 62" fill="none" stroke="#17120f" stroke-width="3" stroke-linecap="round"/>
+          <!-- hair -->
+          <path d="M26 70 C20 40 40 20 62 20 C86 20 102 38 94 70 C92 58 88 52 80 50 C66 54 50 54 40 48 C32 52 28 60 26 70 Z" fill="#17120f"/>
+          <path d="M34 34 C44 22 66 18 80 26 C70 24 50 26 34 34 Z" fill="#2b2420"/>
+        </g>
+        <!-- waving arm -->
+        <g class="b-arm">
+          <path d="M92 128 C106 118 112 100 108 84 L96 86 C98 98 94 108 84 116 Z" fill="#1e3a5f"/>
+          <g class="b-hand">
+            <circle cx="102" cy="76" r="9" fill="#c98f63"/>
+            <rect x="94" y="66" width="4" height="9" rx="2" fill="#c98f63"/>
+            <rect x="99" y="63" width="4" height="10" rx="2" fill="#c98f63"/>
+            <rect x="104" y="64" width="4" height="10" rx="2" fill="#c98f63"/>
+            <rect x="108.5" y="67" width="3.5" height="8" rx="1.8" fill="#c98f63"/>
+          </g>
+        </g>
+      </svg>
+    </button>
+  </div>
+
+  <script src="script.js?v=3.2"></script>
 </body>
 </html>
