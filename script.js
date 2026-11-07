@@ -1234,7 +1234,7 @@ function initContactForm() {
       `Name: ${name}\n\nMessage:\n${message}\n\n---\nSent via Deepan Narayanamoorthy Portfolio`
     )}`;
 
-    window.location.href = mailtoUrl;
+    window.openEmail(mailtoUrl);
   });
 }
 
@@ -1809,9 +1809,6 @@ function initBuddy() {
   const pupils = buddy.querySelectorAll('.b-pupil');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  let dismissed = false;
-  try { dismissed = sessionStorage.getItem('buddyDismissed') === '1'; } catch (e) {}
-  if (dismissed) { buddy.dataset.state = 'dismissed'; return; }
 
   let hideTimer = null;
   let talkTimer = null;
@@ -1941,10 +1938,8 @@ function initBuddy() {
     e.stopPropagation();
     interacted = true;
     busy = false;
-    bubble.classList.remove('show');
-    setState('hidden');
-    setTimeout(() => { setState('dismissed'); }, 600);
-    try { sessionStorage.setItem('buddyDismissed', '1'); } catch (err) {}
+    clearTimeout(hideTimer);
+    retreat(); // close the bubble and tuck back into a peek; he never leaves the page
   });
 
   // Section reactions (once per section, only when idle)
@@ -1956,7 +1951,7 @@ function initBuddy() {
     'certifications': { t: 'Hey, you can verify my AWS certification straight from Credly. Try it out!', actions: [{ label: 'Verify on Credly', run: () => { window.open('https://www.credly.com/badges/3be2db96-3394-4eb4-ac1f-1734905cf01d/public_url', '_blank', 'noopener'); retreat(); } }] },
     'fit-checker': { t: 'Hey, you can paste a job description here and see how well I match. Try it out!', actions: [{ label: 'Try a sample JD', run: click('#fitSampleBtn') }, { label: 'Not now', run: () => retreat() }] },
     'sre-lab': { t: 'Hey, you can break an availability zone here and watch it self-heal. Try it out!', actions: [{ label: 'Inject chaos', run: click('#btnInjectChaos') }, { label: 'Maybe later', run: () => retreat() }] },
-    'contact': { t: 'Hey, you can email me or book a 15-minute call here. Try it out!', actions: [{ label: 'Email me', run: () => { window.location.href = 'mailto:deepanntech@gmail.com'; retreat(); } }, { label: 'Not now', run: () => retreat() }] }
+    'contact': { t: 'Hey, you can email me or book a 15-minute call here. Try it out!', actions: [{ label: 'Email me', run: () => { window.openEmail(); retreat(); } }, { label: 'Not now', run: () => retreat() }] }
   };
   const seen = new Set();
   let scrollTick = false;

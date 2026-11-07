@@ -17,6 +17,45 @@
   };
 
   /* ------------------------------------------------------------------
+     Email: many visitors have no desktop mail app, so mailto: links do
+     nothing for them. Open Gmail's web composer instead, and offer a
+     copy-address / mail-app fallback.
+     ------------------------------------------------------------------ */
+  const MAIL = 'deepanntech@gmail.com';
+  function gmailUrl(mailto) {
+    let to = MAIL, su = '', body = '';
+    if (mailto) {
+      try {
+        const u = new URL(mailto);
+        to = decodeURIComponent(u.pathname) || MAIL;
+        su = u.searchParams.get('subject') || '';
+        body = u.searchParams.get('body') || '';
+      } catch (e) {}
+    }
+    const p = new URLSearchParams({ view: 'cm', fs: '1', to });
+    if (su) p.set('su', su);
+    if (body) p.set('body', body);
+    return 'https://mail.google.com/mail/?' + p.toString();
+  }
+  window.openEmail = function (mailto) {
+    const target = mailto || 'mailto:' + MAIL;
+    window.open(gmailUrl(mailto), '_blank', 'noopener');
+    buddySay({
+      text: 'Opened a Gmail draft in a new tab. Prefer another mail app?',
+      actions: [
+        { label: 'Copy address', run: () => { navigator.clipboard?.writeText(MAIL); buddySay({ text: 'Copied ' + MAIL, actions: [{ label: 'Book 15 min', run: openBooking }, { label: 'Thanks', run: () => {} }] }); } },
+        { label: 'Use mail app', run: () => { window.location.href = target; } }
+      ]
+    });
+  };
+  document.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a[href^="mailto:"]');
+    if (!a || e.defaultPrevented) return;
+    e.preventDefault();
+    window.openEmail(a.getAttribute('href'));
+  }, true);
+
+  /* ------------------------------------------------------------------
      Booking: a pre-filled Google Calendar invite (works with plain Gmail).
      Set window.BOOKING_URL to a Google Calendar appointment page to use it.
      ------------------------------------------------------------------ */
@@ -273,7 +312,7 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
       ['Book 15 minutes (Google Calendar)', 'book call meeting schedule interview', openBooking],
       ['Download resume (PDF)', 'resume cv pdf download', () => { const a = document.createElement('a'); a.href = 'Deepan_Cloud_DevOps_SRE_Resume.pdf'; a.download = 'Deepan_Narayanamoorthy_DevOps_Resume.pdf'; document.body.appendChild(a); a.click(); a.remove(); }],
       ['Open HTML resume', 'resume text html', () => { location.href = 'resume/'; }],
-      ['Email Deepan', 'email mail contact', () => { location.href = 'mailto:deepanntech@gmail.com'; }],
+      ['Email Deepan', 'email mail contact', () => { openEmail(); }],
       ['Copy email address', 'copy email clipboard', () => { navigator.clipboard?.writeText('deepanntech@gmail.com'); buddySay({ text: 'Email copied: deepanntech@gmail.com', actions: [{ label: 'Book 15 min', run: openBooking }, { label: 'Thanks', run: () => {} }] }); }],
       ['Open LinkedIn', 'linkedin social', () => window.open('https://www.linkedin.com/in/deepann/', '_blank', 'noopener')],
       ['Open GitHub', 'github code repos', () => window.open('https://github.com/DeepanNarayanaMoorthy', '_blank', 'noopener')],
@@ -403,18 +442,18 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
         setTimeout(() => buddySay({
           text: 'Thanks for grabbing my resume! Want to talk it through for 15 minutes?',
           wave: true,
-          actions: [{ label: 'Book 15 min', run: openBooking }, { label: 'Email me', run: () => { location.href = 'mailto:deepanntech@gmail.com'; } }]
+          actions: [{ label: 'Book 15 min', run: openBooking }, { label: 'Email me', run: () => { openEmail(); } }]
         }), 600);
       }
     });
 
     const replies = {
-      hire: { text: "Now we're talking! Shall we set up a quick call?", jump: true, actions: [{ label: 'Book 15 min', run: openBooking }, { label: 'Email me', run: () => { location.href = 'mailto:deepanntech@gmail.com'; } }] },
+      hire: { text: "Now we're talking! Shall we set up a quick call?", jump: true, actions: [{ label: 'Book 15 min', run: openBooking }, { label: 'Email me', run: () => { openEmail(); } }] },
       joke: { text: 'I swear I did not write that one. Okay, I did.', jump: true, actions: [{ label: 'Another joke', run: clickEl('.term-pill[data-cmd="joke"]') }, { label: 'Take the tour', run: () => $('#buddyBody')?.click() }] },
       metrics: { text: 'Numbers are the fun part. The case studies show how each one happened.', actions: [{ label: 'Open case studies', run: () => scrollToEl($('#case-studies')) }, { label: 'Not now', run: () => {} }] },
       security: { text: 'The OIDC migration is my favourite project. Want the full story?', actions: [{ label: 'Read the case study', run: () => { scrollToEl($('#case-studies')); setTimeout(() => $$('.case-card')[1]?.click(), 500); } }, { label: 'Not now', run: () => {} }] },
       experience: { text: 'Want to filter that by tech stack?', actions: [{ label: 'Go to experience', run: () => scrollToEl($('#experience')) }, { label: 'Not now', run: () => {} }] },
-      contact: { text: 'Great, I reply to every email.', actions: [{ label: 'Book 15 min', run: openBooking }, { label: 'Email me', run: () => { location.href = 'mailto:deepanntech@gmail.com'; } }] },
+      contact: { text: 'Great, I reply to every email.', actions: [{ label: 'Book 15 min', run: openBooking }, { label: 'Email me', run: () => { openEmail(); } }] },
       htop: { text: 'That is a simulation, but the autoscaling behind it is real.', actions: [{ label: 'Try the SRE lab', run: () => scrollToEl($('#sre-lab')) }, { label: 'Not now', run: () => {} }] },
       help: { text: 'Try "hire" or "security" in the terminal. They are my favourites.', actions: [{ label: 'Run "hire"', run: clickEl('.term-pill[data-cmd="hire"]') }, { label: 'Got it', run: () => {} }] }
     };
