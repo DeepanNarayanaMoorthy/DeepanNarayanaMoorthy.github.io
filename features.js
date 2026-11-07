@@ -462,7 +462,106 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
     $$('.term-pill').forEach(p => p.addEventListener('click', () => react(p.dataset.cmd)));
   }
 
+
+  /* ------------------------------------------------------------------
+     Make every hover-highlighted element clickable
+     ------------------------------------------------------------------ */
+  function makeClickable(el, label, fn) {
+    if (!el || el.dataset.clickable) return;
+    el.dataset.clickable = '1';
+    el.classList.add('clickable');
+    el.setAttribute('role', 'button');
+    el.setAttribute('tabindex', '0');
+    if (label) el.setAttribute('aria-label', label);
+    el.addEventListener('click', e => {
+      if (e.target.closest('a, button, input, textarea, select')) return; // let real controls work
+      fn(e);
+    });
+    el.addEventListener('keydown', e => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target === el) { e.preventDefault(); fn(e); }
+    });
+  }
+  const openCase = i => { scrollToEl($('#case-studies')); setTimeout(() => $$('.case-card')[i]?.click(), reduce ? 0 : 500); };
+  const ghProfile = () => window.open('https://github.com/DeepanNarayanaMoorthy', '_blank', 'noopener');
+
+  function skillPieces(text) {
+    return text.toLowerCase().replace(/\(.*?\)/g, ' ').split(/[\/&,+]| and /).map(s => s.trim()).filter(s => s.length >= 3);
+  }
+
+  function initClickables() {
+    // Skill badges: show where the skill was actually used
+    $$('.skills-grid .badge').forEach(b => {
+      const name = b.textContent.trim().replace(/\s+/g, ' ');
+      makeClickable(b, `Show where I used ${name}`, () => {
+        clearHighlights();
+        const pieces = skillPieces(name);
+        const hits = $$('.exp-bullets li').filter(li => { const t = li.innerText.toLowerCase(); return pieces.some(p => hasTerm(t, p)); });
+        hits.forEach(li => li.classList.add('fit-hit'));
+        b.classList.add('fit-hit');
+        if (hits.length) {
+          setMode('deep');
+          scrollToEl($('#experience'));
+          buddySay({ text: `${name} shows up in ${hits.length} achievement${hits.length > 1 ? 's' : ''} below, highlighted in green.`, jump: true, actions: [{ label: 'Clear highlight', run: clearHighlights }, { label: 'Back to skills', run: () => scrollToEl($('#skills')) }] });
+        } else {
+          buddySay({ text: `${name} is on my resume but not named in a specific bullet. Ask me about it.`, actions: [{ label: 'Email me', run: () => window.openEmail() }, { label: 'Fine', run: () => { clearHighlights(); } }] });
+        }
+      });
+    });
+
+    // Skill category cards: click the empty area to filter to that category
+    $$('.skill-category-card').forEach(card => {
+      const cat = card.dataset.category;
+      makeClickable(card, `Filter skills to ${$('h4', card)?.textContent || 'this category'}`, e => {
+        if (e && e.target.closest && e.target.closest('.badge')) return;
+        const btn = $(`.skill-filter-btn[data-filter="${cat}"]`);
+        const active = $('.skill-filter-btn.active');
+        if (btn && active === btn) $('.skill-filter-btn[data-filter="all"]')?.click();
+        else btn?.click();
+      });
+    });
+
+    // Pillars open the matching case study
+    const pillarCase = [9, 1, 5, 0];
+    $$('.pillar-card').forEach((card, i) => makeClickable(card, 'Open the related case study', () => openCase(pillarCase[i] ?? 0)));
+
+    // Projects
+    $$('.project-card').forEach(card => {
+      const link = $('a.project-ext-link', card);
+      const title = $('.project-title', card)?.textContent.trim() || 'this project';
+      if (link) { makeClickable(card, `Open ${title}`, () => window.open(link.href, '_blank', 'noopener')); return; }
+      makeClickable(card, `More about ${title}`, () => {
+        if (/geospatial/i.test(title)) { openCase(11); return; }
+        buddySay({ text: `${title} was a university build and its source is not public yet. Want to see my GitHub or ask me about it?`, actions: [{ label: 'Open GitHub', run: ghProfile }, { label: 'Ask me', run: () => window.openEmail('mailto:deepanntech@gmail.com?subject=' + encodeURIComponent('Question about ' + title)) }] });
+      });
+    });
+
+    // Certifications, honors and education
+    $$('.cert-card').forEach(card => {
+      const link = $('a.cert-link', card);
+      if (link) makeClickable(card, 'Open credential', () => window.open(link.href, '_blank', 'noopener'));
+      else makeClickable(card, 'Open PSG College of Technology', () => window.open('https://www.psgtech.edu/', '_blank', 'noopener'));
+    });
+
+    // Company logos open the company site
+    $$('.company-logo-wrap').forEach(w => {
+      const a = $('.company-name a', w.closest('.company-badge-row') || document);
+      if (a) makeClickable(w, `Visit ${a.textContent.trim()}`, () => window.open(a.href, '_blank', 'noopener'));
+    });
+
+    // Contact rows trigger their own link
+    $$('.contact-item').forEach(row => {
+      const a = $('a.c-value', row);
+      if (a) makeClickable(row, a.textContent.trim(), () => a.click());
+    });
+
+    // Hero profile card
+    makeClickable($('.profile-card'), 'Say hi', () => {
+      buddySay({ text: "That's me! The cartoon one at the edge is my pocket version. Want a tour?", jump: true, wave: true, actions: [{ label: 'Take the tour', run: () => $('#buddyBody')?.click() }, { label: 'See my experience', run: () => scrollToEl($('#experience')) }] });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    initClickables();
     initBooking();
     initReadingMode();
     initFitChecker();

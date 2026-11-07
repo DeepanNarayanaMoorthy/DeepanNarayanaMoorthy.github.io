@@ -3401,9 +3401,10 @@ body:hover .cursor-spotlight {
 .exp-bullets li {
   transition: opacity 0.3s ease, border-color 0.3s ease, background 0.3s ease, padding 0.2s ease;
   border-radius: var(--radius-sm);
-  padding: 4px 6px;
+  padding: 4px 6px 4px 28px; /* keep room for the ▹ marker */
   margin: -4px -6px 10px -6px;
 }
+.exp-bullets li::before { left: 6px; }
 
 .exp-bullets li.dimmed {
   opacity: 0.25;
@@ -3414,7 +3415,7 @@ body:hover .cursor-spotlight {
   opacity: 1;
   background: rgba(56, 189, 248, 0.08);
   border-left: 3px solid var(--accent-cyan);
-  padding-left: 10px;
+  padding-left: 25px;
   box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
 }
 
@@ -4169,3 +4170,32 @@ body.mode-quick .timeline-item:nth-child(n+4) { display: none; }
 .footer-link:hover { color: var(--accent-cyan); }
 
 @media (prefers-reduced-motion: reduce) { .palette-overlay, .mode-btn { transition: none; } }
+
+/* ==========================================================================
+   v4.5: alignment fixes + consistent click affordances
+   ========================================================================== */
+.palette-trigger kbd { white-space: nowrap; flex: none; }
+.palette-trigger:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 2px; }
+.palette-trigger:focus:not(:focus-visible) { outline: none; }
+
+@media (max-width: 1100px) {
+  .exp-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .exp-meta { text-align: left; }
+}
+
+/* Anything that reacts to hover now also reacts to a click */
+.clickable { cursor: pointer; }
+.clickable:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 3px; }
+.badge.clickable:active, .pillar-card.clickable:active, .project-card.clickable:active, .cert-card.clickable:active { transform: scale(.98); }
+
+/* Large containers that only held decorative hover effects */
+.lab-card.card:hover, .modal-dialog.card:hover, .recruiter-box.card:hover, .fit-card.card:hover {
+  border-color: var(--border-subtle);
+  box-shadow: none;
+}
+.floating-recruiter-dock:hover { border-color: rgba(56, 189, 248, 0.25); }
+.card:not([tabindex]):hover { border-color: var(--border-subtle); box-shadow: none; }
+/* Case card header: keep the tag pill on one line, let the org name wrap beside/below it */
+.case-card-top { flex-wrap: wrap; gap: 6px 10px; }
+.case-tag { white-space: nowrap; }
+.case-org { text-align: right; }
