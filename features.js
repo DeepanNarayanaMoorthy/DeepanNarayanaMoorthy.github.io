@@ -279,7 +279,7 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
       if (have.some(t => termHit(txt, t))) { el.classList.add('fit-hit'); n++; }
     });
     setMode('deep');
-    scrollToEl($('#skills'));
+    setTimeout(() => window.centerOnElement($('.fit-hit')), 80);
     buddySay({ text: `Highlighted ${n} matching skills and achievements across the page.`, actions: [{ label: 'Clear highlights', run: clearHighlights }, { label: 'Show experience', run: () => scrollToEl($('#experience')) }] });
   }
 
@@ -506,7 +506,7 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
         b.classList.add('fit-hit');
         if (hits.length) {
           setMode('deep');
-          scrollToEl($('#experience'));
+          setTimeout(() => window.centerOnElement(hits[0]), 80);
           buddySay({ text: `${name} shows up in ${hits.length} achievement${hits.length > 1 ? 's' : ''} below, highlighted in green.`, jump: true, actions: [{ label: 'Clear highlight', run: clearHighlights }, { label: 'Back to skills', run: () => scrollToEl($('#skills')) }] });
         } else {
           buddySay({ text: `${name} is on my resume but not named in a specific bullet. Ask me about it.`, actions: [{ label: 'Email me', run: () => window.openEmail() }, { label: 'Fine', run: () => { clearHighlights(); } }] });

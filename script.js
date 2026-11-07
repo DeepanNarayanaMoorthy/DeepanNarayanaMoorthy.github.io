@@ -1359,6 +1359,19 @@ function initFloatingDock() {
 }
 
 /**
+ * Smoothly bring an element to the vertical centre of the viewport so a
+ * highlight is never left off-screen. No-op if it is already near the centre.
+ */
+window.centerOnElement = function (el) {
+  if (!el) return;
+  const r = el.getBoundingClientRect();
+  const offset = (r.top + r.height / 2) - window.innerHeight / 2;
+  if (Math.abs(offset) < window.innerHeight * 0.15) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: window.scrollY + offset, behavior: reduce ? 'auto' : 'smooth' });
+};
+
+/**
  * Experience Technology Filter Bar
  */
 function initExperienceTechFilter() {
@@ -1398,6 +1411,12 @@ function initExperienceTechFilter() {
           li.classList.remove('highlighted');
         }
       });
+
+      // Make sure the first highlighted achievement is actually visible
+      if (filter !== 'all') {
+        const first = Array.from(bullets).find(li => li.classList.contains('highlighted'));
+        if (first) setTimeout(() => window.centerOnElement(first), 80);
+      }
 
       if (counter) {
         if (filter === 'all') {
