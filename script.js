@@ -1366,6 +1366,13 @@ function initExperienceTechFilter() {
 
   if (!filterBtns.length) return;
 
+  // Keep chip labels in sync with the tagged achievements
+  const countFor = f => f === 'all' ? bullets.length : [...bullets].filter(li => (li.getAttribute('data-tech') || '').split(/\s+/).includes(f)).length;
+  filterBtns.forEach(btn => {
+    const f = btn.getAttribute('data-exp-filter');
+    btn.textContent = btn.textContent.replace(/\s*\(\d+\)\s*$/, '') + ` (${countFor(f)})`;
+  });
+
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
@@ -1376,7 +1383,7 @@ function initExperienceTechFilter() {
 
       bullets.forEach(li => {
         const tech = li.getAttribute('data-tech') || '';
-        if (filter === 'all' || tech.includes(filter)) {
+        if (filter === 'all' || tech.split(/\s+/).includes(filter)) {
           li.classList.remove('dimmed');
           if (filter !== 'all') {
             li.classList.add('highlighted');
@@ -1392,9 +1399,9 @@ function initExperienceTechFilter() {
 
       if (counter) {
         if (filter === 'all') {
-          counter.textContent = 'Showing all 18 verified achievements';
+          counter.textContent = `Showing all ${bullets.length} verified achievements`;
         } else {
-          counter.textContent = `Highlighted ${matchCount} achievements aligned with ${btn.textContent}`;
+          counter.textContent = `Highlighted ${matchCount} achievements aligned with ${btn.textContent.replace(/\s*\(\d+\)\s*$/, '')}`;
         }
       }
     });

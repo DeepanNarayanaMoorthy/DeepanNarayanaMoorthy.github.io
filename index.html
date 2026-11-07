@@ -481,7 +481,7 @@
             <span class="exp-match-counter" id="expMatchCounter">Showing all verified achievements</span>
           </div>
           <div class="exp-filter-chips">
-            <button class="exp-filter-btn active" data-exp-filter="all">All Tech (18)</button>
+            <button class="exp-filter-btn active" data-exp-filter="all">All Tech</button>
             <button class="exp-filter-btn" data-exp-filter="aws">AWS Cloud (8)</button>
             <button class="exp-filter-btn" data-exp-filter="azure">Azure (5)</button>
             <button class="exp-filter-btn" data-exp-filter="terraform">Terraform &amp; IaC (6)</button>
@@ -527,28 +527,28 @@
 
               <div class="exp-bullets">
                 <ul>
-                  <li data-tech="aws terraform sandbox datasync">
+                  <li data-tech="aws terraform">
                     <strong>Enterprise Multi-Tenant Infrastructure:</strong> Architected multi-account, multi-region <strong>Terraform</strong> modules to provision isolated Customer Sandboxes (US &amp; EU) for high-value enterprise accounts with tenant-isolated analytics clusters, deterministic DNS-safe hostnames, and cross-account <strong>AWS DataSync</strong> over VPC peering.
                   </li>
-                  <li data-tech="aws rds supabase snowflake datasync">
+                  <li data-tech="aws rds">
                     <strong>Cross-Account Data Plane Migration:</strong> Migrated the enterprise data plane across RDS (AWS DMS), Supabase, Typesense, Auth0 (tenant/app replication), Snowflake (S3 integration), and EFS via VPC peering and cross-account AWS DataSync, keeping demo and release paths aligned with production.
                   </li>
-                  <li>
+                  <li data-tech="oidc aws">
                     <strong>Org-Wide CI/CD Security Modernization:</strong> Led the company-wide migration of CI/CD workflows across core repositories from static AWS IAM access keys to <strong>GitHub Actions OIDC</strong> with role assumption, eliminating long-lived credentials and introducing private-key Snowflake authentication.
                   </li>
-                  <li>
+                  <li data-tech="aws">
                     <strong>Optimized CI/CD &amp; Deploy Reruns:</strong> Reduced deployment rerun times by <strong>80% (from 19.5 min to 3.9 min)</strong> by landing an idempotent ECR container image reuse strategy on retriggers; authored timeout guardrails and CI preflight checks to catch misconfigurations early.
                   </li>
-                  <li>
+                  <li data-tech="datadog aws">
                     <strong>SRE, Incident Response &amp; Observability:</strong> Replaced legacy ping monitors with an automated <strong>Atlassian Statuspage</strong> operating model integrated with <strong>Datadog Synthetics</strong> for Prod US/EU; created automated incident resolution, L1 runbooks, and monthly uptime reports; cut production release downtime by <strong>2 hours</strong>.
                   </li>
-                  <li>
+                  <li data-tech="aws">
                     <strong>Deployment Automation for AI &amp; Streaming Platforms:</strong> Built repeatable, auditable deployment pipelines for AI-assisted Copilot services, Realtime ETL (Managed Apache Flink &amp; ECS), and internal MCP servers with multi-platform container architecture validation (<code>linux/amd64</code>).
                   </li>
-                  <li>
+                  <li data-tech="aws finops">
                     <strong>Cloud Cost Optimization &amp; Rightsizing:</strong> Led multi-environment EFS rightsizing across Staging, QA, and Sandbox environments, shrinking disk consumption from <strong>1.44 TiB down to 73.48 GiB</strong>; parked idle customer sandbox EU clusters to save <strong>~$1,800/month</strong> in AWS spend.
                   </li>
-                  <li>
+                  <li data-tech="datadog aws">
                     <strong>Production Escalation Lead &amp; RCA:</strong> Led diagnosis, live mitigation, and permanent root-cause remediation for critical production incidents (nginx 502 buffer overflows, WAF AdminProtection false-positives, Snowflake JWT private-key discrepancies, and cross-repo secret rotation).
                   </li>
                 </ul>
@@ -604,31 +604,31 @@
 
               <div class="exp-bullets">
                 <ul>
-                  <li>
+                  <li data-tech="aws azure terraform">
                     <strong>Standardized Multi-Cloud Infrastructure:</strong> Provisioned and standardized infrastructure for <strong>30+ microservices</strong> across <strong>AWS</strong> (ECS/Fargate, RDS, Lambda) and <strong>Azure</strong> (Functions, App Services, VMs) using AWS CloudFormation and Azure ARM templates, establishing multi-cloud IaC standards.
                   </li>
-                  <li>
+                  <li data-tech="aws azure datadog">
                     <strong>Dynamic Autoscaling &amp; Incident Reduction:</strong> Designed autoscaling templates and metrics-based scaling strategies for AWS Fargate and Azure WebApps, eliminating ThousandEye alert bottlenecks for Auth APIs and cutting system performance incidents by <strong>20%</strong>.
                   </li>
-                  <li>
+                  <li data-tech="aws">
                     <strong>Global Edge UI Delivery Pattern:</strong> Delivered a repeatable <strong>S3 + CloudFront + Lambda@Edge</strong> pattern for static frontend delivery across multiple services (Cat® MineStar™ Solutions, VisionLink, and Operator Management System 2.0), enabling automated edge cache invalidation and high global throughput.
                   </li>
-                  <li>
+                  <li data-tech="aws azure">
                     <strong>Blue/Green Deployments:</strong> Owned release execution for downtime-sensitive systems using automated blue-green cutovers and validated rollback plans with tested rollback strategies (<strong>10+ cases</strong>), reducing release downtime by <strong>3 hours per iteration</strong>.
                   </li>
-                  <li>
+                  <li data-tech="azure oidc python">
                     <strong>Security &amp; Compliance Automation:</strong> Developed custom PowerShell and Python utilities for <strong>Azure Key Vault secret expiration alerts</strong>, SAS token epoch auto-renewal, and SQL/KV IP whitelisting verification—resolving <strong>50+ vulnerabilities</strong> and saving 10–15 hours of manual engineering effort per sprint.
                   </li>
-                  <li>
+                  <li data-tech="azure">
                     <strong>Production Telematics Pipelines:</strong> Implemented automated data pull pipelines for production telematics pushed to JFrog Artifactory, eliminating network timeout drops and accelerating test validation cycles.
                   </li>
-                  <li>
+                  <li data-tech="azure datadog">
                     <strong>Bulk Scaling &amp; Telemetry Alerts:</strong> Created automation for bulk scaling of Azure App Service plans to mitigate reserved instance shortages; developed scheduled query rules using Log Analytics KQL for automated monitoring and alerting.
                   </li>
-                  <li>
+                  <li data-tech="aws">
                     <strong>Lambda LogGroup Migration Pipeline:</strong> Automated the migration of standalone CloudWatch log groups into Lambda deployment stacks, parallelizing deployments and saving developers <strong>1 hour per release</strong>.
                   </li>
-                  <li>
+                  <li data-tech="aws azure finops">
                     <strong>Multi-Cloud Cost Reduction:</strong> Spearheaded 3 internal Azure and Azure-to-AWS workload migrations, rightsizing overprovisioned app service plans and reducing monthly operational cloud spend by <strong>~12%</strong>.
                   </li>
                 </ul>
@@ -684,10 +684,10 @@
 
               <div class="exp-bullets">
                 <ul>
-                  <li>
+                  <li data-tech="python">
                     <strong>Pitch Deck Automation Engine:</strong> Built and optimized automated workflow scripts using <strong>Python, VBA, and Selenium</strong> for investment bankers, reducing manual preparation time and saving <strong>1,000+ hours per year</strong> across firm-wide deals.
                   </li>
-                  <li>
+                  <li data-tech="python">
                     <strong>Geospatial Analytics Plugin:</strong> Developed a Python-based <strong>QGIS plugin</strong> for the Oil and Gas team to forecast and model potential bore wells across licensed acreage by leveraging multiple spatial coordinate transformation algorithms.
                   </li>
                 </ul>
@@ -2328,6 +2328,6 @@
   </div>
 
   <!-- JavaScript -->
-  <script src="script.js?v=3.0"></script>
+  <script src="script.js?v=3.1"></script>
 </body>
 </html>
