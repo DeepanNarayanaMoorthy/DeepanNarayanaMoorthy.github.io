@@ -55,7 +55,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=4.16">
+  <link rel="stylesheet" href="styles.css?v=4.18">
 
   <!-- Aggressive Structured Data JSON-LD (Schema.org Graph: ProfilePage + Person + Occupation) -->
   <script type="application/ld+json">
@@ -1778,6 +1778,27 @@
       </div>
     </section>
 
+    <!-- FIT CHECKER -->
+    <section id="fit-checker" class="section fit-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">FIT CHECKER</span>
+          <h2 class="section-title">Paste a Job Description, See How I Match</h2>
+          <p class="section-subtitle">Runs entirely in your browser. Nothing you paste is stored or sent anywhere. It compares the tools named in the posting with my actual experience, and it also shows the gaps.</p>
+        </div>
+        <div class="fit-card card">
+          <label for="fitInput" class="fit-label">Job description <span class="fit-hint">Paste your own to replace the sample below, or just press "Check my fit" to run it.</span></label>
+          <textarea id="fitInput" class="fit-input" rows="7" placeholder="Paste a job description here..."></textarea>
+          <div class="fit-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="fitAnalyzeBtn">Check my fit</button>
+            <button type="button" class="btn btn-outline btn-sm" id="fitSampleBtn">Try a sample JD</button>
+            <button type="button" class="btn btn-outline btn-sm" id="fitClearBtn">Clear</button>
+          </div>
+          <div class="fit-results" id="fitResults" aria-live="polite" hidden></div>
+        </div>
+      </div>
+    </section>
+
     <!-- RECRUITER QUICK-HIRE CHEAT SHEET (SEO & FAST ATS SCAN) -->
     <section id="recruiter-summary" class="section recruiter-section" aria-label="Recruiter Quick Reference and Hiring Summary">
       <div class="container">
@@ -1794,8 +1815,8 @@
           <!-- Interactive Role Fit Matcher -->
           <div class="role-matcher-container">
             <div class="role-matcher-header">
-              <span class="role-matcher-tag">INTERACTIVE CANDIDATE FIT ASSESSMENT</span>
-              <h3 class="role-matcher-title">Select Your Open Role to Evaluate Alignment:</h3>
+              <span class="role-matcher-tag">ROLE-BY-ROLE EVIDENCE</span>
+              <h3 class="role-matcher-title">Pick a role to see what I have actually done in it:</h3>
             </div>
             
             <div class="role-selector-tabs" role="tablist">
@@ -1814,22 +1835,22 @@
             </div>
 
             <div class="role-evaluation-panel" id="roleEvaluationPanel">
-              <div class="role-score-gauge">
-                <div class="gauge-circle">
-                  <svg viewBox="0 0 100 100" class="gauge-svg">
-                    <circle cx="50" cy="50" r="42" class="gauge-bg"></circle>
-                    <circle cx="50" cy="50" r="42" class="gauge-progress" id="gaugeProgress"></circle>
-                  </svg>
-                  <div class="gauge-value" id="gaugeVal">98%</div>
+              <aside class="role-snapshot" aria-label="Hands-on evidence for this role">
+                <span class="role-snapshot-label">Hands-on with</span>
+                <div class="role-snapshot-tools" id="roleTools">
+                  <span class="tech-pill">GitHub Actions</span>
+                  <span class="tech-pill">GitHub OIDC</span>
+                  <span class="tech-pill">Azure DevOps</span>
+                  <span class="tech-pill">Docker</span>
+                  <span class="tech-pill">AWS ECR</span>
+                  <span class="tech-pill">Terraform</span>
                 </div>
-                <div class="gauge-label">
-                  <strong class="text-emerald" id="gaugeText">Exceptional Fit</strong>
-                  <span>Production-Proven</span>
-                </div>
-              </div>
+                <span class="role-snapshot-label">Where</span>
+                <p class="role-snapshot-where" id="roleWhere">Everstage (2025 to now) &middot; Caterpillar (2023&ndash;2025)</p>
+              </aside>
 
               <div class="role-details-content">
-                <h4 class="role-fit-heading" id="roleFitHeading">DevOps &amp; CI/CD Engineer</h4>
+                <h4 class="role-fit-heading" id="roleFitHeading">DevOps &amp; CI/CD: what I have done</h4>
                 <ul class="role-fit-bullets" id="roleFitBullets">
                   <li><strong>Zero Static CI Secrets:</strong> Eradicated static IAM access keys across core repos via GitHub OIDC token federation.</li>
                   <li><strong>80% CI Rerun Acceleration:</strong> Slashed build retries from 19.5 min to 3.9 min using AWS ECR layer reuse.</li>
@@ -1840,8 +1861,8 @@
                   <button class="btn btn-outline btn-sm" id="btnHighlightMatchingSkills">
                     <span>⚡ Highlight Matching Skills &amp; Projects on Page</span>
                   </button>
-                  <a href="mailto:deepanntech@gmail.com?subject=Interview%20Request%20for%20DevOps%20Role" class="btn btn-primary btn-sm" id="roleEmailBtn">
-                    <span>📅 Request 15-Min Quick Screen</span>
+                  <a href="#" data-book target="_blank" rel="noopener" class="btn btn-primary btn-sm" id="roleEmailBtn">
+                    <span>📅 Book a 15-Min Intro Call</span>
                   </a>
                 </div>
               </div>
@@ -1894,27 +1915,6 @@
               <span>Connect on LinkedIn</span>
             </a>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FIT CHECKER -->
-    <section id="fit-checker" class="section fit-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">FIT CHECKER</span>
-          <h2 class="section-title">Paste a Job Description, See How I Match</h2>
-          <p class="section-subtitle">Runs entirely in your browser. Nothing you paste is stored or sent anywhere. It compares the tools named in the posting with my actual experience, and it also shows the gaps.</p>
-        </div>
-        <div class="fit-card card">
-          <label for="fitInput" class="fit-label">Job description <span class="fit-hint">Paste your own to replace the sample below, or just press "Check my fit" to run it.</span></label>
-          <textarea id="fitInput" class="fit-input" rows="7" placeholder="Paste a job description here..."></textarea>
-          <div class="fit-actions">
-            <button type="button" class="btn btn-primary btn-sm" id="fitAnalyzeBtn">Check my fit</button>
-            <button type="button" class="btn btn-outline btn-sm" id="fitSampleBtn">Try a sample JD</button>
-            <button type="button" class="btn btn-outline btn-sm" id="fitClearBtn">Clear</button>
-          </div>
-          <div class="fit-results" id="fitResults" aria-live="polite" hidden></div>
         </div>
       </div>
     </section>
@@ -2487,7 +2487,7 @@
     </div>
   </div>
 
-  <script src="script.js?v=4.16"></script>
-  <script src="features.js?v=4.16"></script>
+  <script src="script.js?v=4.18"></script>
+  <script src="features.js?v=4.18"></script>
 </body>
 </html>

@@ -342,7 +342,7 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
     const sections = [
       ['hero', 'Top / Intro'], ['experience', 'Experience'], ['skills', 'Skills'], ['case-studies', 'Case Studies'],
       ['about', 'Engineering Pillars'], ['projects', 'Projects & Hackathons'], ['certifications', 'Certifications & Education'],
-      ['recruiter-summary', 'Recruiter Cheat Sheet'], ['fit-checker', 'Fit Checker (paste a job description)'],
+      ['fit-checker', 'Fit Checker (paste a job description)'], ['recruiter-summary', 'Recruiter Cheat Sheet'],
       ['sre-lab', 'SRE Lab & FinOps Calculator'], ['contact', 'Contact']
     ];
     sections.forEach(([id, label]) => items.push({ type: 'Go to', label, run: () => scrollToEl(document.getElementById(id)) }));

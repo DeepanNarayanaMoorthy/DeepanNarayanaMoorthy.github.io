@@ -4242,3 +4242,10 @@ body.mode-quick .timeline-item:nth-child(n+4) { display: none; }
 .highlight-chip.show { opacity: 1; visibility: visible; transform: none; }
 .highlight-chip:hover { background: var(--accent-emerald); color: #04130c; }
 @media (max-width: 900px) { .highlight-chip { right: 16px; bottom: 120px; } }
+
+/* Role evidence snapshot (replaces the percentage gauge) */
+.role-snapshot { flex: 0 0 260px; display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: 14px; background: rgba(56,189,248,.05); border: 1px solid var(--border-card); align-self: flex-start; }
+.role-snapshot-label { font: 600 .68rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-cyan); }
+.role-snapshot-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.role-snapshot-where { margin: 0; font-size: .85rem; color: var(--text-secondary); line-height: 1.5; }
+@media (max-width: 800px) { .role-snapshot { flex: 1 1 auto; width: 100%; } }

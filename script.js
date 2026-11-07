@@ -150,8 +150,8 @@ function initDevOpsTerminal() {
      • Automated deal pitch decks (Python/VBA) saving 1,000+ hours/year.`,
 
     hire: `[CANDIDATE SELECTION: DEEPAN NARAYANAMOORTHY]
-  <span class="text-emerald">✓ Verified S-Tier DevOps & Site Reliability Engineer</span>
-  <span class="text-cyan">⚡ Production-Proven in AWS, Azure, Terraform, OIDC, & Datadog</span>
+  <span class="text-emerald">✓ DevOps & Cloud Engineer, 3+ years in production</span>
+  <span class="text-cyan">⚡ Hands-on with AWS, Azure, Terraform, OIDC & Datadog</span>
   
   Next Steps:
   • <a href="mailto:deepanntech@gmail.com?subject=Interview%20Invitation%20-%20DevOps%20Role" class="text-emerald font-bold">Email Deepan: deepanntech@gmail.com</a>
@@ -437,59 +437,59 @@ function initFinOpsCalculator() {
  */
 function initRoleMatcher() {
   const roleTabs = document.querySelectorAll('.role-tab');
-  const gaugeVal = document.getElementById('gaugeVal');
-  const gaugeProgress = document.getElementById('gaugeProgress');
-  const gaugeText = document.getElementById('gaugeText');
   const roleHeading = document.getElementById('roleFitHeading');
   const roleBullets = document.getElementById('roleFitBullets');
+  const roleTools = document.getElementById('roleTools');
+  const roleWhere = document.getElementById('roleWhere');
   const roleEmailBtn = document.getElementById('roleEmailBtn');
   const btnHighlight = document.getElementById('btnHighlightMatchingSkills');
 
+  const EVERSTAGE_CAT = 'Everstage (Nov 2025 to now) · Caterpillar (Feb 2023 to Oct 2025)';
   const rolesData = {
     devops: {
-      score: 98,
-      text: 'Exceptional Fit',
-      heading: 'Why Deepan Fits: DevOps & CI/CD Engineer',
+      heading: 'DevOps & CI/CD: what I have done',
+      tools: ['GitHub Actions', 'GitHub OIDC', 'Azure DevOps', 'Docker', 'AWS ECR', 'Terraform'],
+      where: EVERSTAGE_CAT,
       bullets: [
-        '<strong>Zero Static CI Secrets:</strong> Spearheaded company-wide GitHub OIDC migration across core repositories.',
-        '<strong>80% CI Rerun Acceleration:</strong> Slashed Docker build retries from 19.5 min to 3.9 min using AWS ECR layer reuse.',
-        '<strong>Multi-Cloud Pipelines:</strong> Standardized declarative YAML CI/CD pipelines across AWS & Azure for 30+ services.'
+        '<strong>Static keys replaced by OIDC:</strong> Led the move from long-lived AWS access keys to GitHub OIDC with role assumption across repositories.',
+        '<strong>Faster reruns:</strong> Cut deployment retries from about 19.5 min to 3.9 min by reusing ECR images on retriggers.',
+        '<strong>Pipelines across clouds:</strong> Built Azure DevOps pipelines for 20+ services and standardized GitHub Actions workflows with idempotent deployments.'
       ],
       filter: 'cicd',
       subject: 'Interview Request for DevOps Engineer Role'
     },
     sre: {
-      score: 99,
-      text: 'Production Battle-Tested',
-      heading: 'Why Deepan Fits: Site Reliability Engineer (SRE)',
+      heading: 'Site Reliability: what I have done',
+      tools: ['Datadog Synthetics', 'Atlassian Statuspage', 'CloudWatch', 'Azure Monitor', 'SLO / SLI', 'RCA'],
+      where: EVERSTAGE_CAT,
       bullets: [
-        '<strong>99.9% Production Uptime:</strong> High-availability architecture, multi-AZ resilience, and Datadog Synthetics monitoring.',
-        '<strong>Automated Incident Status:</strong> Built Atlassian Statuspage integration with automated P1/P2 runbooks and SLO monitors.',
-        '<strong>Blue/Green Deploys:</strong> Owned downtime-sensitive releases using blue-green cutovers and 10+ tested rollback cases.'
+        '<strong>Monitoring and status:</strong> Datadog synthetics and SLI-aligned monitors, integrated with Atlassian Statuspage for customer-visible incident status.',
+        '<strong>Incidents:</strong> Led triage and root-cause analysis on production issues (nginx 502s, WAF false positives, Snowflake auth) and cut release-related downtime by 2 hours.',
+        '<strong>Safer releases:</strong> Owned downtime-sensitive releases using blue-green cutovers and 10+ tested rollback cases.'
       ],
       filter: 'sre',
       subject: 'Interview Request for Site Reliability Engineer (SRE) Role'
     },
     cloud: {
-      score: 97,
-      text: 'Architectural Excellence',
-      heading: 'Why Deepan Fits: Cloud Infrastructure Architect',
+      heading: 'Cloud infrastructure: what I have done',
+      tools: ['AWS ECS/Fargate', 'RDS', 'S3 / EFS', 'CloudFront', 'VPC / NLB', 'Azure App Service'],
+      where: EVERSTAGE_CAT,
       bullets: [
-        '<strong>Multi-Account Cloud Topology:</strong> Multi-tenant customer sandbox environments across US & EU clusters on AWS & Azure.',
-        '<strong>$1.8K/mo FinOps Savings:</strong> Rightsized provisioned EFS volumes (1.44 TiB down to 73 GiB) and automated idle sandbox parking.',
-        '<strong>Certified Expertise:</strong> AWS Certified Solutions Architect – Associate with theoretical computer science foundation.'
+        '<strong>Isolated environments:</strong> Multi-account, multi-region Terraform for customer sandboxes across US and EU, including VPC peering and cross-account DataSync.',
+        '<strong>Cost:</strong> Right-sized sandbox EFS from 1.44 TiB to 73.48 GiB and parked idle EU clusters, avoiding about $1,800/month.',
+        '<strong>Migrations:</strong> Moved data across RDS (DMS), Snowflake, Auth0 and EFS, and led 3 Azure and Azure-to-AWS migrations. AWS Solutions Architect Associate certified.'
       ],
       filter: 'cloud',
       subject: 'Interview Request for Cloud Infrastructure Role'
     },
     platform: {
-      score: 98,
-      text: 'Platform Enabler',
-      heading: 'Why Deepan Fits: Platform & Automation Engineer',
+      heading: 'Platform & IaC: what I have done',
+      tools: ['Terraform', 'CloudFormation', 'Azure ARM', 'Python', 'PowerShell', 'Bash'],
+      where: EVERSTAGE_CAT,
       bullets: [
-        '<strong>Declarative IaC Standardization:</strong> Modular Terraform, AWS CloudFormation, and Azure ARM eliminating configuration drift.',
-        '<strong>Compliance & Secret Automation:</strong> Built scheduled Python & PowerShell scanners resolving 50+ compliance audit flags.',
-        '<strong>1,000+ Annual Hours Saved:</strong> Enterprise Python pipelines automating tedious data extraction, telemetry, and reporting.'
+        '<strong>Infrastructure as code:</strong> Standardized 30+ microservices on CloudFormation and ARM templates at Caterpillar, then Terraform modules at Everstage.',
+        '<strong>Internal tooling:</strong> Built scripts for Key Vault expiry alerts, IP compliance checks and incident reporting that resolved 50+ vulnerabilities.',
+        '<strong>Automation:</strong> Deployment workflows for Sales Copilot, Realtime ETL and MCP servers, replacing ad-hoc manual releases.'
       ],
       filter: 'iac',
       subject: 'Interview Request for Platform Engineer Role'
@@ -516,23 +516,10 @@ function initRoleMatcher() {
   });
 
   function applyRoleData(data) {
-    if (gaugeVal) gaugeVal.textContent = `${data.score}%`;
-    if (gaugeText) gaugeText.textContent = data.text;
     if (roleHeading) roleHeading.textContent = data.heading;
-
-    // Circumference = 2 * PI * 42 ≈ 264
-    const offset = Math.round(264 - (264 * (data.score / 100)));
-    if (gaugeProgress) {
-      gaugeProgress.style.strokeDashoffset = String(offset);
-    }
-
-    if (roleBullets) {
-      roleBullets.innerHTML = data.bullets.map(b => `<li>${b}</li>`).join('');
-    }
-
-    if (roleEmailBtn) {
-      roleEmailBtn.href = `mailto:deepanntech@gmail.com?subject=${encodeURIComponent(data.subject)}`;
-    }
+    if (roleBullets) roleBullets.innerHTML = data.bullets.map(b => `<li>${b}</li>`).join('');
+    if (roleTools) roleTools.innerHTML = data.tools.map(t => `<span class="tech-pill">${t}</span>`).join('');
+    if (roleWhere) roleWhere.textContent = data.where;
   }
 
   // Highlight Matching Skills & Experience across page
@@ -548,15 +535,14 @@ function initRoleMatcher() {
       // Add temporary electric glow to skills and metric cards
       const skillsSection = document.getElementById('skills');
       const cardsToGlow = document.querySelectorAll('.skill-category-card, .metric-card');
-      
+
       cardsToGlow.forEach(card => card.classList.add('matched-highlight'));
 
-      // Smooth scroll to skills
       if (skillsSection) {
         skillsSection.scrollIntoView({ behavior: 'smooth' });
       }
 
-      showToast(`Highlighted core skills & metrics aligned with ${roleData.heading}!`);
+      showToast(`Showing skills relevant to ${roleData.heading.split(':')[0]}`);
 
       setTimeout(() => {
         cardsToGlow.forEach(card => card.classList.remove('matched-highlight'));
