@@ -1957,9 +1957,29 @@ function initBuddy() {
   }, { threshold: 0.35 });
   Object.keys(reactions).forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
 
-  // Entrance: slide in, wave, greet, then settle into a peek
-  setTimeout(() => {
-    setState('out');
-    setTimeout(() => say("Hi, I'm Deepan! 👋 Welcome to my portfolio. Click me for a tour.", { wave: true, duration: 6000 }), 650);
-  }, 2200);
+  // Eye helper for scripted glances (mouse tracking takes over afterwards)
+  const lookAt = (x, y) => pupils.forEach(p => { p.style.transform = `translate(${x}px, ${y}px)`; });
+
+  // Entrance: grip the edge, lean out, glance around, notice the viewer, pop out and wave
+  const at = (ms, fn) => setTimeout(() => { if (buddy.dataset.state !== 'dismissed') fn(); }, ms);
+  if (reduce) {
+    at(1500, () => { setState('out'); say("Hi, I'm Deepan! Click me for a tour.", { duration: 6000 }); });
+  } else {
+    at(1500, () => setState('grip'));            // fingers curl over the edge
+    at(2100, () => setState('peek'));            // head leans out
+    at(2900, () => lookAt(3, 0));                // glance toward the page
+    at(3500, () => lookAt(3, 3));                // peek down at the content
+    at(4200, () => lookAt(-2, -1));              // check behind
+    at(4800, () => { lookAt(0, 0); flag('jump', 800); }); // spots the viewer
+    at(5300, () => {
+      setState('out');
+      at(700, () => say("Hi, I'm Deepan! 👋 Welcome to my portfolio. Click me for a tour.", { wave: true, duration: 6000 }));
+    });
+    // Occasional curious lean-out while idle
+    setInterval(() => {
+      if (busy || buddy.dataset.state !== 'peek' || bubble.classList.contains('show')) return;
+      buddy.dataset.sneak = '1';
+      setTimeout(() => { delete buddy.dataset.sneak; }, 1600);
+    }, 9000);
+  }
 }

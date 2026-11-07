@@ -50,7 +50,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=3.2">
+  <link rel="stylesheet" href="styles.css?v=3.4">
 
   <!-- Aggressive Structured Data JSON-LD (Schema.org Graph: ProfilePage + Person + Occupation) -->
   <script type="application/ld+json">
@@ -2340,56 +2340,78 @@
       <p id="buddyText"></p>
       <div class="buddy-actions" id="buddyActions"></div>
     </div>
-    <button class="buddy-body" id="buddyBody" aria-label="Say hi to Deepan's cartoon avatar" type="button">
-      <svg viewBox="0 0 120 170" width="120" height="170" aria-hidden="true">
-        <g class="b-bob">
-          <!-- torso -->
-          <path d="M8 170 C8 132 28 120 60 120 C92 120 112 132 112 170 Z" fill="#1e3a5f"/>
-          <path d="M46 120 L60 150 L74 120 Z" fill="#fff"/>
-          <path d="M46 120 L60 150 L52 120 Z" fill="#e2e8f0"/>
-          <!-- neck -->
-          <rect x="51" y="104" width="18" height="18" rx="6" fill="#b87a52"/>
-          <!-- back arm (resting) -->
-          <path d="M14 140 C10 150 12 164 16 170 L30 170 C30 158 28 148 26 140 Z" fill="#1e3a5f"/>
-          <!-- head -->
-          <ellipse cx="60" cy="76" rx="32" ry="35" fill="#c98f63"/>
-          <ellipse cx="28.5" cy="80" rx="4.5" ry="7" fill="#c98f63"/>
-          <ellipse cx="91.5" cy="80" rx="4.5" ry="7" fill="#c98f63"/>
-          <!-- freckles -->
-          <g fill="#9a5f3c" opacity=".7"><circle cx="40" cy="84" r="1"/><circle cx="45" cy="88" r="1"/><circle cx="38" cy="90" r="1"/><circle cx="49" cy="84" r="1"/><circle cx="80" cy="84" r="1"/><circle cx="75" cy="88" r="1"/><circle cx="82" cy="90" r="1"/><circle cx="71" cy="84" r="1"/></g>
-          <!-- beard -->
-          <path d="M28 78 C28 108 42 112 60 112 C78 112 92 108 92 78 C88 90 80 94 72 95 C68 92 52 92 48 95 C40 94 32 90 28 78 Z" fill="#17120f"/>
-          <path class="b-mouth" d="M50 96 Q60 104 70 96 Q60 99 50 96 Z" fill="#fff" stroke="#17120f" stroke-width="1.2" stroke-linejoin="round"/>
-          <!-- nose -->
-          <path d="M57 82 Q60 88 63 82" fill="none" stroke="#9a5f3c" stroke-width="1.6" stroke-linecap="round"/>
-          <!-- eyes -->
-          <g class="b-eyes">
-            <ellipse cx="46" cy="72" rx="6" ry="6.5" fill="#fff"/>
-            <ellipse cx="74" cy="72" rx="6" ry="6.5" fill="#fff"/>
-            <circle class="b-pupil" cx="46" cy="72.5" r="3" fill="#2a1a10"/>
-            <circle class="b-pupil" cx="74" cy="72.5" r="3" fill="#2a1a10"/>
+    <div class="buddy-clip">
+      <button class="buddy-body" id="buddyBody" aria-label="Say hi to Deepan's cartoon avatar" type="button">
+        <svg viewBox="0 0 160 200" width="160" height="200" aria-hidden="true">
+          <g class="b-bob">
+            <!-- neck + torso -->
+            <rect x="67" y="126" width="26" height="28" rx="11" fill="#bf8456"/>
+            <path d="M20 200 C20 162 46 148 80 148 C114 148 140 162 140 200 Z" fill="#1f3a5f"/>
+            <path d="M62 148 L80 176 L98 148 Z" fill="#ffffff"/>
+            <path d="M62 148 L73 184 L50 164 Z" fill="#17304f"/>
+            <path d="M98 148 L87 184 L110 164 Z" fill="#17304f"/>
+            <!-- ears -->
+            <circle cx="36" cy="90" r="8.5" fill="#d49a6a"/>
+            <circle cx="124" cy="90" r="8.5" fill="#d49a6a"/>
+            <circle cx="36" cy="90" r="4" fill="#bf8456"/>
+            <circle cx="124" cy="90" r="4" fill="#bf8456"/>
+            <!-- head -->
+            <ellipse cx="80" cy="84" rx="44" ry="46" fill="#d49a6a"/>
+            <!-- cheeks + freckles -->
+            <circle cx="49" cy="98" r="7" fill="#e5806a" opacity=".3"/>
+            <circle cx="111" cy="98" r="7" fill="#e5806a" opacity=".3"/>
+            <g fill="#a8693f" opacity=".75">
+              <circle cx="46" cy="92" r="1.3"/><circle cx="52" cy="95" r="1.3"/><circle cx="48" cy="100" r="1.3"/>
+              <circle cx="114" cy="92" r="1.3"/><circle cx="108" cy="95" r="1.3"/><circle cx="112" cy="100" r="1.3"/>
+            </g>
+            <!-- beard -->
+            <path d="M36 84 C36 128 56 140 80 140 C104 140 124 128 124 84 C119 104 109 108 99 108 C92 105 68 105 61 108 C51 108 41 104 36 84 Z" fill="#1b1512"/>
+            <!-- smile -->
+            <g class="b-mouth">
+              <path d="M66 113 Q80 132 94 113 Q80 119 66 113 Z" fill="#5c2222"/>
+              <path d="M68 113.5 Q80 119 92 113.5 L92 112 L68 112 Z" fill="#fff"/>
+            </g>
+            <!-- moustache -->
+            <path d="M58 107 Q69 97 80 104 Q91 97 102 107 Q91 111 80 108 Q69 111 58 107 Z" fill="#1b1512"/>
+            <!-- nose -->
+            <ellipse cx="80" cy="96" rx="5.5" ry="4" fill="#c28559"/>
+            <!-- eyes -->
+            <g class="b-eyes">
+              <g class="b-pupil"><ellipse cx="62" cy="82" rx="6" ry="7.5" fill="#24150d"/><circle cx="64.3" cy="79.2" r="2.3" fill="#fff"/><circle cx="60.2" cy="85" r="1" fill="#fff" opacity=".7"/></g>
+              <g class="b-pupil"><ellipse cx="98" cy="82" rx="6" ry="7.5" fill="#24150d"/><circle cx="100.3" cy="79.2" r="2.3" fill="#fff"/><circle cx="96.2" cy="85" r="1" fill="#fff" opacity=".7"/></g>
+            </g>
+            <path class="b-brow" d="M51 69 Q62 62 73 68" fill="none" stroke="#1b1512" stroke-width="4.5" stroke-linecap="round"/>
+            <path class="b-brow" d="M87 68 Q98 62 109 69" fill="none" stroke="#1b1512" stroke-width="4.5" stroke-linecap="round"/>
+            <!-- hair -->
+            <path d="M34 80 C25 40 50 20 82 20 C114 20 138 40 126 80 C125 64 119 54 108 51 C94 58 66 58 52 50 C42 54 36 64 34 80 Z" fill="#1b1512"/>
+            <path d="M48 38 C62 12 104 10 122 34 C104 26 72 24 48 38 Z" fill="#1b1512"/>
+            <path d="M58 30 C72 20 94 20 106 28" fill="none" stroke="#3b302a" stroke-width="3" stroke-linecap="round"/>
           </g>
-          <path d="M38 62 Q46 57 54 62" fill="none" stroke="#17120f" stroke-width="3" stroke-linecap="round"/>
-          <path d="M66 62 Q74 57 82 62" fill="none" stroke="#17120f" stroke-width="3" stroke-linecap="round"/>
-          <!-- hair -->
-          <path d="M26 70 C20 40 40 20 62 20 C86 20 102 38 94 70 C92 58 88 52 80 50 C66 54 50 54 40 48 C32 52 28 60 26 70 Z" fill="#17120f"/>
-          <path d="M34 34 C44 22 66 18 80 26 C70 24 50 26 34 34 Z" fill="#2b2420"/>
-        </g>
-        <!-- waving arm -->
-        <g class="b-arm">
-          <path d="M92 128 C106 118 112 100 108 84 L96 86 C98 98 94 108 84 116 Z" fill="#1e3a5f"/>
-          <g class="b-hand">
-            <circle cx="102" cy="76" r="9" fill="#c98f63"/>
-            <rect x="94" y="66" width="4" height="9" rx="2" fill="#c98f63"/>
-            <rect x="99" y="63" width="4" height="10" rx="2" fill="#c98f63"/>
-            <rect x="104" y="64" width="4" height="10" rx="2" fill="#c98f63"/>
-            <rect x="108.5" y="67" width="3.5" height="8" rx="1.8" fill="#c98f63"/>
+          <!-- waving arm -->
+          <g class="b-arm">
+            <path d="M118 172 C138 162 148 142 146 120 L129 120 C131 138 125 150 112 158 Z" fill="#1f3a5f"/>
+            <g class="b-hand">
+              <ellipse cx="137.5" cy="107" rx="11" ry="13" fill="#d49a6a"/>
+              <ellipse cx="125.5" cy="112" rx="4.2" ry="7" fill="#d49a6a" transform="rotate(-25 125.5 112)"/>
+              <path d="M130 97 V92 M137 95 V89 M144 97 V91" stroke="#bf8456" stroke-width=".8" opacity=".6" fill="none"/>
+              <rect x="128" y="91" width="6" height="12" rx="3" fill="#d49a6a"/>
+              <rect x="134.5" y="88" width="6" height="14" rx="3" fill="#d49a6a"/>
+              <rect x="141" y="91" width="6" height="12" rx="3" fill="#d49a6a"/>
+            </g>
           </g>
-        </g>
+        </svg>
+      </button>
+      <!-- hand gripping the page edge while peeking -->
+      <svg class="buddy-grip" viewBox="0 0 44 64" width="44" height="64" aria-hidden="true">
+        <rect x="-4" y="2" width="28" height="12" rx="6" fill="#d49a6a"/>
+        <rect x="-4" y="16" width="30" height="12" rx="6" fill="#d49a6a"/>
+        <rect x="-4" y="30" width="28" height="12" rx="6" fill="#d49a6a"/>
+        <rect x="-4" y="44" width="24" height="11" rx="5.5" fill="#d49a6a"/>
+        <path d="M22 8 H20 M24 22 H22 M22 36 H20 M18 49 H16" stroke="#bf8456" stroke-width="1.2" stroke-linecap="round" opacity=".7"/>
       </svg>
-    </button>
+    </div>
   </div>
 
-  <script src="script.js?v=3.2"></script>
+  <script src="script.js?v=3.3"></script>
 </body>
 </html>
