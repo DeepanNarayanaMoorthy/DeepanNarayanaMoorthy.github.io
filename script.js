@@ -1586,7 +1586,9 @@ function initSkillSearch() {
     });
 
     if (status) {
-      status.textContent = `Found ${matchCount} matching skill${matchCount === 1 ? '' : 's'}`;
+      status.textContent = matchCount
+        ? `Found ${matchCount} matching skill${matchCount === 1 ? '' : 's'}`
+        : `No skill matches "${input.value.trim()}". Try "Terraform", "Docker" or "Datadog", or clear the search.`;
     }
   });
 

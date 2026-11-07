@@ -108,9 +108,21 @@
     });
   }
 
-  function setMode(mode) {
+  function setMode(mode, keepPosition) {
     const quick = mode === 'quick';
+    if (document.body.classList.contains('mode-quick') === quick) { updateReadTimes(); return; }
+    // Remember what the visitor was looking at so hiding/showing content doesn't throw them elsewhere
+    let anchor = null, anchorTop = 0;
+    if (keepPosition) {
+      anchor = document.elementFromPoint(window.innerWidth / 2, window.innerHeight * 0.4);
+      anchor = anchor && (anchor.closest('li, p, h2, h3, .metric-card, .skill-category-card, .case-card, .timeline-item') || anchor);
+      if (anchor) anchorTop = anchor.getBoundingClientRect().top;
+    }
     document.body.classList.toggle('mode-quick', quick);
+    if (anchor) {
+      const el = anchor.offsetParent !== null ? anchor : (anchor.closest('section') && anchor.closest('section').offsetParent !== null ? anchor.closest('section') : null);
+      if (el) window.scrollBy({ top: el.getBoundingClientRect().top - (el === anchor ? anchorTop : 80), behavior: 'auto' });
+    }
     $('#modeQuick')?.classList.toggle('active', quick);
     $('#modeDeep')?.classList.toggle('active', !quick);
     $('#modeQuick')?.setAttribute('aria-pressed', String(quick));
@@ -128,8 +140,8 @@
         head.appendChild(chip);
       }
     });
-    $('#modeQuick')?.addEventListener('click', () => setMode('quick'));
-    $('#modeDeep')?.addEventListener('click', () => setMode('deep'));
+    $('#modeQuick')?.addEventListener('click', () => setMode('quick', true));
+    $('#modeDeep')?.addEventListener('click', () => setMode('deep', true));
     setMode(store.get('readMode') === 'quick' ? 'quick' : 'deep');
     setTimeout(updateReadTimes, 800); // after fonts / dynamic content settle
   }
@@ -205,8 +217,22 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
   }
   const termHit = (text, t) => t[1].some(a => hasTerm(text, a));
 
+  let hlChip = null;
+  function syncHighlightChip() {
+    const any = document.querySelector('.fit-hit');
+    if (!hlChip) {
+      hlChip = document.createElement('button');
+      hlChip.type = 'button';
+      hlChip.className = 'highlight-chip';
+      hlChip.innerHTML = '<span aria-hidden="true">✕</span> Clear highlights';
+      hlChip.addEventListener('click', () => clearHighlights());
+      document.body.appendChild(hlChip);
+    }
+    hlChip.classList.toggle('show', !!any);
+  }
   function clearHighlights() {
     $$('.fit-hit').forEach(e => e.classList.remove('fit-hit'));
+    syncHighlightChip();
   }
 
   function analyze(jd) {
@@ -261,6 +287,11 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
       </div>
       <p class="fit-note">This is a keyword comparison, not a verdict on ability. Gaps are things I have not used in a job yet, so judge them with that in mind.</p>`;
     $('#fitHighlightBtn').addEventListener('click', () => highlightMatches(have));
+    // Bring the verdict into view so the visitor does not have to hunt for it
+    setTimeout(() => {
+      const r = out.getBoundingClientRect();
+      if (r.top < 90 || r.top > window.innerHeight * 0.55) window.scrollTo({ top: window.scrollY + r.top - 110, behavior: reduce ? 'auto' : 'smooth' });
+    }, 60);
     buddySay({
       text: `${pct}% keyword match. ${gaps.length ? 'I am honest about the gaps, they are listed too.' : 'No gaps spotted.'}`,
       jump: true,
@@ -279,6 +310,7 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
       if (have.some(t => termHit(txt, t))) { el.classList.add('fit-hit'); n++; }
     });
     setMode('deep');
+    syncHighlightChip();
     setTimeout(() => window.centerOnElement($('.fit-hit')), 80);
     buddySay({ text: `Highlighted ${n} matching skills and achievements across the page.`, actions: [{ label: 'Clear highlights', run: clearHighlights }, { label: 'Show experience', run: () => scrollToEl($('#experience')) }] });
   }
@@ -323,8 +355,8 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
       ['Open LinkedIn', 'linkedin social', () => window.open('https://www.linkedin.com/in/deepann/', '_blank', 'noopener')],
       ['Open GitHub', 'github code repos', () => window.open('https://github.com/DeepanNarayanaMoorthy', '_blank', 'noopener')],
       ['Verify AWS certification (Credly)', 'aws certification credly verify', () => window.open('https://www.credly.com/badges/3be2db96-3394-4eb4-ac1f-1734905cf01d/public_url', '_blank', 'noopener')],
-      ['Switch to Skim mode', 'quick short read skim 30 second', () => setMode('quick')],
-      ['Switch to Deep dive mode', 'full long read details', () => setMode('deep')]
+      ['Switch to Skim mode', 'quick short read skim', () => setMode('quick', true)],
+      ['Switch to Deep dive mode', 'full long read details', () => setMode('deep', true)]
     ];
     actions.forEach(([label, kw, run]) => items.push({ type: 'Action', label, kw, run }));
     $$('.case-card').forEach(card => {
@@ -499,13 +531,16 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
     $$('.skills-grid .badge').forEach(b => {
       const name = b.textContent.trim().replace(/\s+/g, ' ');
       makeClickable(b, `Show where I used ${name}`, () => {
+        const wasOn = b.classList.contains('fit-hit');
         clearHighlights();
+        if (wasOn) return; // second click on the same pill turns the highlight off
         const pieces = skillPieces(name);
         const hits = $$('.exp-bullets li').filter(li => { const t = li.innerText.toLowerCase(); return pieces.some(p => hasTerm(t, p)); });
         hits.forEach(li => li.classList.add('fit-hit'));
         b.classList.add('fit-hit');
         if (hits.length) {
           setMode('deep');
+          syncHighlightChip();
           setTimeout(() => window.centerOnElement(hits[0]), 80);
           buddySay({ text: `${name} shows up in ${hits.length} achievement${hits.length > 1 ? 's' : ''} below, highlighted in green.`, jump: true, actions: [{ label: 'Clear highlight', run: clearHighlights }, { label: 'Back to skills', run: () => scrollToEl($('#skills')) }] });
         } else {
@@ -661,7 +696,39 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
     });
   }
 
+  /* ------------------------------------------------------------------
+     Dialogs: move focus in on open, give it back on close
+     ------------------------------------------------------------------ */
+  function initDialogFocus() {
+    const returnTo = new WeakMap();
+    $$('.modal-backdrop').forEach(m => {
+      new MutationObserver(() => {
+        const open = m.classList.contains('open') || m.classList.contains('active');
+        if (open && !returnTo.has(m)) {
+          returnTo.set(m, lastClicked || document.activeElement);
+          setTimeout(() => ($('.modal-close-btn', m) || $('button', m))?.focus({ preventScroll: true }), 60);
+        } else if (!open && returnTo.has(m)) {
+          const el = returnTo.get(m); returnTo.delete(m);
+          if (el && el.focus && document.contains(el)) el.focus({ preventScroll: true });
+        }
+      }).observe(m, { attributes: true, attributeFilter: ['class'] });
+    });
+  }
+  let lastClicked = null;
+  document.addEventListener('click', e => { lastClicked = e.target.closest('button, a, [role="button"], [tabindex]') || e.target; }, true);
+
+  /* Mobile menu: also close on Escape or a tap outside it */
+  function initMenuDismiss() {
+    const menu = $('#navMenu'), toggle = $('#mobileToggle');
+    if (!menu || !toggle) return;
+    const close = () => { menu.classList.remove('open'); toggle.classList.remove('active'); toggle.setAttribute('aria-expanded', 'false'); };
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('open')) { close(); toggle.focus(); } });
+    document.addEventListener('click', e => { if (menu.classList.contains('open') && !e.target.closest('#navMenu, #mobileToggle')) close(); });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    initDialogFocus();
+    initMenuDismiss();
     initReturnChip();
     initTabTitle();
     initClickables();

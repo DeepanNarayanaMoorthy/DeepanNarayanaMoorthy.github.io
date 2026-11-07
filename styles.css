@@ -4223,3 +4223,22 @@ body.mode-quick .timeline-item:nth-child(n+4) { display: none; }
 
 .fit-hint { display: block; margin-top: 2px; font-weight: 400; font-size: .78rem; color: var(--text-dim); }
 .fit-input::placeholder { color: #64748b; opacity: .85; font-style: italic; }
+
+/* Toast moves to the top so it never covers the scroll-top / return / clear chips */
+.toast { bottom: auto; top: 88px; right: 50%; transform: translate(50%, -20px); }
+.toast.show { transform: translate(50%, 0); }
+
+.highlight-chip {
+  position: fixed; right: 24px; bottom: 130px; z-index: 900;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 14px; border-radius: 999px; cursor: pointer;
+  background: rgba(11, 17, 32, .95); color: var(--accent-emerald-light);
+  border: 1px solid rgba(16, 185, 129, .5);
+  box-shadow: var(--shadow-md);
+  font: 600 .8rem var(--font-sans);
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: opacity .25s, transform .25s, visibility .25s;
+}
+.highlight-chip.show { opacity: 1; visibility: visible; transform: none; }
+.highlight-chip:hover { background: var(--accent-emerald); color: #04130c; }
+@media (max-width: 900px) { .highlight-chip { right: 16px; bottom: 120px; } }
