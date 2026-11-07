@@ -143,7 +143,7 @@ function initDevOpsTerminal() {
   1. <strong class="text-cyan">Everstage</strong> (Nov 2025 – Present) | DevOps & Cloud Engineer
      • Multi-tenant sandbox architecture, Datadog Statuspage, company-wide OIDC migration.
   2. <strong class="text-cyan">Caterpillar Inc.</strong> (Feb 2023 – Oct 2025) | Cloud & DevOps Engineer
-     • Standardized 30+ services on AWS & Azure, zero-downtime blue/green deployments.
+     • Standardized 30+ services on AWS & Azure, blue/green deployments with tested rollbacks.
   3. <strong class="text-cyan">JPMorgan Chase & Co.</strong> (May 2021 – Nov 2021) | Junior Analyst Intern
      • Automated deal pitch decks (Python/VBA) saving 1,000+ hours/year.`,
 
@@ -168,7 +168,7 @@ function initDevOpsTerminal() {
   105  system   20   0  180M   28M    0.5   0.7  statuspage-webhook-sync`,
 
     security: `[ZERO-TRUST CI/CD & SECURITY REPORT]
-  • Migration: Eradicated long-lived AWS IAM access keys across 10+ core repositories.
+  • Migration: Eradicated long-lived AWS IAM access keys across core repositories.
   • Identity:  Short-lived AWS STS credentials via <strong class="text-cyan">GitHub OIDC</strong> & role assumption.
   • Data Auth: Snowflake key-pair token-based authentication.
   • Auditing:  Automated Key Vault secret & SAS token expiry bots, clearing 50+ vulnerabilities.`,
@@ -417,9 +417,8 @@ function initFinOpsCalculator() {
     if (annualSavings) annualSavings.textContent = `$${annualWaste.toLocaleString()}`;
     if (hoursSaved) hoursSaved.textContent = `${monthlyHours} hrs`;
 
-    const paybackDays = Math.max(30, Math.round(90 - (spend / 5000)));
     if (verdictText) {
-      verdictText.innerHTML = `<strong>FinOps ROI:</strong> Deepan pays for his own compensation within the first <strong>${paybackDays} days</strong> through automated cloud infrastructure rightsizing alone.`;
+      verdictText.innerHTML = `<strong>Estimate:</strong> a rough illustrative model, not a guarantee. Actual savings depend on your environment.`;
     }
   }
 
@@ -448,14 +447,14 @@ function initRoleMatcher() {
     devops: {
       score: 98,
       text: 'Exceptional Fit',
-      heading: 'Why Deepan Fits: Senior DevOps & CI/CD Engineer',
+      heading: 'Why Deepan Fits: DevOps & CI/CD Engineer',
       bullets: [
-        '<strong>Zero Static CI Secrets:</strong> Spearheaded company-wide GitHub OIDC migration across 10+ core repositories.',
+        '<strong>Zero Static CI Secrets:</strong> Spearheaded company-wide GitHub OIDC migration across core repositories.',
         '<strong>80% CI Rerun Acceleration:</strong> Slashed Docker build retries from 19.5 min to 3.9 min using AWS ECR layer reuse.',
         '<strong>Multi-Cloud Pipelines:</strong> Standardized declarative YAML CI/CD pipelines across AWS & Azure for 30+ services.'
       ],
       filter: 'cicd',
-      subject: 'Interview Request for Senior DevOps Engineer Role'
+      subject: 'Interview Request for DevOps Engineer Role'
     },
     sre: {
       score: 99,
@@ -464,7 +463,7 @@ function initRoleMatcher() {
       bullets: [
         '<strong>99.9% Production Uptime:</strong> High-availability architecture, multi-AZ resilience, and Datadog Synthetics monitoring.',
         '<strong>Automated Incident Status:</strong> Built Atlassian Statuspage integration with automated P1/P2 runbooks and SLO monitors.',
-        '<strong>Zero-Downtime Blue/Green:</strong> Orchestrated 10+ major downtime-sensitive production releases with automated health cutover.'
+        '<strong>Blue/Green Deploys:</strong> Owned downtime-sensitive releases using blue-green cutovers and 10+ tested rollback cases.'
       ],
       filter: 'sre',
       subject: 'Interview Request for Site Reliability Engineer (SRE) Role'
@@ -593,7 +592,7 @@ const caseStudiesData = [
   [Typesense & Supabase Cluster]`,
     challenge: "Enterprise prospects in US and European jurisdictions required isolated sandbox environments during contract evaluation. Previous multi-tenant analytics configurations carried severe risks of cross-tenant data bleed and noisy-neighbor performance degradation.",
     solution: "Designed and implemented a modular Terraform architecture providing deterministic per-tenant sandbox provisioning with DNS-safe client ID hashing. Integrated automated cross-account AWS DataSync pipelines and containerized Supabase and Typesense services with strict VPC isolation.",
-    impact: "Achieved 100% tenant isolation with zero cross-tenant data bleed, directly unblocking 4+ tier-1 enterprise deal closures. Rightsized storage volumes from 1.44 TiB down to 73 GiB.",
+    impact: "Gave each onboarded sandbox customer a dedicated analytics cluster so client data stays isolated, keeping 4 enterprise sandbox customers unblocked. Rightsized storage volumes from 1.44 TiB down to 73 GiB.",
     stack: ["Terraform", "AWS ECS / Fargate", "AWS RDS PostgreSQL", "AWS DataSync", "Route53", "Supabase", "Typesense"]
   },
   {
@@ -617,11 +616,11 @@ const caseStudiesData = [
 [Least-Privilege AWS IAM Execution]`,
     challenge: "Over 10 core engineering repositories spanning user APIs, customer frontends, and backend microservices relied on static, long-lived AWS IAM access keys stored as GitHub repository secrets—posing major risks of credential exposure.",
     solution: "Pioneered the organization-wide migration to GitHub Actions OIDC federation. Established AWS IAM identity providers and short-lived (15-min) STS token role assumption scoped strictly by repository and branch condition keys. Migrated data warehouse authentication to Snowflake key-pair token auth.",
-    impact: "100% elimination of permanent cloud secrets in CI/CD across 10+ core repos; accelerated deployment retries by 80% (19.5 min ➔ 3.9 min) via idempotent ECR caching.",
+    impact: "Static AWS keys replaced by GitHub OIDC across core repos; accelerated deployment retries by 80% (19.5 min ➔ 3.9 min) via idempotent ECR caching.",
     stack: ["GitHub Actions", "AWS STS", "IAM OIDC Federation", "Snowflake Key-Pair", "Docker BuildKit", "Bash Guardrails"]
   },
   {
-    title: "Zero-Downtime Blue/Green Release & Global Edge Delivery",
+    title: "Blue/Green Releases & Global Edge Delivery",
     tag: "Reliability & Release",
     org: "Caterpillar Inc.",
     diagram: `[Global Fleet IoT Telematics]
@@ -639,7 +638,7 @@ const caseStudiesData = [
      └──────────────────────► Shift Traffic (10% ➔ 50% ➔ 100%)`,
     challenge: "Mission-critical industrial IoT telematics platforms (Cat MineStar, OMS 2.0) faced costly 3-hour downtime windows during production releases, risking telematics ingestion drops across global mining fleets.",
     solution: "Architected automated Blue/Green deployment pipelines in Azure DevOps and AWS. Deployed single-page applications via AWS S3 + CloudFront with Lambda@Edge header transformations. Designed weighted traffic shifting with instant 1-click rollback upon automated synthetic test failures.",
-    impact: "Slashed release downtime by 3 hours per iteration across 10+ major downtime-sensitive production releases with zero customer-impacting regressions.",
+    impact: "Slashed release downtime by 3 hours per iteration using blue-green deployments backed by 10+ tested rollback scenarios.",
     stack: ["AWS CloudFront", "Lambda@Edge", "AWS S3", "Azure DevOps", "Route53 Weighted DNS", "PowerShell"]
   },
   {
@@ -701,12 +700,12 @@ const caseStudiesData = [
 [Remediation Webhook & Event Router]
      ┌─────┴────────────────┐
      ▼                      ▼
-[Atlassian Statuspage API] [PagerDuty On-Call P1]
+[Atlassian Statuspage API]   [L1 Runbook / On-Call]
  (Auto-Publishes Outage)   (Triggers Triage Runbook)`,
     challenge: "Customer communication during production incidents relied on manual Slack escalation, causing high Mean Time to Acknowledge (MTTA) and inconsistent SLA reporting.",
     solution: "Designed multi-location Datadog synthetic monitors across US and EU production regions. Integrated webhook listeners with the Atlassian Statuspage REST API for automated public incident state transitions. Built standardized P1/P2 runbooks and automated SLA reports.",
-    impact: "Delivered real-time customer transparency during incidents; reduced on-call alert noise by 40%; automated monthly SLA compliance accounting.",
-    stack: ["Datadog Synthetics", "Atlassian Statuspage", "Webhooks", "PagerDuty", "Python", "JSON Schema"]
+    impact: "Delivered real-time customer transparency during incidents; reduced on-call alert noise through routing and tuning; automated monthly uptime reporting for Finance.",
+    stack: ["Datadog Synthetics", "Atlassian Statuspage", "Webhooks", "Python", "JSON Schema"]
   },
   {
     title: "Dynamic Autoscaling & Performance Bottleneck Elimination",
@@ -752,7 +751,7 @@ const caseStudiesData = [
 [Log Analytics KQL Compliance Dashboard]`,
     challenge: "Manual tracking of expiring Key Vault secrets, stale Azure SAS tokens, and IP firewall allowlists led to compliance audit warnings and risked deployment delays.",
     solution: "Developed automated compliance audit utilities in PowerShell and Python executed via serverless Azure Functions. Automatically extracted embedded epoch timestamps from SAS tokens to predict expiration 14 days in advance. Verified firewall whitelists prior to release windows.",
-    impact: "Resolved 50+ compliance audit flags, cleanly passed enterprise security reviews, and reclaimed 10-15 manual engineering hours per sprint.",
+    impact: "Resolved 50+ vulnerabilities and reclaimed 10-15 manual engineering hours per sprint.",
     stack: ["Azure Key Vault", "PowerShell", "Python", "Azure Functions", "Azure Log Analytics (KQL)", "Azure DevOps"]
   },
   {
@@ -801,7 +800,7 @@ const caseStudiesData = [
 [Automated Branch Validation & Deployment]`,
     challenge: "Over 30 distributed microservices across AWS and Azure were managed via legacy classic GUI release pipelines with configuration drift and manual environment setup.",
     solution: "Standardized provisioning with modular Infrastructure as Code (AWS CloudFormation, Azure ARM, Terraform). Migrated 30+ services to declarative, version-controlled Azure DevOps YAML pipelines with branch isolation and automated pull request validations.",
-    impact: "Accelerated release deployment cadence 3x, reduced configuration drift to zero, and slashed manual deployment errors by 85%.",
+    impact: "Tripled release velocity, standardized configuration across services, and cut manual deployment effort through repeatable pipelines.",
     stack: ["AWS CloudFormation", "Azure ARM Templates", "Azure DevOps YAML", "Terraform", "AWS ECS", "Azure Functions"]
   },
   {
@@ -1251,7 +1250,7 @@ function initTypewriterEffect() {
     "AWS & Azure Microservices",
     "FinOps & $1.8K/mo Cloud Savings",
     "Datadog Observability & APM",
-    "Zero-Downtime Blue/Green Deploys",
+    "Blue/Green Deploys",
     "Self-Healing Cloud Platforms"
   ];
 
@@ -1409,7 +1408,7 @@ const topologyNodesData = {
   dns: {
     tag: "LAYER 1 • GLOBAL INGRESS",
     title: "Route 53 Global Routing & Deterministic DNS Hashing",
-    desc: "Engineered deterministic DNS-safe hashing from enterprise client identifiers, routing multi-tenant SaaS traffic seamlessly across isolated US and European clusters with zero route collisions.",
+    desc: "Engineered deterministic DNS-safe hashing from enterprise client identifiers, routing multi-tenant SaaS traffic seamlessly across isolated US and European clusters with collision-safe naming.",
     metricNum: "99.9%",
     metricLabel: "Routing SLA",
     caseIndex: 0
@@ -1425,7 +1424,7 @@ const topologyNodesData = {
   security: {
     tag: "LAYER 3 • ZERO-TRUST IDENTITY & WAF",
     title: "GitHub Actions OIDC Federation & AWS WAF Guardrails",
-    desc: "Eradicated permanent IAM keys across 10+ core repositories using short-lived STS tokens. Tuned AWS WAF AdminProtection rule false-positives protecting enterprise customer portals.",
+    desc: "Eradicated permanent IAM keys across core repositories using short-lived STS tokens. Tuned AWS WAF AdminProtection rule false-positives protecting enterprise customer portals.",
     metricNum: "100%",
     metricLabel: "Static Keys Eradicated",
     caseIndex: 1
@@ -1441,7 +1440,7 @@ const topologyNodesData = {
   storage: {
     tag: "LAYER 5 • PERSISTENT DATA & FINOPS RIGHTSIZING",
     title: "AWS EFS Storage Rightsizing & PostgreSQL RDS",
-    desc: "Right-sized multi-environment EFS file storage from 1.44 TiB down to 73.48 GiB, saving ~$1,800/mo while ensuring zero cross-tenant database bleed over VPC peering.",
+    desc: "Right-sized multi-environment EFS file storage from 1.44 TiB down to 73.48 GiB, saving ~$1,800/mo with only the files services actually use carried over.",
     metricNum: "$1.8K+",
     metricLabel: "Monthly Cloud Savings",
     caseIndex: 3
@@ -1450,8 +1449,8 @@ const topologyNodesData = {
     tag: "LAYER 6 • OBSERVABILITY & INCIDENT OPERATIONS",
     title: "Datadog Synthetics, Atlassian Statuspage & SLO Monitoring",
     desc: "Automated end-to-end user synthetic probes with webhook integration into Atlassian Statuspage for real-time customer incident status and P1/P2 runbooks.",
-    metricNum: "40%",
-    metricLabel: "Alert Noise Reduced",
+    metricNum: "US + EU",
+    metricLabel: "Prod Monitoring Coverage",
     caseIndex: 5
   }
 };
@@ -1581,7 +1580,7 @@ const metricsData = [
     val: "99.9%",
     before: "Single-AZ deployment risks and manual incident triage via Slack channels.",
     after: "Multi-region AWS ECS and Azure App Services with Datadog Synthetics health probes.",
-    mechanism: "Engineered automated target-group failover, zero-downtime blue/green cutovers, and proactive multi-step synthetic monitors triggering automated status pages.",
+    mechanism: "Engineered automated target-group failover, blue/green cutovers, and proactive multi-step synthetic monitors triggering automated status pages.",
     stack: ["AWS ECS Fargate", "Azure App Services", "Route 53", "Datadog Synthetics", "ALB"],
     caseIndex: 2
   },
@@ -1608,7 +1607,7 @@ const metricsData = [
     val: "$1.8K+",
     before: "Non-production staging and sandbox environments cloning full production disks.",
     after: "EFS volume rightsized from 1.44 TiB down to 73 GiB, plus automated idle teardowns.",
-    mechanism: "Profiled microservice file access with Linux disk utilities, migrating only essential files. Implemented serverless auto-parking for idle test environments.",
+    mechanism: "Profiled microservice file access with Linux disk utilities, migrating only essential files. Parked idle environments (ECS scaled to zero, databases stopped) to stop paying for unused capacity.",
     stack: ["AWS EFS", "AWS DataSync", "AWS Cost Explorer", "AWS Lambda"],
     caseIndex: 3
   },
@@ -1616,8 +1615,8 @@ const metricsData = [
     title: "Zero-Trust CI/CD Vulnerabilities Cleared",
     val: "50+",
     before: "Static, long-lived AWS IAM access keys stored in CI repository secrets.",
-    after: "100% eradication of permanent credentials across 10+ core repositories.",
-    mechanism: "Spearheaded organization-wide migration to GitHub Actions OIDC federation with short-lived 15-min STS tokens and automated secret expiry alerts.",
+    after: "Static AWS credentials replaced with GitHub OIDC across core repositories.",
+    mechanism: "Spearheaded organization-wide migration to GitHub Actions OIDC federation with short-lived STS credentials, plus automated secret expiry alerts.",
     stack: ["GitHub OIDC", "AWS IAM", "AWS STS", "Snowflake Key-Pair", "Azure Key Vault"],
     caseIndex: 1
   },
@@ -1642,9 +1641,9 @@ const metricsData = [
   {
     title: "Release Downtime Slashed per Deployment",
     val: "2-3 Hours",
-    before: "Industrial telematics platforms requiring up to 3 hours of offline maintenance windows.",
-    after: "Zero-downtime Blue/Green releases with instantaneous 1-click rollback verification.",
-    mechanism: "Engineered weighted traffic shifting via CloudFront + Lambda@Edge and Route 53 with automated synthetic health checks before 100% cutover.",
+    before: "Industrial telematics releases that previously needed long maintenance windows (about 3 hours of downtime per release).",
+    after: "Blue-green releases with tested rollback plans.",
+    mechanism: "Ran blue-green cutovers with health verification before switching traffic, with a tested rollback path.",
     stack: ["AWS CloudFront", "Lambda@Edge", "Route 53", "Azure DevOps"],
     caseIndex: 2
   },
@@ -1658,10 +1657,10 @@ const metricsData = [
     caseIndex: 3
   },
   {
-    title: "Zero-Downtime Blue/Green Releases Executed",
+    title: "Blue/Green Releases Executed",
     val: "10+",
     before: "High-risk production releases impacting industrial telematics ingestion.",
-    after: "Executed 10+ major production cutovers with 0 minutes downtime and zero data drops.",
+    after: "Ran downtime-sensitive production cutovers with tested rollback plans.",
     mechanism: "Combined AWS S3 + CloudFront static UI delivery with automated target group swapping and preflight staging verification.",
     stack: ["AWS S3", "AWS CloudFront", "Azure DevOps", "Blue/Green"],
     caseIndex: 2

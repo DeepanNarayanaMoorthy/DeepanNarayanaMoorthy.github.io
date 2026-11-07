@@ -3854,3 +3854,48 @@ body:hover .cursor-spotlight {
     justify-content: center;
   }
 }
+
+/* ==========================================================================
+   v3.0 refinements: nav breakpoint, dock, spacing
+   ========================================================================== */
+.nav-menu { gap: 22px; }
+.nav-link { white-space: nowrap; font-size: 0.9rem; }
+.nav-actions .btn span { white-space: nowrap; }
+
+@media (max-width: 1180px) {
+  .nav-menu {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+    background: rgba(7, 10, 18, 0.98);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 24px 24px;
+    gap: 14px;
+    border-bottom: 1px solid var(--border-subtle);
+    transform: translateY(-150%);
+    transition: transform var(--transition-base);
+    backdrop-filter: blur(20px);
+    z-index: 999;
+  }
+  .nav-menu.open { transform: translateY(0); }
+  .mobile-toggle { display: flex; }
+  .mobile-toggle.active .hamburger-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .mobile-toggle.active .hamburger-bar:nth-child(2) { opacity: 0; }
+  .mobile-toggle.active .hamburger-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+}
+
+/* The persona dock covers content on small screens; keep it for wide desktops only */
+@media (max-width: 1024px) {
+  .floating-recruiter-dock { display: none; }
+}
+@media (max-width: 480px) {
+  .nav-actions .btn-outline { display: none; }
+}
+html { scroll-padding-top: 90px; }
+@media (max-width: 640px) {
+  .btn { white-space: normal; text-align: center; max-width: 100%; }
+}

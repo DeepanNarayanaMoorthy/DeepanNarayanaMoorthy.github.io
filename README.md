@@ -18,11 +18,11 @@ Live Demo: [https://deepannarayanamoorthy.github.io/](https://deepannarayanamoor
 
 ## 🚀 Key Highlights & Production Metrics
 
-- **99.9% Production Uptime:** Maintained resilient high availability across AWS ECS/Fargate, RDS, and Azure App Services.
+- **99.9% Production Uptime:** Blue-green releases with tested rollbacks across AWS ECS/Fargate, RDS, and Azure App Services.
 - **80% CI/CD Deployment Rerun Acceleration:** Cut deployment retry latency from 19.5 min to 3.9 min via smart ECR layer and image caching.
 - **Organization-Wide GitHub OIDC Modernization:** Eradicated static AWS access keys and passwords across 10+ core repositories with AWS STS and IAM role assumption.
 - **Multi-Tenant Customer Sandbox Architecture:** Architected isolated AWS sandbox environments across US & EU clusters for tier-1 enterprise SaaS accounts with deterministic DNS-safe host hashing.
-- **$1,800+/Month Cloud Spend Optimization:** Led multi-environment EFS rightsizing (1.44 TiB down to 73.48 GiB) and automated parking of idle EU sandbox clusters.
+- **~$1,800/Month Cloud Spend Avoided:** Led multi-environment EFS rightsizing (1.44 TiB down to 73.48 GiB) and automated parking of idle EU sandbox clusters.
 - **50+ Security Vulnerabilities Resolved:** Automated Azure Key Vault secret expiration alerts, SAS token renewal, and SQL/KV IP whitelisting compliance tools.
 
 ---
@@ -31,13 +31,12 @@ Live Demo: [https://deepannarayanamoorthy.github.io/](https://deepannarayanamoor
 
 ```text
 DeepanNarayanaMoorthy.github.io/
-├── .github/
-│   └── workflows/
-│       └── deploy.yml              # Automated GitHub Pages CI/CD deployment
+├── assets/logos/                    # Company logos
+├── robots.txt / sitemap.xml         # SEO
 ├── deepan_headshot.png              # Optimized profile image
 ├── Deepan_Cloud_DevOps_SRE_Resume.pdf # Downloadable ATS-optimized resume
 ├── index.html                       # Semantic HTML5 single-page application
-├── styles.css                       # Modern dark-mode SRE observability styling
+├── styles.css                       # Dark-mode SRE observability styling
 ├── script.js                        # Interactive terminal, skill filter, clipboard & form
 └── README.md                        # Documentation & setup guide
 ```
@@ -50,7 +49,7 @@ To view the portfolio locally without installing dependencies:
 
 ```bash
 # Using Python 3 built-in HTTP server:
-python -m http.server 8000
+python3 -m http.server 8000
 ```
 
 Then navigate to `http://localhost:8000` in your web browser.
