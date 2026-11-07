@@ -560,7 +560,43 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
     });
   }
 
+  /* ------------------------------------------------------------------
+     Tab title: a gentle (and slightly dramatic) nudge when they wander off
+     ------------------------------------------------------------------ */
+  function initTabTitle() {
+    const original = document.title;
+    const away = [
+      '👀 Come back, I can still hear the pager...',
+      '🔥 Prod is fine. Probably. Come back!',
+      '☁️ Your cloud bill misses you',
+      '🐳 Your container is feeling lonely',
+      '🚨 P1: you left the portfolio',
+      '💬 Psst. 15 minutes? Deepan is free.',
+      '⏳ terraform apply is waiting for you'
+    ];
+    let timer = null, i = 0, leftAt = 0;
+    const stop = () => { clearInterval(timer); timer = null; };
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        leftAt = Date.now();
+        i = Math.floor(Math.random() * away.length);
+        document.title = away[i];
+        stop();
+        timer = setInterval(() => { i = (i + 1) % away.length; document.title = away[i]; }, 3500);
+      } else {
+        stop();
+        document.title = '🎉 Welcome back!';
+        setTimeout(() => { document.title = original; }, 2500);
+        if (Date.now() - leftAt > 8000) {
+          buddySay({ text: 'Welcome back! I kept your seat warm.', wave: true, jump: true,
+            actions: [{ label: 'Book 15 min', run: openBooking }, { label: 'Resume browsing', run: () => {} }] });
+        }
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    initTabTitle();
     initClickables();
     initBooking();
     initReadingMode();
