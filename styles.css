@@ -4202,3 +4202,21 @@ body.mode-quick .timeline-item:nth-child(n+4) { display: none; }
 .project-card-header { gap: 10px; }
 .project-card-header .project-ext-link:first-of-type { margin-left: auto; }
 .project-card-header .project-ext-link + .project-ext-link { margin-left: 0; }
+
+/* Return-to-previous-position chip */
+.return-chip {
+  position: fixed; right: 24px; bottom: 82px; z-index: 900;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-radius: 999px; cursor: pointer;
+  background: rgba(11, 17, 32, .95); color: var(--text-primary);
+  border: 1px solid var(--border-highlight);
+  box-shadow: var(--shadow-md), 0 0 18px rgba(56, 189, 248, .22);
+  font: 600 .84rem var(--font-sans);
+  opacity: 0; transform: translateY(10px);
+  transition: opacity .25s ease, transform .25s ease, background .2s;
+}
+.return-chip[hidden] { display: none; }
+.return-chip.show { opacity: 1; transform: none; }
+.return-chip:hover { background: var(--accent-cyan); color: #07101f; }
+.return-chip:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 3px; }
+@media (max-width: 900px) { .return-chip { right: 16px; bottom: 72px; } }

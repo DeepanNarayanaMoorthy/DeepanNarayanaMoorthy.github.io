@@ -595,7 +595,68 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
     });
   }
 
+  /* ------------------------------------------------------------------
+     "Back to where you were": after a click or shortcut throws the
+     visitor far down (or up) the page, offer a way to return.
+     ------------------------------------------------------------------ */
+  function initReturnChip() {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'return-chip';
+    chip.hidden = true;
+    chip.innerHTML = '<span aria-hidden="true">↩</span> <span class="return-label">Back to where you were</span>';
+    document.body.appendChild(chip);
+
+    let origin = null;        // scroll position to return to
+    let armed = null;         // { y, t } recorded at the moment of a click or shortcut
+    let tracking = false, manual = false, idle = null, hideTimer = null;
+
+    const sectionNameAt = y => {
+      const mid = y + window.innerHeight * 0.4;
+      let name = '';
+      $$('main section[id], main section.metrics-section').forEach(s => {
+        const top = s.getBoundingClientRect().top + window.scrollY;
+        if (top <= mid) name = ({ hero: 'the top', experience: 'Experience', skills: 'Skills', 'case-studies': 'Case Studies', about: 'Pillars', projects: 'Projects', certifications: 'Certifications', 'recruiter-summary': 'Recruiter Cheat Sheet', 'fit-checker': 'Fit Checker', 'sre-lab': 'SRE Lab', contact: 'Contact' })[s.id] || (s.classList.contains('metrics-section') ? 'the metrics' : '');
+      });
+      return name;
+    };
+    const hide = () => { chip.classList.remove('show'); clearTimeout(hideTimer); setTimeout(() => { if (!chip.classList.contains('show')) chip.hidden = true; }, 250); origin = null; };
+    const show = y => {
+      origin = y;
+      const n = sectionNameAt(y);
+      $('.return-label', chip).textContent = n ? `Back to ${n}` : 'Back to where you were';
+      chip.hidden = false;
+      setTimeout(() => chip.classList.add('show'), 20);
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(hide, 20000);
+    };
+
+    const arm = () => { armed = { y: window.scrollY, t: Date.now() }; tracking = false; manual = false; };
+    document.addEventListener('click', e => { if (!e.target.closest('.return-chip')) arm(); }, true);
+    document.addEventListener('keydown', e => { if (e.key === 'Enter') arm(); }, true);
+    ['wheel', 'touchmove'].forEach(ev => window.addEventListener(ev, () => { manual = true; }, { passive: true }));
+    window.addEventListener('keydown', e => { if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' '].includes(e.key)) manual = true; });
+
+    window.addEventListener('scroll', () => {
+      if (origin !== null && Math.abs(window.scrollY - origin) < window.innerHeight * 0.4) { hide(); return; }
+      if (!armed || manual) return;
+      if (!tracking) { if (Date.now() - armed.t > 1200) { armed = null; return; } tracking = true; }
+      clearTimeout(idle);
+      idle = setTimeout(() => {
+        if (armed && !manual && Math.abs(window.scrollY - armed.y) > window.innerHeight * 1.2) show(armed.y);
+        armed = null; tracking = false;
+      }, 220);
+    }, { passive: true });
+
+    chip.addEventListener('click', () => {
+      const y = origin;
+      hide();
+      if (y !== null) window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    initReturnChip();
     initTabTitle();
     initClickables();
     initBooking();
