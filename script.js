@@ -1817,6 +1817,7 @@ function initBuddy() {
   let talkTimer = null;
   let busy = false;
   let clicks = 0;
+  let interacted = false; // once the visitor engages, stop auto-popups
 
   const setState = s => { buddy.dataset.state = s; };
   const flag = (name, ms) => {
@@ -1839,7 +1840,7 @@ function initBuddy() {
       const b = document.createElement('button');
       b.type = 'button';
       b.textContent = a.label;
-      b.addEventListener('click', e => { e.stopPropagation(); a.run(); });
+      b.addEventListener('click', e => { e.stopPropagation(); interacted = true; a.run(); });
       actionsEl.appendChild(b);
     });
     bubble.classList.add('show');
@@ -1908,6 +1909,7 @@ function initBuddy() {
   }
 
   body.addEventListener('click', () => {
+    interacted = true;
     clicks++;
     if (clicks === 6) {
       clicks = 0;
@@ -1937,6 +1939,7 @@ function initBuddy() {
 
   closeBtn.addEventListener('click', e => {
     e.stopPropagation();
+    interacted = true;
     busy = false;
     bubble.classList.remove('show');
     setState('hidden');
@@ -1947,24 +1950,45 @@ function initBuddy() {
   // Section reactions (once per section, only when idle)
   const click = sel => () => { const el = document.querySelector(sel); if (el) el.click(); retreat(); };
   const reactions = {
-    'experience': { t: 'This is the good stuff. Try filtering by tech stack.', actions: [{ label: 'Show AWS work', run: click('[data-exp-filter="aws"]') }, { label: 'Show Azure work', run: click('[data-exp-filter="azure"]') }] },
-    'skills': { t: 'Looking for a specific tool? The skill search is live.', actions: [{ label: 'Search skills', run: () => { const i = document.getElementById('skillSearchInput'); if (i) i.focus({ preventScroll: false }); retreat(); } }] },
-    'case-studies': { t: 'These architecture nodes are clickable. Give one a go.', actions: [{ label: 'Open one for me', run: click('.topology-node[data-node="security"]') }, { label: 'Not now', run: () => retreat() }] },
-    'certifications': { t: 'Yes, the AWS cert is real.', actions: [{ label: 'Verify on Credly', run: () => { window.open('https://www.credly.com/badges/3be2db96-3394-4eb4-ac1f-1734905cf01d/public_url', '_blank', 'noopener'); retreat(); } }] },
-    'sre-lab': { t: 'Go on, inject some chaos. I trained for this.', actions: [{ label: 'Inject chaos', run: click('#btnInjectChaos') }, { label: 'Maybe later', run: () => retreat() }] },
-    'contact': { t: 'Say hello! I reply to every email.', actions: [{ label: 'Email me', run: () => { window.location.href = 'mailto:deepanntech@gmail.com'; retreat(); } }, { label: 'Not now', run: () => retreat() }] }
+    'experience': { t: 'Hey, you can filter my experience by tech stack here. Try it out!', actions: [{ label: 'Show AWS work', run: click('[data-exp-filter="aws"]') }, { label: 'Show Azure work', run: click('[data-exp-filter="azure"]') }] },
+    'skills': { t: 'Hey, you can search all my skills live in this section. Try it out!', actions: [{ label: 'Search skills', run: () => { const i = document.getElementById('skillSearchInput'); if (i) i.focus({ preventScroll: false }); retreat(); } }] },
+    'case-studies': { t: 'Hey, these architecture nodes are interactive. Try one out!', actions: [{ label: 'Open one for me', run: click('.topology-node[data-node="security"]') }, { label: 'Not now', run: () => retreat() }] },
+    'certifications': { t: 'Hey, you can verify my AWS certification straight from Credly. Try it out!', actions: [{ label: 'Verify on Credly', run: () => { window.open('https://www.credly.com/badges/3be2db96-3394-4eb4-ac1f-1734905cf01d/public_url', '_blank', 'noopener'); retreat(); } }] },
+    'fit-checker': { t: 'Hey, you can paste a job description here and see how well I match. Try it out!', actions: [{ label: 'Try a sample JD', run: click('#fitSampleBtn') }, { label: 'Not now', run: () => retreat() }] },
+    'sre-lab': { t: 'Hey, you can break an availability zone here and watch it self-heal. Try it out!', actions: [{ label: 'Inject chaos', run: click('#btnInjectChaos') }, { label: 'Maybe later', run: () => retreat() }] },
+    'contact': { t: 'Hey, you can email me or book a 15-minute call here. Try it out!', actions: [{ label: 'Email me', run: () => { window.location.href = 'mailto:deepanntech@gmail.com'; retreat(); } }, { label: 'Not now', run: () => retreat() }] }
   };
   const seen = new Set();
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if (!en.isIntersecting || busy || seen.has(en.target.id)) return;
-      if (!reactions[en.target.id] || seen.size >= 3) return;
-      seen.add(en.target.id);
+  let scrollTick = false;
+  function checkSections() {
+    scrollTick = false;
+    if (busy || interacted) return;
+    let pick = null, pickTop = -Infinity;
+    for (const id of Object.keys(reactions)) {
+      if (seen.has(id)) continue;
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const r = el.getBoundingClientRect();
+      // Section header has reached the upper part of the viewport; prefer the one nearest the reading line
+      if (r.top < window.innerHeight * 0.45 && r.bottom > window.innerHeight * 0.3 && r.top > pickTop) { pick = id; pickTop = r.top; }
+    }
+    if (pick) {
+      seen.add(pick);
       flag('jump', 800);
-      say(reactions[en.target.id].t, { actions: reactions[en.target.id].actions });
-    });
-  }, { threshold: 0.35 });
-  Object.keys(reactions).forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+      say(reactions[pick].t, { actions: reactions[pick].actions });
+    }
+  }
+  window.addEventListener('scroll', () => {
+    if (!scrollTick) { scrollTick = true; setTimeout(checkSections, 120); }
+  }, { passive: true });
+
+  // Other features (palette, fit checker, terminal, downloads) can make him talk
+  window.addEventListener('buddy:say', e => {
+    const d = e.detail || {};
+    if (busy || buddy.dataset.state === 'dismissed') return;
+    if (d.jump) flag('jump', 800);
+    say(d.text, { actions: d.actions || null, wave: !!d.wave, duration: d.duration || 9000 });
+  });
 
   // Eye helper for scripted glances (mouse tracking takes over afterwards)
   const lookAt = (x, y) => pupils.forEach(p => { p.style.transform = `translate(${x}px, ${y}px)`; });
@@ -1975,7 +1999,7 @@ function initBuddy() {
     wave: true,
     actions: [
       { label: 'Take the tour', run: () => startTour(0) },
-      { label: 'Just browsing', run: () => { busy = false; retreat(); } }
+      { label: 'Just browsing', run: () => { busy = false; say("No problem! If you need me, just click on me. I can walk you through the page, show you what you can try in each section, and more.", { actions: [{ label: 'Got it', run: retreat }, { label: 'Take the tour', run: () => startTour(0) }], duration: 12000 }); } }
     ]
   });
   const enter = () => {
