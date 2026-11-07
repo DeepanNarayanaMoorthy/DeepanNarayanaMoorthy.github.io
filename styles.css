@@ -4220,3 +4220,6 @@ body.mode-quick .timeline-item:nth-child(n+4) { display: none; }
 .return-chip:hover { background: var(--accent-cyan); color: #07101f; }
 .return-chip:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 3px; }
 @media (max-width: 900px) { .return-chip { right: 16px; bottom: 72px; } }
+
+.fit-hint { display: block; margin-top: 2px; font-weight: 400; font-size: .78rem; color: var(--text-dim); }
+.fit-input::placeholder { color: #64748b; opacity: .85; font-style: italic; }

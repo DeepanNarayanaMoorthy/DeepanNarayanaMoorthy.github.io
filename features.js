@@ -222,7 +222,10 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
   }
 
   function renderFit() {
-    const jd = $('#fitInput').value.trim();
+    const input = $('#fitInput');
+    // Empty box: run the greyed-out sample so the visitor sees it work
+    if (!input.value.trim()) input.value = SAMPLE_JD;
+    const jd = input.value.trim();
     const out = $('#fitResults');
     clearHighlights();
     if (jd.length < 25) {
@@ -281,6 +284,9 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
   }
 
   function initFitChecker() {
+    const input = $('#fitInput');
+    // The sample sits greyed out in the box as an invitation to replace it
+    if (input) input.placeholder = SAMPLE_JD;
     $('#fitAnalyzeBtn')?.addEventListener('click', renderFit);
     $('#fitSampleBtn')?.addEventListener('click', () => {
       $('#fitInput').value = SAMPLE_JD;
