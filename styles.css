@@ -4199,3 +4199,6 @@ body.mode-quick .timeline-item:nth-child(n+4) { display: none; }
 .case-card-top { flex-wrap: wrap; gap: 6px 10px; }
 .case-tag { white-space: nowrap; }
 .case-org { text-align: right; }
+.project-card-header { gap: 10px; }
+.project-card-header .project-ext-link:first-of-type { margin-left: auto; }
+.project-card-header .project-ext-link + .project-ext-link { margin-left: 0; }
