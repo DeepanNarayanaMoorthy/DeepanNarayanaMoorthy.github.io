@@ -183,7 +183,18 @@ function initDevOpsTerminal() {
   • Credly:   <a href="https://www.credly.com/badges/3be2db96-3394-4eb4-ac1f-1734905cf01d/public_url" target="_blank" class="text-amber">AWS Certified Solutions Architect</a>`,
 
     sudo: `[sudo] permission check for recruiter:
-  <span class="text-emerald">Access Granted: Full executive authorization to hire Deepan Narayanamoorthy.</span>`
+  <span class="text-emerald">Access Granted: Full executive authorization to hire Deepan Narayanamoorthy.</span>`,
+
+    // Hidden easter eggs for the curious (and for anyone who has been poking around for .env files)
+    'cat .env': `<span class="text-amber">SECRET_KEY=</span><span class="text-emerald">nice_try_but_this_is_a_static_site</span>
+<span class="text-amber">DB_PASSWORD=</span><span class="text-emerald">there_is_no_database</span>
+<span class="text-amber">AWS_ACCESS_KEY_ID=</span><span class="text-emerald">replaced_by_github_oidc_ask_me_how</span>`,
+    'cat /etc/passwd': `<span class="text-rose">Permission denied.</span> Also, this is a browser tab. 🙂`,
+    'rm -rf /': `<span class="text-rose">rm: it is dangerous to operate recursively on '/'</span>
+<span class="text-emerald">Good. Blue/green deploys and tested rollbacks exist for a reason.</span>`,
+    whoami: `deepan: DevOps & Cloud Engineer. Currently hiring-curious? Try <span class="text-cyan">hire</span>.`,
+    ls: `<span class="text-cyan">experience/</span>  <span class="text-cyan">skills/</span>  <span class="text-cyan">case-studies/</span>  <span class="text-cyan">resume.pdf</span>  <span class="text-dim">.env (nothing here, I checked)</span>`,
+    exit: `<span class="text-amber">There is no escape. Scroll down instead.</span>`
   };
 
   // Pill click triggers
