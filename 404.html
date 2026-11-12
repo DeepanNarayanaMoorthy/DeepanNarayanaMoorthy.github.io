@@ -54,34 +54,500 @@
 (function () {
   var path = location.pathname + location.search;
   var p = location.pathname.toLowerCase();
+  try { p = decodeURIComponent(p); } catch (e) {}
+  // Hand-written taunts, one per path that scanners actually asked for
+  var U = {
+  "/database.php.bak": [
+    "A backup of a database that never existed",
+    "A backup of nothing is still nothing. Impressive consistency, though.",
+    "Restore point: the day this site was created, with zero rows."
+  ],
+  "/phpinfo.php": [
+    "phpinfo() not found",
+    "PHP version: none. Extensions: none. Mood: smug.",
+    "This server has never heard of PHP and would like to keep it that way."
+  ],
+  "/wp-config.php.swp": [
+    "A Vim swap file? Really?",
+    "You found the :wq nobody typed, for a config file that does not exist, for a CMS that is not here.",
+    "Exit code: nice try. (Press :q! to leave.)"
+  ],
+  "/pom.xml": [
+    "Maven not included",
+    "No Java, no Maven, no 400 transitive dependencies. Just HTML, CSS and good vibes.",
+    "My dependency tree has exactly zero branches."
+  ],
+  "/xmlrpc.php": [
+    "xmlrpc.php? In this economy?",
+    "No brute-forceable login here. The only thing XML-RPC does on this site is return a 404.",
+    "Please enjoy this 404 instead of a 200."
+  ],
+  "/id_rsa.pub": [
+    "Public key requested, public humour provided",
+    "My public key: be excellent to each other. My private key: also that.",
+    "Fingerprint: SHA256:nothing-to-see-here."
+  ],
+  "/webpack.config.js": [
+    "No bundler was harmed",
+    "This site ships hand-written JavaScript. No webpack, no 40 MB node_modules, no \"works on my build\".",
+    "Build time: 0 seconds. Bundle size: just enough."
+  ],
+  "/mysql.php": [
+    "mysql.php: connection refused (by reality)",
+    "Host: none. User: none. Password: also none. Table: a wooden one in an office somewhere.",
+    "SELECT * FROM site; ERROR: no such table, only files."
+  ],
+  "/.docker/config.json": [
+    "Docker credentials? On a static site?",
+    "The containers I run are in production, and they are not reading this file. Nor yours.",
+    "docker pull: image not found."
+  ],
+  "/.github/workflows/build.yml": [
+    "CI config? Mine is shy",
+    "The real pipeline uses short-lived OIDC credentials, so there is nothing sensitive to leak. This URL has even less.",
+    "Workflow status: skipped (reason: wrong path)."
+  ],
+  "/data.sql": [
+    "A data dump of zero rows",
+    "INSERT INTO treasure VALUES (NULL);",
+    "0 rows affected. Try the portfolio for something to read."
+  ],
+  "/.npmrc": [
+    "No npm token for you",
+    "There is no registry token here, only a robots.txt and a good attitude.",
+    "npm ERR! 404 Not Found. Sound familiar?"
+  ],
+  "/db.php": [
+    "db.php, the classic",
+    "Every scanner remembers this filename. The server does not.",
+    "There are other db-style filenames in the wordlist too. All equally empty."
+  ],
+  "/.env.test": [
+    "A test environment? This is prod. It is also static.",
+    "All the tests pass because none of them need secrets.",
+    "Test coverage of this guess: 0%."
+  ],
+  "/.env.example": [
+    "Example: do not do this at home",
+    "The example file is also an example of what is not here.",
+    "cp .env.example .env # then get another 404."
+  ],
+  "/.svn/wc.db": [
+    "Subversion? In 2026?",
+    "Last svn commit on this project: never. Git has been here the whole time.",
+    "Revision HEAD: not found."
+  ],
+  "/.env.staging": [
+    "Staging is also static",
+    "Staging, production: same HTML. At least the deploys are consistent.",
+    "Promotion from staging to prod takes one git push."
+  ],
+  "/.kube/config": [
+    "kubectl: connection refused",
+    "No clusters here, only a CDN and a few jokes about YAML.",
+    "Current context: none. Current mood: amused."
+  ],
+  "/.htaccess": [
+    ".htaccess is for Apache, and Apache is on holiday",
+    "This site is served from a CDN. RewriteRule ^.*$ /nice-try [L]",
+    "Options -Indexes -Exploits"
+  ],
+  "/database.zip": [
+    "A zip file of nothing",
+    "Compressed size: 0 bytes. Compression ratio: infinite.",
+    "Please extract your expectations."
+  ],
+  "/key.pem": [
+    "This is not a key. This is a 404.",
+    "TLS is handled by the CDN, not by a lonely .pem file.",
+    "Expected a certificate. Received a joke."
+  ],
+  "/install.php": [
+    "Installer not found. Installation not needed.",
+    "The only thing installed here is a good sense of humour.",
+    "Step 1 of 1: close this tab. Step 2: visit the portfolio."
+  ],
+  "/config/db.php": [
+    "Config folder: empty, like a good minimalist",
+    "I keep my config where scanners cannot find it: it does not exist.",
+    "Config drift: none (nothing to drift)."
+  ],
+  "/config.ini": [
+    "[settings] mood=amused",
+    "[secrets] none=true",
+    "Parse error: expected a key, found comedy."
+  ],
+  "/.env": [
+    "Looking for .env?",
+    "Contents: SECRET=there_is_no_secret. Also, there is no file.",
+    "I replaced static AWS keys with GitHub OIDC. There is nothing left to leak."
+  ],
+  "/config.json": [
+    "config.json: {\"secrets\": null}",
+    "{\"database\": \"none\", \"server\": \"a CDN\", \"vibes\": \"immaculate\"}",
+    "JSON parsed successfully. It is a joke."
+  ],
+  "/backup.tar": [
+    "A tape archive of regret",
+    "The backup is in Git: github.com/DeepanNarayanaMoorthy. Free, versioned and public.",
+    "tar: nothing to extract."
+  ],
+  "/dbconfig.php": [
+    "dbconfig.php: connected to nothing",
+    "$db = null; // the only truth",
+    "Connection pool size: 0. Happier for it."
+  ],
+  "/app/.git/config": [
+    "Cloning me? The repo is already public",
+    "git clone https://github.com/DeepanNarayanaMoorthy/DeepanNarayanaMoorthy.github.io.git. No scanner needed.",
+    "Branches found: main. Secrets found: none."
+  ],
+  "/.env.orig": [
+    "The original .env never existed either",
+    "Orig, backup, old, example, staging: the five stages of a scanner wordlist.",
+    "Rollback complete. To nothing."
+  ],
+  "/wp-config.txt": [
+    "Renaming the file to .txt does not summon it",
+    "No WordPress was ever here, even in plain text.",
+    "DB_NAME: imaginary."
+  ],
+  "/service-account.json": [
+    "A service account? This is just a service",
+    "Cloud identity here is OIDC: tokens that live for minutes, not forever.",
+    "\"private_key\": \"a state of mind\""
+  ],
+  "/swagger.json": [
+    "No API to document",
+    "Endpoints: 0. Methods: GET /. Response: 200 OK.",
+    "Swagger found nothing. So did you."
+  ],
+  "/connect.php": [
+    "connect.php: timed out (in spirit)",
+    "There is nothing to connect to. This is a site, not a cry for help.",
+    "Socket closed with a smile."
+  ],
+  "/backup.zip": [
+    "No backups here either",
+    "Backup zipped: 0 files. Total size: 0 bytes. Space saved: all of it.",
+    "Try restoring your wordlist instead."
+  ],
+  "/package.json": [
+    "package.json? Zero dependencies",
+    "Dependencies: 0. Vulnerabilities: 0. Node: not found.",
+    "npm audit: found 0 vulnerabilities (there is no npm)."
+  ],
+  "/.gitlab-ci.yml": [
+    "GitLab CI is on another floor",
+    "This project lives on GitHub, and the pipeline there uses OIDC, not secrets.",
+    "Job status: you got lost."
+  ],
+  "/wp-settings.php": [
+    "wp-settings.php: settings not found",
+    "The only settings here are dark mode and Skim mode.",
+    "Try the Skim / Deep dive toggle on the portfolio."
+  ],
+  "/docker-compose.yaml": [
+    "docker compose up: nothing to bring up",
+    "Services: 0. Volumes: 0. Containers: 0. Jokes: plenty.",
+    "Compose file version: 404."
+  ],
+  "/includes/db.php": [
+    "Includes: nothing included",
+    "include(\"db.php\"); // Fatal error: reality not found",
+    "Warning: file not found. Fatal: no PHP either."
+  ],
+  "/.env.production": [
+    "Production secrets? Production is a CDN",
+    "Everything in production here is public by design: HTML, CSS, JS and good intentions.",
+    "Deployed with zero downtime and zero secrets."
+  ],
+  "//cms/wp-includes/wlwmanifest.xml": [
+    "No CMS. Not even in /cms",
+    "This directory has no content management system, just a lot of management of expectations.",
+    "wlwmanifest.xml: Windows Live Writer. Retired in 2017."
+  ],
+  "/credentials.json": [
+    "Credentials: bring your own",
+    "Real credentials here: none. Real humour: plenty.",
+    "See also: /credentials.json (it is also a 404)."
+  ],
+  "/administrator/": [
+    "Administrator access denied (by absence)",
+    "No Joomla, no admin panel. The admin of this site is a very patient cartoon.",
+    "The only control panel is the avatar on the portfolio. Click him."
+  ],
+  "/.ssh/authorized_keys": [
+    "Adding yourself to authorized_keys? Bold",
+    "No SSH server here, just HTTPS and a polite CDN.",
+    "Permission denied (publickey,password,everything)."
+  ],
+  "/wp-content/debug.log": [
+    "debug.log: nothing to debug",
+    "Log level: chill. Entries: 0 errors, 1 attempted scan.",
+    "Stack trace: your request -> 404 -> smiley face."
+  ],
+  "/.netrc": [
+    ".netrc: no machine, no login, no password",
+    "machine example.invalid login nope password nope",
+    "This is what a .netrc looks like in my dreams."
+  ],
+  "/build.gradle": [
+    "Gradle builds? This site builds in 0 ms",
+    "Tasks: none. Daemon: stopped. Build: successful (nothing to build).",
+    "BUILD SUCCESSFUL in 0s (it was a 404)."
+  ],
+  "/wp-config.php": [
+    "wp-config.php, the legend itself",
+    "Plot twist: the site is not WordPress, so it has no wp-config.php. Congratulations on your 404.",
+    "Salt, pepper and secrets: not included."
+  ],
+  "/gcloud-credentials.json": [
+    "Wrong cloud",
+    "I mostly work with AWS and Azure. GCP credentials would not be here even if they existed.",
+    "Cloud provider mismatch: 404."
+  ],
+  "/.env.old": [
+    "Even the old .env is gone",
+    "Old .env, new .env, someday .env: none of them were ever here.",
+    "Archived. By not existing."
+  ],
+  "/wp-config.php.old": [
+    "Old, older, nonexistent",
+    "The most senior config file in this directory has seniority of zero.",
+    "Version control here is Git, not file extensions."
+  ],
+  "/private.pem": [
+    "A private key? How very public of you",
+    "The only thing private on this page is my amusement.",
+    "Please do not email private keys to anyone. Ever."
+  ],
+  "/.aws/credentials": [
+    "AWS credentials, you say?",
+    "I replaced these with GitHub OIDC. This file is the thing I spent a year making obsolete.",
+    "No access key here, and no secret key either."
+  ],
+  "/.htpasswd": [
+    "A password file? Passwords are unnecessary here",
+    "Authentication on this site: none, because the whole thing is meant to be read.",
+    "Username: nobody. Password: nobody asked."
+  ],
+  "//xmlrpc.php": [
+    "Double slash, same 404",
+    "The extra slash did not make it any more real.",
+    "Slash economy: 2 characters, 0 results."
+  ],
+  "//2020/wp-includes/wlwmanifest.xml": [
+    "A blog from 2020? Nostalgia 404",
+    "No posts from 2020 here. Not even the ones about 2020.",
+    "Time travel: denied."
+  ],
+  "//shop/wp-includes/wlwmanifest.xml": [
+    "The shop is closed (and never opened)",
+    "The only item for sale here is a resume PDF, and it is free.",
+    "Cart total: $0.00. Checkout: just send an email."
+  ],
+  "//website/wp-includes/wlwmanifest.xml": [
+    "/website/ is a very generic place to hide a manifest",
+    "Websites do not come with hidden manifests, just with surprises like this page.",
+    "Search results for \"website\": this website."
+  ],
+  "//2019/wp-includes/wlwmanifest.xml": [
+    "2019 called, it wants its blog back",
+    "There is no archive for 2019 on this site. I was still learning Terraform.",
+    "Wayback Machine will tell you the same."
+  ],
+  "//wp/wp-includes/wlwmanifest.xml": [
+    "/wp/ is not a WordPress directory",
+    "Short folder names do not make it WordPress.",
+    "wp stands for \"wrong page\"."
+  ],
+  "//blog/wp-includes/wlwmanifest.xml": [
+    "No blog here, but there are case studies",
+    "Looking for blog posts? Try the architecture case studies on the portfolio.",
+    "Posts found: 0. Case studies found: 12."
+  ],
+  "//wp1/wp-includes/wlwmanifest.xml": [
+    "wp1? So there is a wp2 too?",
+    "Yes, someone also asked for wp2. Neither exists.",
+    "Counting WordPress installs: 0 of 2."
+  ],
+  "//wp2/wp-includes/wlwmanifest.xml": [
+    "wp2: the sequel nobody asked for",
+    "Nor did anyone ask for wp1, but here we are.",
+    "This directory is 404 two."
+  ],
+  "//site/wp-includes/wlwmanifest.xml": [
+    "/site/ site/ site/",
+    "Naming a folder \"site\" does not make it a WordPress install.",
+    "Looking for a site? You are standing on one."
+  ],
+  "//wordpress/wp-includes/wlwmanifest.xml": [
+    "The \"wordpress\" directory is not a WordPress directory",
+    "It is just a 404 that happens to be called wordpress.",
+    "Naming things is hard, so is finding this folder."
+  ],
+  "//web/wp-includes/wlwmanifest.xml": [
+    "/web/: the web is bigger than this directory",
+    "You have reached the web. There is no WordPress on it, just this page.",
+    "World Wide Web: found. WordPress: not found."
+  ],
+  "//news/wp-includes/wlwmanifest.xml": [
+    "No news, which is good news",
+    "Today in news: this URL still returns a 404.",
+    "Breaking: scanner finds nothing again."
+  ],
+  "//test/wp-includes/wlwmanifest.xml": [
+    "Testing in production: it passed (as a 404)",
+    "This is the only test that has never failed.",
+    "Test result: 404 OK."
+  ],
+  "//wp-includes/wlwmanifest.xml": [
+    "wp-includes at the root, how bold",
+    "Includes: nothing. Excludes: everything.",
+    "The root of the problem is that WordPress is not here."
+  ],
+  "/wp-includes/wlwmanifest.xml": [
+    "wlwmanifest.xml: Windows Live Writer lives on in your wordlist",
+    "The app was retired in 2017, but scanners remember.",
+    "A static site has no manifest to publish to."
+  ],
+  "/.ssh/config": [
+    "ssh config: Host * nope",
+    "Host scanner / HostName nowhere / User nobody",
+    "IdentityFile: not found, much like your results."
+  ],
+  "/home.tar.gz": [
+    "Home directory? Not home",
+    "There is no /home here. This site lives on a CDN with no users and no sudo.",
+    "Archive of a directory that was never home."
+  ],
+  "/media/system/js/core.js": [
+    "Joomla core.js? Wrong CMS",
+    "This site has no CMS at all, just hand-written HTML and a lot of attitude.",
+    "core.js: not found. features.js: public but irrelevant."
+  ],
+  "/site.sql": [
+    "The whole site fits in a CDN, no SQL needed",
+    "SELECT * FROM site LIMIT 1; ERROR: no such table.",
+    "Dump size: 0 bytes. Dump quality: perfect."
+  ],
+  "/jenkinsfile": [
+    "Jenkins? That is a name for a butler",
+    "I run GitHub Actions. The butler has the day off.",
+    "pipeline { agent none } // exactly like your results."
+  ],
+  "/gradle.properties": [
+    "gradle.properties: org.gradle.jvmargs=-Xmx0m",
+    "Memory allocated: 0. Output: 404.",
+    "Configuration cache: hit (a 404)."
+  ],
+  "/wp-config.php.save": [
+    "Saved nothing, successfully",
+    "The save file was saved from a file that was never saved.",
+    "Ctrl+S on nothing: done."
+  ],
+  "/wp-content/": [
+    "wp-content: content, but not that kind",
+    "Directory listing denied by the laws of physics.",
+    "Content found: this page."
+  ],
+  "/wp-content/uploads/": [
+    "Uploads folder: empty, mine live on GitHub",
+    "The only uploads here: a resume PDF, a headshot and my sense of humour.",
+    "Grab the resume at /Deepan_Cloud_DevOps_SRE_Resume.pdf"
+  ],
+  "/id_rsa": [
+    "This is not the private key you are looking for",
+    "If it were here, I would have bigger problems. It is not, so I do not.",
+    "ssh-keygen: refusing to generate your hopes."
+  ],
+  "/setup.php": [
+    "setup.php: setup complete",
+    "You have reached the end of the installation: Step 1 of 1. Done.",
+    "Setup checklist: nothing to set up."
+  ],
+  "/database.php": [
+    "database.php: also a 404",
+    "Database count: 0. Page count: 1 (this one).",
+    "Even the plain version is a no."
+  ],
+  "/.aws/config": [
+    "AWS config? region = nowhere-1",
+    "Profile: scanner. Output: json. Result: nothing.",
+    "You never needed this file, and neither did I."
+  ],
+  "/.github/workflows/styles.css": [
+    "Styles requested from the wrong directory",
+    "The CSS lives at /styles.css, not inside .github/workflows. Someone loaded the homepage from a weird URL and the browser went looking relative to it.",
+    "Relative URLs: ruining scanners since 1996."
+  ],
+  "/.github/workflows/script.js": [
+    "Scripts requested from the wrong directory",
+    "The JavaScript lives at /script.js, not in the workflows folder. It is also public, if you want to read it.",
+    "Hint: browsers resolve relative URLs against the page path."
+  ],
+  "/.github/workflows/features.js": [
+    "Features requested from the wrong directory",
+    "features.js has features, but not here. It is at /features.js.",
+    "The command palette (Ctrl or Cmd K) is in there. Try it on the portfolio."
+  ],
+  "/.github/workflows/deepan_headshot.png": [
+    "Looking for my headshot in the CI folder?",
+    "The photo lives at /deepan_headshot.png. It is also on the portfolio, smiling.",
+    "CI does not need a headshot. Recruiters do."
+  ],
+  "/.github/workflows/assets/logos/everstage.png": [
+    "Everstage logo, but in the workflows folder",
+    "Logos live at /assets/logos/, not in .github/workflows. Yes, I work at Everstage. Hello.",
+    "Brand assets belong in the brand folder."
+  ],
+  "/.github/workflows/assets/logos/jpmorgan.png": [
+    "JPMorgan logo lost in the workflows folder",
+    "This is where my career started in 2021, but the logo is under /assets/logos/.",
+    "Intern-level mistake. I would know."
+  ],
+  "/.github/workflows/assets/logos/caterpillar.jpg": [
+    "Caterpillar logo in the CI folder? Heavy machinery, wrong directory",
+    "The logo lives under /assets/logos/. The 30+ microservices I standardized live elsewhere too.",
+    "Excavated: a 404."
+  ]
+};
+  // Category fallbacks for anything not listed above
   var T = [
-    [/(^|\/)\.env|\.aws|credentials|id_rsa|id_rsa\.pub|authorized_keys|\.ssh|key\.pem|private\.pem|\.netrc|\.npmrc|\.htpasswd|service-account|gcloud|\.docker\/config|\.kube/,
+    [/(^|\/)\.env|\.aws|credentials|id_rsa|authorized_keys|\.ssh|\.pem|\.netrc|\.npmrc|\.htpasswd|service-account|gcloud|\.docker\/config|\.kube/,
       'Looking for secrets?',
       'The only secret here is that there are no secrets. My CI uses short-lived OIDC credentials, so there are no long-lived keys to find.',
-      'Fun fact: I spent a good part of this year deleting static AWS keys. You are about 6 months late.'],
-    [/wp-|wordpress|xmlrpc|wlwmanifest|administrator|wp-content|joomla|media\/system/,
+      'Fun fact: I replaced static AWS keys with GitHub OIDC. You are late to the party.'],
+    [/wp-|wordpress|xmlrpc|wlwmanifest|administrator|joomla|media\/system/,
       'This is not WordPress.',
       'No PHP, no plugins, no wp-admin. Just HTML, CSS and a friendly cartoon engineer.',
-      'Your wlwmanifest.xml request was lovingly received by a static file server with very little to say.'],
+      'Your wordlist was lovingly received by a static file server with very little to say.'],
     [/\.php|\.sql|phpinfo|mysql|dbconfig|database|\/db\b|connect\.php|install\.php|setup\.php|config\.ini|config\.json/,
       'There is no database.',
-      'No MySQL, no PHP, no config.php, no dump. If it helps, the whole backend is a CDN.',
-      'phpinfo() not found. phpinfo() was never invited.'],
+      'No MySQL, no PHP, no config file, no dump. The whole backend is a CDN.',
+      'phpinfo() was never invited.'],
     [/\.git|\.svn|\.github|\.gitlab|jenkinsfile|pom\.xml|gradle|webpack|package\.json|swagger|docker-compose|build\.yml/,
       'Source code spelunking?',
-      'The code is public on GitHub, so you did not need to guess file names. Pull requests welcome.',
+      'The code is public on GitHub, so no guessing needed. Pull requests welcome.',
       'github.com/DeepanNarayanaMoorthy. It is all there, minus the secrets (there are none).'],
     [/\.tar|\.zip|\.gz|\.bak|\.old|\.swp|\.save|\.orig|backup|home\./,
       'No backups here either.',
       'My backups are in Git, which is the one place you can see them anyway.',
-      'Also, recovering from tested rollbacks is the real backup strategy.']
+      'Recovering from tested rollbacks is the real backup strategy.']
   ];
-  var pick = T.find(function (t) { return t[0].test(p); });
-  var headline = 'Nice try.';
-  var sub = 'This is a static site: HTML, CSS and JavaScript. There is no database, no admin panel and nothing to exploit here.';
-  var extra = 'If you were looking for something real, my work lives in the portfolio.';
-  if (pick) { headline = pick[1]; sub = pick[2]; extra = pick[3]; }
-  else if (p === '/' || p === '') { headline = 'Hmm, nothing here.'; }
+  var generic = [
+    'Nice try.',
+    'This is a static site: HTML, CSS and JavaScript. There is no database, no admin panel and nothing to exploit here.',
+    'If you were looking for something real, my work lives in the portfolio.'
+  ];
+  // Unknown wlwmanifest.xml probes: use the folder name to make it personal
+  var wl = p.match(/^\/{1,2}([^\/]+)\/wp-includes\/wlwmanifest\.xml$/);
+  var pick = U[p] || (wl ? ['/' + wl[1] + '/ is not a WordPress directory', 'No Windows Live Writer manifest here, in /' + wl[1] + '/ or anywhere else.', 'WordPress detection: negative.'] : null);
+  if (!pick) pick = null;
+  if (!pick) { var cat = T.find(function (t) { return t[0].test(p); }); pick = cat ? [cat[1], cat[2], cat[3]] : null; }
+  var headline = generic[0], sub = generic[1], extra = generic[2];
+  if (pick) { headline = pick[0]; sub = pick[1]; extra = pick[2]; }
   document.getElementById('headline').textContent = headline;
   document.getElementById('sub').textContent = sub;
   document.getElementById('extra').textContent = extra;
