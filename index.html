@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script>
+    // Redirect the GitHub Pages host to the canonical Cloudflare Pages site
+    if (location.hostname === "deepannarayanamoorthy.github.io") {
+      location.replace("https://deepann.pages.dev" + location.pathname + location.search + location.hash);
+    }
+  </script>
   
   <!-- Primary Meta Tags -->
   <title>Deepan Narayanamoorthy | DevOps, Cloud & SRE Engineer | AWS, Azure, Terraform, OIDC</title>
