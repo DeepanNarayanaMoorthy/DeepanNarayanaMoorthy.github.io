@@ -898,7 +898,7 @@
                     </div>
                     <span class="job-badge active-badge">Current</span>
                   </div>
-                  <div class="job-role">DevOps &amp; Cloud Engineer</div>
+                  <div class="job-role">Software Engineer &ndash; Cloud and DevOps</div>
                 </div>
                 <div class="exp-meta">
                   <span class="exp-date">Nov 2025 – Present</span>
@@ -914,28 +914,31 @@
               <div class="exp-bullets">
                 <ul>
                   <li data-tech="aws terraform">
-                    <strong>Enterprise Multi-Tenant Infrastructure:</strong> Architected multi-account, multi-region <strong>Terraform</strong> modules to provision isolated Customer Sandboxes (US &amp; EU) for high-value enterprise accounts with tenant-isolated analytics clusters, deterministic DNS-safe hostnames, and cross-account <strong>AWS DataSync</strong> over VPC peering.
+                    <strong>Enterprise Multi-Account Infrastructure:</strong> Own multiple production environments end-to-end &ndash; <strong>Terraform</strong>-driven modules delivering isolated AWS environments for safe releases and customer demos, with consistent VPC/NLB/Route Table networking and service topology across stacks.
                   </li>
                   <li data-tech="aws rds">
-                    <strong>Cross-Account Data Plane Migration:</strong> Migrated the enterprise data plane across RDS (AWS DMS), Supabase, Typesense, Auth0 (tenant/app replication), Snowflake (S3 integration), and EFS via VPC peering and cross-account AWS DataSync, keeping demo and release paths aligned with production.
+                    <strong>Cross-Account Data Migration Pipeline:</strong> Engineered a cross-account/cross-region data migration pipeline (<strong>VPC peering</strong>, <strong>AWS DataSync</strong> across Postgres, Snowflake, EFS, S3) powering preprod refreshes and customer sandboxes.
                   </li>
                   <li data-tech="oidc aws">
-                    <strong>Org-Wide CI/CD Security Modernization:</strong> Led the company-wide migration of CI/CD workflows across core repositories from static AWS IAM access keys to <strong>GitHub Actions OIDC</strong> with role assumption, eliminating long-lived credentials and introducing private-key Snowflake authentication.
-                  </li>
-                  <li data-tech="aws">
-                    <strong>Optimized CI/CD &amp; Deploy Reruns:</strong> Reduced deployment rerun times by <strong>80% (from 19.5 min to 3.9 min)</strong> by landing an idempotent ECR container image reuse strategy on retriggers; authored timeout guardrails and CI preflight checks to catch misconfigurations early.
+                    <strong>Org-Wide CI/CD Security Modernization:</strong> Migrated repos org-wide from static <strong>AWS</strong> keys to <strong>GitHub OIDC</strong> (full STS support across S3, BuildKit) and all environments from Snowflake password-based auth to private-key auth; led credential rotation and remediation across services after a security exposure incident.
                   </li>
                   <li data-tech="datadog aws">
-                    <strong>SRE, Incident Response &amp; Observability:</strong> Replaced legacy ping monitors with an automated <strong>Atlassian Statuspage</strong> operating model integrated with <strong>Datadog Synthetics</strong> for Prod US/EU; created automated incident resolution, L1 runbooks, and monthly uptime reports; cut production release downtime by <strong>2 hours</strong>.
-                  </li>
-                  <li data-tech="aws">
-                    <strong>Deployment Automation for AI &amp; Streaming Platforms:</strong> Built repeatable, auditable deployment pipelines for AI-assisted Copilot services, Realtime ETL (Managed Apache Flink &amp; ECS), and internal MCP servers with multi-platform container architecture validation (<code>linux/amd64</code>).
+                    <strong>Production Escalation Lead &amp; RCA:</strong> Led cross-system incident RCA across ECS, Snowflake, VPC, and Kafka/Celery &ndash; including nginx 502 buffer overflows, CloudFront/WAF false positives, and Snowflake auth/TLS failures &ndash; applying targeted fixes (proxy-buffer tuning, WAF exceptions).
                   </li>
                   <li data-tech="aws finops">
-                    <strong>Cloud Cost Optimization &amp; Rightsizing:</strong> Led multi-environment EFS rightsizing across Staging, QA, and Sandbox environments, shrinking disk consumption from <strong>1.44 TiB down to 73.48 GiB</strong>; parked idle customer sandbox EU clusters to save <strong>~$1,800/month</strong> in AWS spend.
+                    <strong>Cloud Cost Optimization:</strong> Drove cost savings through <strong>ECS</strong> autoscaling, a <strong>Lambda</strong>-based cost-attribution tagging pipeline, <strong>RDS&rarr;Graviton</strong> and <strong>EBS gp2&rarr;gp3</strong> migrations, and a chatbot-driven environment scale-up/scale-down system triggered by CloudWatch alerts on inactivity.
+                  </li>
+                  <li data-tech="aws">
+                    <strong>Observability &amp; Distributed Tracing:</strong> Extended code-level observability with <strong>AWS X-Ray</strong> service maps and trace-level latency breakdowns, <strong>CloudWatch Logs Insights</strong> queries, and ALB access-log tracing across repos &ndash; cutting reliance on manual log correlation during incident RCA.
+                  </li>
+                  <li data-tech="aws">
+                    <strong>Per-Tenant Analytics Isolation:</strong> Built per-tenant <strong>Superset</strong> isolation for sandbox analytics &ndash; dedicated clusters, hashed-ID DNS-safe hostnames, and fail-fast guest-token auth keeping each client&rsquo;s data fully isolated.
                   </li>
                   <li data-tech="datadog aws">
-                    <strong>Production Escalation Lead &amp; RCA:</strong> Led diagnosis, live mitigation, and permanent root-cause remediation for critical production incidents (nginx 502 buffer overflows, WAF AdminProtection false-positives, Snowflake JWT private-key discrepancies, and cross-repo secret rotation).
+                    <strong>SRE, Incident Response &amp; Observability:</strong> Replaced Freshping with an <strong>Atlassian Statuspage</strong> + <strong>Datadog</strong> model across Prod US/EU &ndash; automated incident create/resolve validated against a live outage, client-safe RCA docs, plus monthly Finance-facing uptime reporting.
+                  </li>
+                  <li data-tech="aws">
+                    <strong>Deployment Automation for AI &amp; Streaming Platforms:</strong> Built repeatable, auditable deployment pipelines for AI-assisted Copilot services, Realtime ETL (Managed Apache Flink &amp; ECS), and internal MCP servers with multi-platform container architecture validation (<code>linux/amd64</code>); cut deployment rerun time ~80% (19.5 min &rarr; 3.9 min) via ECR image reuse.
                   </li>
                 </ul>
               </div>
@@ -944,10 +947,10 @@
                 <span class="tech-pill">Terraform</span>
                 <span class="tech-pill">AWS ECS/Fargate</span>
                 <span class="tech-pill">GitHub OIDC</span>
+                <span class="tech-pill">AWS X-Ray</span>
+                <span class="tech-pill">AWS Graviton</span>
                 <span class="tech-pill">Datadog</span>
                 <span class="tech-pill">Snowflake</span>
-                <span class="tech-pill">Supabase</span>
-                <span class="tech-pill">Typesense</span>
                 <span class="tech-pill">Atlassian Statuspage</span>
                 <span class="tech-pill">AWS DataSync</span>
                 <span class="tech-pill">Python</span>
@@ -975,7 +978,7 @@
                     </div>
                     <span class="job-badge">2 Years 9 Months</span>
                   </div>
-                  <div class="job-role">Cloud and DevOps Engineer</div>
+                  <div class="job-role">Software Engineer &ndash; Cloud and DevOps</div>
                 </div>
                 <div class="exp-meta">
                   <span class="exp-date">Feb 2023 – Oct 2025</span>
@@ -1000,10 +1003,10 @@
                     <strong>Global Edge UI Delivery Pattern:</strong> Delivered a repeatable <strong>S3 + CloudFront + Lambda@Edge</strong> pattern for static frontend delivery across multiple services (Cat® MineStar™ Solutions, VisionLink, and Operator Management System 2.0), enabling automated edge cache invalidation and high global throughput.
                   </li>
                   <li data-tech="aws azure">
-                    <strong>Blue/Green Deployments:</strong> Owned release execution for downtime-sensitive systems using automated blue-green cutovers and validated rollback plans with tested rollback strategies (<strong>10+ cases</strong>), reducing release downtime by <strong>3 hours per iteration</strong>.
+                    <strong>Blue/Green Deployments:</strong> Owned release execution for downtime-sensitive changes using automated blue-green deployments and tested rollback strategies (<strong>10+ cases</strong>); coordinated with stakeholders on downtime impact and postmortem/RCA to continuously improve reliability.
                   </li>
                   <li data-tech="azure oidc python">
-                    <strong>Security &amp; Compliance Automation:</strong> Developed custom PowerShell and Python utilities for <strong>Azure Key Vault secret expiration alerts</strong>, SAS token epoch auto-renewal, and SQL/KV IP whitelisting verification—resolving <strong>50+ vulnerabilities</strong> and saving 10–15 hours of manual engineering effort per sprint.
+                    <strong>Security &amp; Compliance Automation:</strong> Developed internal tools for <strong>Azure Key Vault</strong> alerts, IP compliance checks, post-production sanity checks, and incident reporting—resolving <strong>50+ vulnerabilities</strong> and reducing manual effort by <strong>10&ndash;15 hours</strong> per iteration.
                   </li>
                   <li data-tech="azure">
                     <strong>Production Telematics Pipelines:</strong> Implemented automated data pull pipelines for production telematics pushed to JFrog Artifactory, eliminating network timeout drops and accelerating test validation cycles.
