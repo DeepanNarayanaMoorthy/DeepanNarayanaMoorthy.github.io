@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFloatingDock();
   initExperienceTechFilter();
   initExpCategoryAccordion();
+  initExpScrollReveal();
   initArchitectureTopology();
   initSkillSearch();
   initMetricCardDetails();
@@ -1410,6 +1411,40 @@ function initExpCategoryAccordion() {
       btn.textContent = anyCollapsed ? 'Collapse all sections' : 'Expand all sections';
     });
   });
+}
+
+/**
+ * Achievement categories start collapsed on page load. As each one scrolls
+ * into view for the first time, it auto-expands with a brief highlight --
+ * a one-time hint that these sections are collapsible, without the visitor
+ * having to click anything. Manual clicks always take priority afterward.
+ */
+function initExpScrollReveal() {
+  const categories = document.querySelectorAll('.exp-category.collapsed');
+  if (!categories.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    categories.forEach(cat => {
+      cat.classList.remove('collapsed');
+      cat.querySelector('.exp-category-toggle')?.setAttribute('aria-expanded', 'true');
+    });
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const cat = entry.target;
+      io.unobserve(cat);
+      if (!cat.classList.contains('collapsed')) return; // already opened by a manual click or filter
+      cat.classList.remove('collapsed');
+      cat.querySelector('.exp-category-toggle')?.setAttribute('aria-expanded', 'true');
+      cat.classList.add('auto-revealed');
+      cat.addEventListener('animationend', () => cat.classList.remove('auto-revealed'), { once: true });
+    });
+  }, { threshold: 0.3, rootMargin: '0px 0px -15% 0px' });
+
+  categories.forEach(cat => io.observe(cat));
 }
 
 function initExperienceTechFilter() {
