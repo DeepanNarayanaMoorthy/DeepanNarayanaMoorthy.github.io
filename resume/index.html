@@ -72,38 +72,38 @@
   </header>
 
   <h2>Summary</h2>
-  <p>Software Engineer &ndash; DevOps / Cloud Infra (AWS, Azure); production-focused, with 3+ years of experience owning IaC (Terraform, CloudFormation/ARM), CI/CD (GitHub Actions, Azure DevOps), and platform ownership across multi-cloud, multi-tenant environments. Holds the <a href="https://www.credly.com/badges/3be2db96-3394-4eb4-ac1f-1734905cf01d/public_url">AWS Certified Solutions Architect &ndash; Associate</a> certification. Go-to cross-system troubleshooter for incident RCA, observability (Datadog, CloudWatch, Azure Monitor), and secure delivery (OIDC/IAM, least privilege, and automation).</p>
+  <p><strong>Software Engineer &ndash; DevOps / Cloud Infra (AWS, Azure)</strong>; Production-focused, with <strong>3+ years</strong> of experience owning <strong>IaC</strong> (Terraform, CloudFormation/ARM), <strong>CI/CD</strong> (GitHub Actions, Azure DevOps), and <strong>platform ownership</strong> across multi-cloud, multi-tenant environments; holds <a href="https://www.credly.com/badges/3be2db96-3394-4eb4-ac1f-1734905cf01d/public_url"><strong>AWS Solutions Architect &ndash; Associate</strong></a>. Go-to cross-system troubleshooter for incident RCA, observability (Datadog, CloudWatch, Azure Monitor), and secure delivery (OIDC/IAM, least privilege, and automation).</p>
 
   <h2>Experience</h2>
   <h3>Software Engineer &ndash; Cloud and DevOps &middot; <a href="https://www.everstage.com">Everstage</a></h3>
   <div class="when">Nov 2025 &ndash; Present &middot; Coimbatore, India</div>
   <ul>
-    <li>Owned multiple production envs end-to-end &ndash; Terraform-driven modules to deliver isolated AWS envs for safe releases and customer demos, with consistent networking (VPC, NLB, Route Tables) and service topology across stacks.</li>
-    <li>Engineered a cross-account/cross-region data migration pipeline (VPC peering, AWS DataSync across Postgres, Snowflake, EFS, S3) for preprod refreshes and customer sandboxes.</li>
-    <li>Migrated org-wide repos from static AWS keys to GitHub OIDC (full STS support across S3, BuildKit) and all AWS envs from Snowflake password to private-key auth; led credential rotation and remediation across services after a security exposure.</li>
-    <li>Built per-tenant Superset isolation (dedicated clusters, hashed-ID DNS-safe hostnames) for sandbox analytics, with fail-fast guest-token auth keeping each client&rsquo;s data fully isolated.</li>
-    <li>Replaced Freshping with Atlassian Statuspage + Datadog across Prod US/EU &ndash; automated incident create/resolve validated against a live outage, client-safe RCA docs, plus monthly Finance-facing uptime reporting.</li>
-    <li>Led cross-system incident RCA (ECS, Snowflake, VPC, Kafka/Celery) incl. nginx 502s, CloudFront/WAF false positives, and Snowflake auth/TLS failures &ndash; applying targeted fixes (proxy-buffer tuning, WAF exceptions).</li>
-    <li>Drove cost savings &ndash; ECS autoscaling, Lambda-based cost-attribution tagging, RDS&rarr;Graviton + EBS gp2&rarr;gp3, and chatbot-driven env scale-up/scale-down on inactivity (CloudWatch alerts).</li>
-    <li>Extended code-level observability with AWS X-Ray service maps and trace-level latency breakdowns, CloudWatch Logs Insights queries, and ALB access-log tracing across repos &ndash; cutting manual log correlation during incident RCA.</li>
+    <li><strong>Owned</strong> multiple production envs end-to-end &ndash; <strong>Terraform</strong>-driven modules to deliver isolated AWS envs for safe releases and customer demos, with consistent networking (<strong>VPC</strong>, <strong>NLB</strong>, <strong>Route Tables</strong>) and service topology across stacks.</li>
+    <li><strong>Engineered</strong> a cross-account/cross-region data migration pipeline (<strong>VPC peering</strong>, <strong>AWS DataSync</strong> across Postgres, <strong>Snowflake</strong>, <strong>EFS</strong>, S3) for <strong>preprod refreshes</strong> and <strong>customer sandboxes</strong>.</li>
+    <li><strong>Migrated</strong> org-wide repos from static <strong>AWS</strong> keys to <strong>GitHub OIDC</strong> (full <strong>STS</strong> support across S3, BuildKit) and all <strong>AWS envs</strong> from <strong>Snowflake</strong> password to private-key auth; led credential rotation and remediation across services after a security exposure.</li>
+    <li><strong>Led</strong> cross-system incident <strong>RCA</strong> (ECS, Snowflake, VPC, Kafka/Celery) incl. nginx 502s, CloudFront/<strong>WAF</strong> false positives, and Snowflake auth/TLS failures &ndash; applying <strong>targeted fixes</strong> (proxy-buffer tuning, WAF exceptions).</li>
+    <li><strong>Drove</strong> cost savings &ndash; <strong>ECS</strong> autoscaling, <strong>Lambda</strong>-based cost-attribution tagging, <strong>RDS</strong>&rarr;<strong>Graviton</strong> + <strong>EBS</strong> gp2&rarr;gp3, and chatbot-driven env scale-up/scale-down on inactivity (<strong>CloudWatch</strong> alerts).</li>
+    <li><strong>Extended</strong> code-level observability with <strong>AWS X-Ray</strong> service maps and trace-level latency breakdowns, <strong>CloudWatch Logs Insights</strong> queries, and <strong>ALB</strong> access-log tracing across repos &ndash; cutting manual log correlation during incident RCA.</li>
+    <li><strong>Built</strong> per-tenant <strong>Superset</strong> isolation (dedicated clusters, hashed-ID DNS-safe hostnames) for sandbox analytics, with <strong>fail-fast guest-token auth</strong> keeping each client&rsquo;s data <strong>fully isolated</strong>.</li>
+    <li><strong>Replaced</strong> Freshping with <strong>Atlassian Statuspage</strong> + <strong>Datadog</strong> across <strong>Prod US/EU</strong> &ndash; automated incident create/resolve validated against a <strong>live outage</strong>, <strong>client-safe RCA</strong> docs, plus <strong>monthly Finance-facing</strong> uptime reporting.</li>
   </ul>
 
   <h3>Software Engineer &ndash; Cloud and DevOps &middot; <a href="https://www.caterpillar.com">Caterpillar Inc.</a></h3>
   <div class="when">Feb 2023 &ndash; Oct 2025 &middot; Chennai, India</div>
   <ul>
-    <li>Provisioned and standardized infrastructure for 30+ microservices on AWS (ECS/Fargate, RDS, Lambda) and Azure (Functions, App Service) using AWS CloudFormation and Azure ARM templates, establishing multi-cloud IaC standards; designed autoscaling templates and strategies for AWS Fargate and Azure App Service, cutting incidents by 20%.</li>
-    <li>Delivered a repeatable S3 + CloudFront + Lambda@Edge pattern for static UIs across services, incl. an operator-identification app used for construction-site safety and productivity dashboards.</li>
-    <li>Owned release execution for downtime-sensitive changes using blue-green deployments and tested rollback strategies (10+ cases); coordinated with stakeholders on downtime impact and postmortem/RCA, improving reliability.</li>
-    <li>Developed internal tools for Key Vault alerts, IP compliance checks, post-production sanity checks and incident reporting, resolving 50+ vulnerabilities and reducing manual effort by 10&ndash;15 hours per iteration.</li>
-    <li>Automated migration of standalone CloudWatch log groups into Lambda stacks via pipelines and utilities supporting parallel deployment and trigger optimization, saving developers 1 hour per deployment.</li>
-    <li>Led 3 Azure and Azure-to-AWS migrations; cut monthly cloud spend ~12% via rightsizing and teardown.</li>
-    <li>Implemented monitoring with CloudWatch and Azure Monitor and built CI/CD pipelines in Azure DevOps for 20+ services, reducing incident response time by 30 minutes and cutting release lead time.</li>
+    <li><strong>Provisioned</strong> and <strong>standardized</strong> infrastructure for <strong>30+ microservices</strong> on <strong>AWS</strong> (<strong>ECS/Fargate</strong>, RDS, Lambda) and <strong>Azure</strong> (Functions, App Service) using <strong>AWS CloudFormation</strong> and <strong>Azure ARM</strong> templates, establishing multi-cloud <strong>IaC</strong> standards; <strong>designed</strong> <strong>autoscaling</strong> templates and strategies for <strong>AWS Fargate</strong> and <strong>Azure App Service</strong>, cutting <strong>incidents</strong> by <strong>20%</strong>.</li>
+    <li><strong>Delivered</strong> a repeatable <strong>S3 + CloudFront + Lambda@Edge</strong> pattern for static UIs across services, incl. an <strong>operator-identification app</strong> used for construction-site safety and productivity dashboards.</li>
+    <li><strong>Owned</strong> release execution for downtime-sensitive changes using <strong>blue-green deployments</strong> and tested <strong>rollback strategies</strong> (<strong>10+</strong> cases); coordinated with stakeholders on downtime impact and <strong>postmortem/RCA</strong>, improving reliability.</li>
+    <li><strong>Developed</strong> internal tools for <strong>Key Vault alerts</strong>, <strong>IP compliance checks</strong>, <strong>post-production sanity checks</strong>, and <strong>incident reporting</strong>, resolving <strong>50+ vulnerabilities</strong> and reducing manual effort by <strong>10&ndash;15 hours</strong> per iteration.</li>
+    <li><strong>Automated</strong> migration of standalone <strong>CloudWatch</strong> log groups into <strong>Lambda</strong> stacks via pipelines and utilities supporting parallel deployment and trigger optimization, saving developers <strong>1 hour</strong> per deployment.</li>
+    <li><strong>Led 3</strong> Azure and <strong>Azure-to-AWS</strong> migrations; cut monthly cloud spend ~<strong>12%</strong> via rightsizing and teardown.</li>
+    <li><strong>Implemented</strong> monitoring with <strong>CloudWatch</strong> and <strong>Azure Monitor</strong> and built <strong>CI/CD</strong> pipelines in <strong>Azure DevOps</strong> for <strong>20+ services</strong>, reducing incident response time by <strong>30 minutes</strong> and cutting release lead time.</li>
   </ul>
 
   <h3>Junior Analyst Intern &middot; JPMorgan Chase &amp; Co.</h3>
   <div class="when">May 2021 &ndash; Nov 2021 &middot; Mumbai, India</div>
   <ul>
-    <li>Automated pitch deck workflows (Python, VBA, Selenium), saving 1000+ hrs/yr; built a Python/QGIS proximity tool.</li>
+    <li><strong>Automated</strong> pitch deck workflows (<strong>Python</strong>, <strong>VBA</strong>, <strong>Selenium</strong>), saving <strong>1000+</strong> hrs/yr; built a <strong>Python</strong>/<strong>QGIS</strong> proximity tool.</li>
   </ul>
 
   <h2>Skills</h2>
