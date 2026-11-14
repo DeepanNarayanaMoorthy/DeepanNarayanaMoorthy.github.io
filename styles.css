@@ -1015,21 +1015,26 @@ a {
 }
 
 .exp-header {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+}
+
+/* Company badge + date/location share this row; job-role sits on its own
+   full-width line below so it never has to compete with them for space. */
+.exp-header-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 16px;
-  border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 
 .company-badge-row {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 6px;
 }
 
 .company-name {
@@ -1069,6 +1074,7 @@ a {
 }
 
 .exp-meta {
+  margin-left: auto;
   text-align: right;
   font-size: 0.88rem;
   color: var(--text-muted);
@@ -2259,11 +2265,13 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .exp-header {
+  .exp-header-top {
     flex-direction: column;
+    align-items: flex-start;
   }
 
   .exp-meta {
+    margin-left: 0;
     text-align: left;
   }
 
@@ -4279,12 +4287,6 @@ body.mode-quick .timeline-item:nth-child(n+4) { display: none; }
 .palette-trigger:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 2px; }
 .palette-trigger:focus:not(:focus-visible) { outline: none; }
 
-@media (max-width: 1100px) {
-  /* Keep date/location on the header row (wrapping as needed) instead of
-     stacking into a full-width column -- column mode left a wide empty
-     gap where the right-aligned block used to sit. */
-  .exp-meta { margin-left: auto; text-align: right; }
-}
 
 /* Anything that reacts to hover now also reacts to a click */
 .clickable { cursor: pointer; }
