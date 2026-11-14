@@ -157,7 +157,7 @@ function initDevOpsTerminal() {
   • <a href="mailto:deepanntech@gmail.com?subject=Interview%20Invitation%20-%20DevOps%20Role" class="text-emerald font-bold">Email Deepan: deepanntech@gmail.com</a>
   • Direct Call: <a href="tel:+919514668683" class="text-cyan">+91 9514668683</a>
   • LinkedIn: <a href="https://www.linkedin.com/in/deepann/" target="_blank" class="text-cyan">linkedin.com/in/deepann</a>
-  • Resume: <a href="Deepan_Cloud_DevOps_SRE_Resume.pdf" download class="text-amber">Download 1-Page PDF</a>`,
+  • Resume: <a href="resume/" target="_blank" rel="noopener" class="text-amber">View Resume</a>`,
 
     htop: `[SIMULATED SYSTEM RESOURCE MONITOR]
   Tasks: 38 total, 4 running, 34 sleeping | Load avg: 0.12, 0.08, 0.04

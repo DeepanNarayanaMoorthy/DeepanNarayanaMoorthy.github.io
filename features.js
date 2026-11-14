@@ -348,8 +348,7 @@ Requirements: 3+ years with AWS and Azure; strong Python and Bash; Linux; experi
     sections.forEach(([id, label]) => items.push({ type: 'Go to', label, run: () => scrollToEl(document.getElementById(id)) }));
     const actions = [
       ['Book 15 minutes (Google Calendar)', 'book call meeting schedule interview', openBooking],
-      ['Download resume (PDF)', 'resume cv pdf download', () => { const a = document.createElement('a'); a.href = 'Deepan_Cloud_DevOps_SRE_Resume.pdf'; a.download = 'Deepan_Narayanamoorthy_DevOps_Resume.pdf'; document.body.appendChild(a); a.click(); a.remove(); }],
-      ['Open HTML resume', 'resume text html', () => { location.href = 'resume/'; }],
+      ['View resume', 'resume cv pdf view', () => window.open('resume/', '_blank', 'noopener')],
       ['Email Deepan', 'email mail contact', () => { openEmail(); }],
       ['Copy email address', 'copy email clipboard', () => { navigator.clipboard?.writeText('deepanntech@gmail.com'); buddySay({ text: 'Email copied: deepanntech@gmail.com', actions: [{ label: 'Book 15 min', run: openBooking }, { label: 'Thanks', run: () => {} }] }); }],
       ['Open LinkedIn', 'linkedin social', () => window.open('https://www.linkedin.com/in/deepann/', '_blank', 'noopener')],
