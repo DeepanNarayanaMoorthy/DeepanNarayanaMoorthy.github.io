@@ -4280,8 +4280,10 @@ body.mode-quick .timeline-item:nth-child(n+4) { display: none; }
 .palette-trigger:focus:not(:focus-visible) { outline: none; }
 
 @media (max-width: 1100px) {
-  .exp-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .exp-meta { text-align: left; }
+  /* Keep date/location on the header row (wrapping as needed) instead of
+     stacking into a full-width column -- column mode left a wide empty
+     gap where the right-aligned block used to sit. */
+  .exp-meta { margin-left: auto; text-align: right; }
 }
 
 /* Anything that reacts to hover now also reacts to a click */
