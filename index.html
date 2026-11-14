@@ -912,48 +912,178 @@
               </div>
 
               <div class="exp-bullets">
-                <ul>
-                  <li data-tech="aws terraform">
-                    <strong>Enterprise Multi-Account Infrastructure:</strong> Own multiple production environments end-to-end &ndash; <strong>Terraform</strong>-driven modules delivering isolated AWS environments for safe releases and customer demos, with consistent VPC/NLB/Route Table networking and service topology across stacks.
-                  </li>
-                  <li data-tech="aws rds">
-                    <strong>Cross-Account Data Migration Pipeline:</strong> Engineered a cross-account/cross-region data migration pipeline (<strong>VPC peering</strong>, <strong>AWS DataSync</strong> across Postgres, Snowflake, EFS, S3) powering preprod refreshes and customer sandboxes.
-                  </li>
-                  <li data-tech="oidc aws">
-                    <strong>Org-Wide CI/CD Security Modernization:</strong> Migrated repos org-wide from static <strong>AWS</strong> keys to <strong>GitHub OIDC</strong> (full STS support across S3, BuildKit) and all environments from Snowflake password-based auth to private-key auth; led credential rotation and remediation across services after a security exposure incident.
-                  </li>
-                  <li data-tech="datadog aws">
-                    <strong>Production Escalation Lead &amp; RCA:</strong> Led cross-system incident RCA across ECS, Snowflake, VPC, and Kafka/Celery &ndash; including nginx 502 buffer overflows, CloudFront/WAF false positives, and Snowflake auth/TLS failures &ndash; applying targeted fixes (proxy-buffer tuning, WAF exceptions).
-                  </li>
-                  <li data-tech="aws finops">
-                    <strong>Cloud Cost Optimization:</strong> Drove cost savings through <strong>ECS</strong> autoscaling, a <strong>Lambda</strong>-based cost-attribution tagging pipeline, <strong>RDS&rarr;Graviton</strong> and <strong>EBS gp2&rarr;gp3</strong> migrations, and a chatbot-driven environment scale-up/scale-down system triggered by CloudWatch alerts on inactivity.
-                  </li>
-                  <li data-tech="aws">
-                    <strong>Observability &amp; Distributed Tracing:</strong> Extended code-level observability with <strong>AWS X-Ray</strong> service maps and trace-level latency breakdowns, <strong>CloudWatch Logs Insights</strong> queries, and ALB access-log tracing across repos &ndash; cutting reliance on manual log correlation during incident RCA.
-                  </li>
-                  <li data-tech="aws">
-                    <strong>Per-Tenant Analytics Isolation:</strong> Built per-tenant <strong>Superset</strong> isolation for sandbox analytics &ndash; dedicated clusters, hashed-ID DNS-safe hostnames, and fail-fast guest-token auth keeping each client&rsquo;s data fully isolated.
-                  </li>
-                  <li data-tech="datadog aws">
-                    <strong>SRE, Incident Response &amp; Observability:</strong> Replaced Freshping with an <strong>Atlassian Statuspage</strong> + <strong>Datadog</strong> model across Prod US/EU &ndash; automated incident create/resolve validated against a live outage, client-safe RCA docs, plus monthly Finance-facing uptime reporting.
-                  </li>
-                  <li data-tech="aws">
-                    <strong>Deployment Automation for AI &amp; Streaming Platforms:</strong> Built repeatable, auditable deployment pipelines for AI-assisted Copilot services, Realtime ETL (Managed Apache Flink &amp; ECS), and internal MCP servers with multi-platform container architecture validation (<code>linux/amd64</code>); cut deployment rerun time ~80% (19.5 min &rarr; 3.9 min) via ECR image reuse.
-                  </li>
-                </ul>
+                <button class="exp-expand-all" type="button">Collapse all sections</button>
+                <div class="exp-categories">
+
+                  <div class="exp-category">
+                    <button class="exp-category-toggle" type="button" aria-expanded="true">
+                      <span class="exp-category-chevron">&#9662;</span>
+                      <span class="exp-category-title">Platform Ownership</span>
+                      <span class="exp-category-count">4</span>
+                    </button>
+                    <ul class="exp-category-list">
+                      <li data-tech="aws terraform">
+                        Own a dedicated internal environment, Customer Sandbox (US &amp; EU), a QA sandbox, and a core product&rsquo;s full environment set (prod/preprod US/EU, demo, staging, QA) end-to-end &ndash; app stack, role-separated DB users, autoscaling-group isolation, networking, and secrets/<strong>IAM</strong> wiring &ndash; so product/QA can deploy and validate without ad-hoc infra work per release.
+                      </li>
+                      <li data-tech="aws rds">
+                        Led the company&rsquo;s commission-data migration from production into an isolated internal environment via <strong>VPC peering</strong> and cross-account/cross-region <strong>AWS DataSync</strong> (Postgres, Snowflake, EFS, S3), clearing permission, security-group, ownership, KMS, and logging blockers (several via AWS Support) until validated for safe internal use without mixing in customer data.
+                      </li>
+                      <li data-tech="aws">
+                        Built a repeatable per-tenant onboarding pattern (dedicated <strong>Superset</strong> analytics stack, AWS DataSync wiring, secrets wiring, and app-level fixes) that turned onboarding enterprise sandbox customers into a standard, low-friction playbook instead of a one-off manual effort each time.
+                      </li>
+                      <li data-tech="finops aws">
+                        Flagged ~<strong>$4k</strong> of stale ECS/DB spend traced to forgotten provisioning during a routine AWS budget review.
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="exp-category">
+                    <button class="exp-category-toggle" type="button" aria-expanded="true">
+                      <span class="exp-category-chevron">&#9662;</span>
+                      <span class="exp-category-title">Security &amp; CI/CD Modernization</span>
+                      <span class="exp-category-count">6</span>
+                    </button>
+                    <ul class="exp-category-list">
+                      <li data-tech="oidc aws">
+                        Migrated the core application, a public API service, and all related repos from static <strong>AWS</strong> keys to <strong>GitHub OIDC</strong> with full STS/session-token support across S3, BuildKit, Snowflake, and Docker; closed follow-on gaps with Storage Integration and Snowflake key-pair auth.
+                      </li>
+                      <li data-tech="oidc aws">
+                        Extended the same <strong>GitHub OIDC</strong> migration pattern organization-wide across several additional repositories, eliminating static AWS keys from CI/CD company-wide.
+                      </li>
+                      <li data-tech="oidc">
+                        Led an end-to-end <strong>Snowflake</strong> auth revamp, migrating all 10 environments from password-based auth to private-key authentication.
+                      </li>
+                      <li data-tech="oidc aws">
+                        Led org-wide credential rotation and remediation across multiple production services after a security exposure incident.
+                      </li>
+                      <li data-tech="aws">
+                        Improved CI signal quality &ndash; a test-result dashboard now surfaces uncatalogued tests and ownership violations directly in the step summary; fixed alerting that was masking real scheduled-run failures; cut deployment rerun time <strong>~80%</strong> (19.5 min &rarr; 3.9 min) via <strong>ECR</strong> image reuse.
+                      </li>
+                      <li data-tech="aws">
+                        Diagnosed and fixed a multi-architecture Docker build mismatch producing images incompatible with the production runtime, enforcing explicit <code>linux/amd64</code> targeting in CI.
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="exp-category">
+                    <button class="exp-category-toggle" type="button" aria-expanded="true">
+                      <span class="exp-category-chevron">&#9662;</span>
+                      <span class="exp-category-title">Per-Tenant Isolation &amp; Analytics</span>
+                      <span class="exp-category-count">1</span>
+                    </button>
+                    <ul class="exp-category-list">
+                      <li data-tech="aws">
+                        Built per-tenant <strong>Superset</strong> isolation for Customer Sandbox: dedicated cluster per client (full DB migrate/recreate); deterministic DNS-safe hostnames derived from hashed client IDs (raw IDs never exposed); one resolved endpoint shared by browser embed, guest tokens, and server-side API calls; fail-fast behavior when client context is missing; plus regression tests covering guest tokens, email updates, and caching.
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="exp-category">
+                    <button class="exp-category-toggle" type="button" aria-expanded="true">
+                      <span class="exp-category-chevron">&#9662;</span>
+                      <span class="exp-category-title">Cost Optimization</span>
+                      <span class="exp-category-count">7</span>
+                    </button>
+                    <ul class="exp-category-list">
+                      <li data-tech="aws finops">
+                        Led multi-environment <strong>EFS</strong> right-sizing (staging, QA, prod-clone-EU, sandbox) by copying only in-use files instead of cloning full volumes &ndash; sandbox alone dropped from <strong>1.44 TiB to 73.48 GiB</strong>.
+                      </li>
+                      <li data-tech="aws finops">
+                        Implemented autoscaling for web and Superset analytics services across multiple environments, cutting idle compute cost.
+                      </li>
+                      <li data-tech="aws finops">
+                        Built a <strong>Lambda</strong>-based resource-tagging pipeline for accurate AWS cost attribution across accounts.
+                      </li>
+                      <li data-tech="aws finops">
+                        Migrated <strong>RDS</strong> instances from Intel to <strong>Graviton</strong>, and all production <strong>EBS</strong> volumes from gp2 to gp3, for cost reduction.
+                      </li>
+                      <li data-tech="aws finops">
+                        Built an on-demand environment scale-up system via a chatbot, with automatic scale-down after inactivity driven by <strong>CloudWatch</strong> metrics/alerts.
+                      </li>
+                      <li data-tech="aws finops">
+                        Cut recurring spend by right-sizing/decommissioning an idle EU sandbox environment based on real usage signals &ndash; saving <strong>~$1,800/mo</strong> each time, while keeping it redeployable on demand.
+                      </li>
+                      <li data-tech="aws finops">
+                        Owned the prod&rarr;preprod data-refresh cadence: cancelled a stalled, multi-terabyte <strong>DataSync</strong> job that was wasting spend, then coordinated multi-region restore/cutover and post-refresh hardening plus downstream sanity checks.
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="exp-category">
+                    <button class="exp-category-toggle" type="button" aria-expanded="true">
+                      <span class="exp-category-chevron">&#9662;</span>
+                      <span class="exp-category-title">Observability &amp; Incident Response</span>
+                      <span class="exp-category-count">4</span>
+                    </button>
+                    <ul class="exp-category-list">
+                      <li data-tech="datadog aws">
+                        Replaced Freshping with an <strong>Atlassian Statuspage</strong> + <strong>Datadog</strong> model: automated incident create/resolve across regions (validated against a real outage), an L1 handoff instead of overclaiming automation, automated monthly Finance-facing uptime reporting, and migration docs adopted team-wide.
+                      </li>
+                      <li data-tech="datadog">
+                        Coordinated a Statuspage custom-domain cutover for the public status page directly with Atlassian support.
+                      </li>
+                      <li data-tech="aws">
+                        Extended code-level observability with <strong>AWS X-Ray</strong> and ALB access-log tracing for end-to-end request traceability.
+                      </li>
+                      <li data-tech="datadog aws">
+                        Acted as the cross-layer escalation point for incident diagnosis, RCA, and remediation across ECS, Snowflake, VPC, and Kafka/Celery.
+                        <details class="exp-detail">
+                          <summary>Show 6 named production incidents</summary>
+                          <ol>
+                            <li>A recurring web-server 502 traced to oversized request headers exceeding proxy buffers &ndash; applied a live mitigation, then shipped the permanent config fix.</li>
+                            <li>A CDN 403 traced to a WAF false positive on a legitimate admin-settings request &ndash; ruled out storage/access-control causes and proposed a narrow, auditable security exception.</li>
+                            <li>A production JWT auth failure traced to a key-fingerprint mismatch between a Secrets Manager private key and the registered Snowflake public key &ndash; resolved end-to-end, unblocking a customer contract workflow.</li>
+                            <li>A Sev-2 customer-sandbox commission-sync failure traced to missing bootstrap tables in the data warehouse &ndash; restored them and wrote a customer-shareable RCA separating the infra gap from a customer-side config issue.</li>
+                            <li>Sandbox-environment TLS failures traced to a deprecated region parameter building an invalid database hostname (masked by connection pooling) &ndash; removed the parameter; root cause confirmed by the vendor&rsquo;s support team.</li>
+                            <li>A non-production outage (compute capacity defaulting to zero) traced via orchestration state, audit logs, and deployment history to a CD pipeline defaulting every unset value to zero &ndash; ruled out autoscaling and prescribed fail-fast guardrails.</li>
+                          </ol>
+                        </details>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="exp-category">
+                    <button class="exp-category-toggle" type="button" aria-expanded="true">
+                      <span class="exp-category-chevron">&#9662;</span>
+                      <span class="exp-category-title">Release Engineering &amp; Cross-Functional Standing</span>
+                      <span class="exp-category-count">6</span>
+                    </button>
+                    <ul class="exp-category-list">
+                      <li data-tech="aws">
+                        Turned manual, ad-hoc releases into auditable, repeatable deployment workflows for an AI-assisted Copilot product, a Realtime ETL service (Managed Apache Flink &amp; ECS), a multi-cluster <strong>Superset</strong> rollout, and an internal MCP server, plus sandboxed build automation on self-hosted CI runners.
+                      </li>
+                      <li data-tech="aws">
+                        Migrated GitHub self-hosted runners and secrets from a legacy CI organization to a new enterprise-grade CI organization, across all <strong>35 repos</strong>.
+                      </li>
+                      <li data-tech="aws terraform">
+                        Authored significant <strong>Terraform</strong>/infra-as-code deliveries, including a large (37-commit, 25-file) change provisioning a production-clone analytics environment plus supporting networking and a second regional database clone.
+                      </li>
+                      <li data-tech="aws python">
+                        Served as the named point of contact for core platform/data services: <strong>AWS</strong>, Postgres, Supabase, Typesense, Auth0, and Snowflake.
+                      </li>
+                      <li data-tech="datadog">
+                        Led vendor-facing technical coordination with <strong>Datadog</strong>, AWS/Amazon Q, and HashiCorp.
+                      </li>
+                      <li data-tech="aws">
+                        Recognized org-wide as the go-to person for infrastructure issues in a formal performance review &ndash; impact called <strong>&ldquo;critical&rdquo;</strong> and <strong>&ldquo;tremendous&rdquo;</strong> across teams.
+                      </li>
+                    </ul>
+                  </div>
+
+                </div>
               </div>
 
               <div class="tech-stack-row">
-                <span class="tech-pill">Terraform</span>
-                <span class="tech-pill">AWS ECS/Fargate</span>
-                <span class="tech-pill">GitHub OIDC</span>
-                <span class="tech-pill">AWS X-Ray</span>
-                <span class="tech-pill">AWS Graviton</span>
-                <span class="tech-pill">Datadog</span>
+                <span class="tech-pill" data-pill-filter="terraform">Terraform</span>
+                <span class="tech-pill" data-pill-filter="aws">AWS ECS/Fargate</span>
+                <span class="tech-pill" data-pill-filter="oidc">GitHub OIDC</span>
+                <span class="tech-pill" data-pill-filter="aws">AWS X-Ray</span>
+                <span class="tech-pill" data-pill-filter="finops">AWS Graviton</span>
+                <span class="tech-pill" data-pill-filter="datadog">Datadog</span>
                 <span class="tech-pill">Snowflake</span>
-                <span class="tech-pill">Atlassian Statuspage</span>
-                <span class="tech-pill">AWS DataSync</span>
-                <span class="tech-pill">Python</span>
+                <span class="tech-pill" data-pill-filter="datadog">Atlassian Statuspage</span>
+                <span class="tech-pill" data-pill-filter="aws">AWS DataSync</span>
+                <span class="tech-pill" data-pill-filter="python">Python</span>
                 <span class="tech-pill">Docker</span>
               </div>
             </div>
@@ -992,47 +1122,132 @@
               </div>
 
               <div class="exp-bullets">
-                <ul>
-                  <li data-tech="aws azure terraform">
-                    <strong>Standardized Multi-Cloud Infrastructure:</strong> Provisioned and standardized infrastructure for <strong>30+ microservices</strong> across <strong>AWS</strong> (ECS/Fargate, RDS, Lambda) and <strong>Azure</strong> (Functions, App Services, VMs) using AWS CloudFormation and Azure ARM templates, establishing multi-cloud IaC standards.
-                  </li>
-                  <li data-tech="aws azure datadog">
-                    <strong>Dynamic Autoscaling &amp; Incident Reduction:</strong> Designed autoscaling templates and metrics-based scaling strategies for AWS Fargate and Azure WebApps, eliminating ThousandEye alert bottlenecks for Auth APIs and cutting system performance incidents by <strong>20%</strong>.
-                  </li>
-                  <li data-tech="aws">
-                    <strong>Global Edge UI Delivery Pattern:</strong> Delivered a repeatable <strong>S3 + CloudFront + Lambda@Edge</strong> pattern for static frontend delivery across multiple services (Cat® MineStar™ Solutions, VisionLink, and Operator Management System 2.0), enabling automated edge cache invalidation and high global throughput.
-                  </li>
-                  <li data-tech="aws azure">
-                    <strong>Blue/Green Deployments:</strong> Owned release execution for downtime-sensitive changes using automated blue-green deployments and tested rollback strategies (<strong>10+ cases</strong>); coordinated with stakeholders on downtime impact and postmortem/RCA to continuously improve reliability.
-                  </li>
-                  <li data-tech="azure oidc python">
-                    <strong>Security &amp; Compliance Automation:</strong> Developed internal tools for <strong>Azure Key Vault</strong> alerts, IP compliance checks, post-production sanity checks, and incident reporting—resolving <strong>50+ vulnerabilities</strong> and reducing manual effort by <strong>10&ndash;15 hours</strong> per iteration.
-                  </li>
-                  <li data-tech="azure">
-                    <strong>Production Telematics Pipelines:</strong> Implemented automated data pull pipelines for production telematics pushed to JFrog Artifactory, eliminating network timeout drops and accelerating test validation cycles.
-                  </li>
-                  <li data-tech="azure datadog">
-                    <strong>Bulk Scaling &amp; Telemetry Alerts:</strong> Created automation for bulk scaling of Azure App Service plans to mitigate reserved instance shortages; developed scheduled query rules using Log Analytics KQL for automated monitoring and alerting.
-                  </li>
-                  <li data-tech="aws">
-                    <strong>Lambda LogGroup Migration Pipeline:</strong> Automated the migration of standalone CloudWatch log groups into Lambda deployment stacks, parallelizing deployments and saving developers <strong>1 hour per release</strong>.
-                  </li>
-                  <li data-tech="aws azure finops">
-                    <strong>Multi-Cloud Cost Reduction:</strong> Spearheaded 3 internal Azure and Azure-to-AWS workload migrations, rightsizing overprovisioned app service plans and reducing monthly operational cloud spend by <strong>~12%</strong>.
-                  </li>
-                </ul>
+                <button class="exp-expand-all" type="button">Collapse all sections</button>
+                <div class="exp-categories">
+
+                  <div class="exp-category">
+                    <button class="exp-category-toggle" type="button" aria-expanded="true">
+                      <span class="exp-category-chevron">&#9662;</span>
+                      <span class="exp-category-title">Delivery &amp; Ownership</span>
+                      <span class="exp-category-count">7</span>
+                    </button>
+                    <ul class="exp-category-list">
+                      <li data-tech="azure">
+                        Delivered <strong>82 user stories</strong> and <strong>3 key features</strong> on schedule across the year (Key Vault IP restriction, a production telematics data pull, alerts cleanup).
+                      </li>
+                      <li data-tech="azure">
+                        Resolved <strong>2 critical</strong> and <strong>4 medium-scale</strong> production bugs, stabilizing system performance for a customer-facing analytics platform.
+                      </li>
+                      <li data-tech="aws azure terraform">
+                        Provisioned and standardized infrastructure for <strong>30+ microservices</strong> across <strong>AWS</strong> (ECS/Fargate, RDS, Lambda) and <strong>Azure</strong> (Functions, App Services, VMs) using AWS CloudFormation and Azure ARM templates, establishing multi-cloud IaC standards.
+                      </li>
+                      <li data-tech="aws azure datadog">
+                        Designed autoscaling templates and metrics-based scaling strategies for AWS Fargate and Azure WebApps, cutting system performance incidents by <strong>20%</strong>.
+                      </li>
+                      <li data-tech="aws azure">
+                        Owned release execution for downtime-sensitive changes using automated blue-green deployments and tested rollback strategies (<strong>10+ cases</strong>); coordinated with stakeholders on downtime impact and postmortem/RCA.
+                      </li>
+                      <li data-tech="aws azure finops">
+                        Led 3 internal Azure migrations and Azure-to-AWS workload migrations, rightsizing overprovisioned resources and reducing monthly operational cloud spend by <strong>~12%</strong>.
+                      </li>
+                      <li data-tech="azure datadog">
+                        Implemented monitoring with <strong>CloudWatch</strong> and <strong>Azure Monitor</strong>, and built CI/CD pipelines in Azure DevOps for <strong>20+ services</strong> &ndash; cutting incident response time by <strong>30 minutes</strong> and release lead time.
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="exp-category">
+                    <button class="exp-category-toggle" type="button" aria-expanded="true">
+                      <span class="exp-category-chevron">&#9662;</span>
+                      <span class="exp-category-title">Service Migration &amp; Modernization</span>
+                      <span class="exp-category-count">2</span>
+                    </button>
+                    <ul class="exp-category-list">
+                      <li data-tech="azure aws">
+                        Migrated <strong>37 legacy scheduled jobs</strong> to serverless, autoscaling compute across 9 workstreams, fixing data-retrieval timeouts, removing a 31-day retention ceiling, and eliminating manual load balancing along the way.
+                        <details class="exp-detail">
+                          <summary>Show all 9 workstreams</summary>
+                          <ul>
+                            <li>Fixed slow, timeout-prone queries behind a customer-facing analytics dashboard by streamlining SQL joins (4 services).</li>
+                            <li>Integrated new data columns into a downstream Snowflake pipeline (2 services).</li>
+                            <li>Converted non-autoscaling Java consumer jobs to elastic compute, cutting licensed-host costs while absorbing growing message load (6 services).</li>
+                            <li>Fixed a &ldquo;missing location&rdquo; data bug in a fleet-productivity application (2 services).</li>
+                            <li>Removed a 31-day data-retention ceiling by re-architecting an event-driven aggregation path on Event Hubs, unlocking archival-data access (12 services).</li>
+                            <li>Wired a Parquet-based reporting pipeline into a downstream analytics platform (4 services).</li>
+                            <li>Enabled horizontal autoscaling for a hub-sync worker (2 services).</li>
+                            <li>Eliminated manual load balancing by making another aggregation worker autoscaling (4 services).</li>
+                            <li>Supported a database-table migration to a separate database (1 service).</li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li data-tech="aws">
+                        Automated migration of standalone <strong>CloudWatch</strong> LogGroups into their corresponding <strong>Lambda</strong> stacks via parallelized pipelines/utilities, saving developers <strong>1 hour</strong> per deployment.
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="exp-category">
+                    <button class="exp-category-toggle" type="button" aria-expanded="true">
+                      <span class="exp-category-chevron">&#9662;</span>
+                      <span class="exp-category-title">Quality, Compliance &amp; Security Tooling</span>
+                      <span class="exp-category-count">7</span>
+                    </button>
+                    <ul class="exp-category-list">
+                      <li data-tech="azure">Implemented a scheduled <strong>SonarQube</strong> scan pipeline for the UI, improving code quality/maintainability tracking.</li>
+                      <li data-tech="azure">Built a <strong>Key Vault</strong> secret-expiry pipeline alerting the team on secrets expiring within 30/20/10 days, and those with no expiration set.</li>
+                      <li data-tech="azure">Built a SQL + Key Vault IP-restriction verification utility that generates a compliance report on every production deployment day.</li>
+                      <li data-tech="azure python">Built a utility to auto-update SAS-token secret expiry dates using the epoch embedded in the token, reducing security risk from stale tokens.</li>
+                      <li data-tech="azure python">Built an alert-information utility that pulls all alert metadata into an extensive report, then used it to find and remove alerts pointing at non-existing target resources.</li>
+                      <li data-tech="azure">Implemented a custom task to retrieve secrets from a shared production Key Vault and rewired an internal platform&rsquo;s pipelines onto it after IP-based restrictions blocked the previous access path.</li>
+                      <li data-tech="azure oidc python">Developed internal tools for Key Vault alerts, IP compliance checks, post-production sanity checks, and incident reporting &ndash; resolving <strong>50+ vulnerabilities</strong> and reducing manual effort by <strong>10&ndash;15 hours</strong> per iteration.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exp-category">
+                    <button class="exp-category-toggle" type="button" aria-expanded="true">
+                      <span class="exp-category-chevron">&#9662;</span>
+                      <span class="exp-category-title">Delivery Velocity &amp; Automation</span>
+                      <span class="exp-category-count">9</span>
+                    </button>
+                    <ul class="exp-category-list">
+                      <li data-tech="azure">Built a SQL stored-procedure execution template that runs procedures and writes their output to files, streamlining data processing.</li>
+                      <li data-tech="azure">Built a production telematics data-pull pipeline pushing data to <strong>JFrog</strong>, cutting extraction time and network interruptions.</li>
+                      <li data-tech="azure">Fixed recurring reserved-instance capacity failures with a bulk app-service-plan scaling script and pipeline update; migrated scale pipelines from classic configuration to YAML.</li>
+                      <li data-tech="azure datadog">Built an MSI-info utility for Event Hubs (EH-based IP restriction/RBAC automation) and a scheduled query-rule template automating KQL execution against Log Analytics data for monitoring alerts.</li>
+                      <li data-tech="azure">Built and implemented an autoscaling template for dynamic resource allocation; remapped compute plans for high-traffic services based on performance-test results.</li>
+                      <li data-tech="aws">
+                        Built a UI deployment pipeline plus AWS infra (<strong>S3 + CloudFront + Lambda@Edge</strong>, edge-cache invalidation) for an equipment-operator identification app &ndash; feeding safety, profitability, and quality dashboards on construction sites; the same pattern was reused across multiple other services for global static-UI delivery.
+                      </li>
+                      <li data-tech="azure">Built 6 scheduled pipelines for database cleanup cron jobs, fixing cross-environment sync and downstream record-count discrepancies.</li>
+                      <li data-tech="azure">Drove general repository and cloud-portal cleanup for a more organized, efficient system.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exp-category">
+                    <button class="exp-category-toggle" type="button" aria-expanded="true">
+                      <span class="exp-category-chevron">&#9662;</span>
+                      <span class="exp-category-title">Personal Growth</span>
+                      <span class="exp-category-count">2</span>
+                    </button>
+                    <ul class="exp-category-list">
+                      <li data-tech="python">Completed an NIIT workshop on Power BI/DAX with Snowflake integration, scoring <strong>85%+</strong> on course assessments.</li>
+                      <li>Pursued AWS certification and system-design study, culminating in <strong>AWS Solutions Architect &ndash; Associate</strong>.</li>
+                    </ul>
+                  </div>
+
+                </div>
               </div>
 
               <div class="tech-stack-row">
-                <span class="tech-pill">AWS CloudFormation</span>
-                <span class="tech-pill">Azure ARM</span>
-                <span class="tech-pill">AWS ECS/Fargate</span>
-                <span class="tech-pill">CloudFront</span>
-                <span class="tech-pill">Lambda@Edge</span>
-                <span class="tech-pill">Azure DevOps</span>
-                <span class="tech-pill">Azure Key Vault</span>
-                <span class="tech-pill">CloudWatch</span>
-                <span class="tech-pill">Azure Monitor</span>
+                <span class="tech-pill" data-pill-filter="aws">AWS CloudFormation</span>
+                <span class="tech-pill" data-pill-filter="azure">Azure ARM</span>
+                <span class="tech-pill" data-pill-filter="aws">AWS ECS/Fargate</span>
+                <span class="tech-pill" data-pill-filter="aws">CloudFront</span>
+                <span class="tech-pill" data-pill-filter="aws">Lambda@Edge</span>
+                <span class="tech-pill" data-pill-filter="azure">Azure DevOps</span>
+                <span class="tech-pill" data-pill-filter="azure">Azure Key Vault</span>
+                <span class="tech-pill" data-pill-filter="datadog">CloudWatch</span>
+                <span class="tech-pill" data-pill-filter="azure">Azure Monitor</span>
                 <span class="tech-pill">PowerShell</span>
                 <span class="tech-pill">SonarQube</span>
               </div>

@@ -1152,6 +1152,97 @@ a {
   font-weight: 600;
 }
 
+/* Categorized / collapsible achievement groups within an experience card */
+.exp-expand-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  background: none;
+  border: none;
+  color: var(--accent-cyan);
+  font: 600 0.78rem var(--font-sans);
+  cursor: pointer;
+  padding: 0;
+}
+.exp-expand-all:hover { text-decoration: underline; }
+
+.exp-category {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.exp-category-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text-primary);
+  font: 600 0.95rem var(--font-sans);
+}
+.exp-category-toggle:hover { color: var(--accent-cyan); }
+
+.exp-category-chevron {
+  transition: transform 0.25s ease;
+  color: var(--accent-cyan);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+.exp-category.collapsed .exp-category-chevron { transform: rotate(-90deg); }
+
+.exp-category-count {
+  margin-left: auto;
+  font: 600 0.72rem var(--font-mono);
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 2px 9px;
+  flex-shrink: 0;
+}
+
+.exp-category-list {
+  padding: 2px 16px 14px 16px !important;
+  margin: 0 !important;
+}
+.exp-category.collapsed .exp-category-list { display: none; }
+
+/* Nested <details> used for dense sub-breakdowns (named incidents, service lists) */
+.exp-detail {
+  margin: 10px 0 4px 22px;
+  padding: 10px 14px;
+  border-left: 2px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 0 8px 8px 0;
+}
+.exp-detail summary {
+  cursor: pointer;
+  color: var(--accent-cyan);
+  font-weight: 600;
+  font-size: 0.88rem;
+  list-style: none;
+}
+.exp-detail summary::-webkit-details-marker { display: none; }
+.exp-detail summary::before { content: "▸ "; }
+.exp-detail[open] summary::before { content: "▾ "; }
+.exp-detail ol, .exp-detail ul {
+  margin: 8px 0 0 18px;
+  padding: 0;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.exp-detail li { margin-bottom: 6px; }
+.exp-detail li::before { content: none; }
+
 /* Tech Stack row */
 .tech-stack-row {
   display: flex;
@@ -1169,6 +1260,16 @@ a {
   background: rgba(56, 189, 248, 0.08);
   border: 1px solid rgba(56, 189, 248, 0.15);
   color: var(--accent-cyan);
+}
+
+.tech-pill[data-pill-filter] {
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+}
+.tech-pill[data-pill-filter]:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: var(--accent-cyan);
+  transform: translateY(-1px);
 }
 
 /* ==========================================================================

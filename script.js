@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCursorSpotlight();
   initFloatingDock();
   initExperienceTechFilter();
+  initExpCategoryAccordion();
   initArchitectureTopology();
   initSkillSearch();
   initMetricCardDetails();
@@ -1371,12 +1372,60 @@ window.centerOnElement = function (el) {
 /**
  * Experience Technology Filter Bar
  */
+/**
+ * Collapsible achievement categories inside each experience card, plus a
+ * per-card "expand/collapse all" control. Categories start expanded.
+ */
+function initExpCategoryAccordion() {
+  document.querySelectorAll('.exp-category-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.closest('.exp-category');
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      cat.classList.toggle('collapsed', expanded);
+    });
+  });
+
+  // Tech-stack pills at the bottom of each card jump straight to the matching filter
+  document.querySelectorAll('.tech-pill[data-pill-filter]').forEach(pill => {
+    pill.addEventListener('click', () => {
+      const filter = pill.getAttribute('data-pill-filter');
+      const target = document.querySelector(`.exp-filter-btn[data-exp-filter="${filter}"]`);
+      if (!target) return;
+      target.click();
+      target.closest('.exp-filter-bar')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+
+  document.querySelectorAll('.exp-expand-all').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.timeline-content');
+      if (!card) return;
+      const cats = card.querySelectorAll('.exp-category');
+      const anyCollapsed = [...cats].some(c => c.classList.contains('collapsed'));
+      cats.forEach(c => {
+        c.classList.toggle('collapsed', !anyCollapsed);
+        c.querySelector('.exp-category-toggle')?.setAttribute('aria-expanded', String(anyCollapsed));
+      });
+      btn.textContent = anyCollapsed ? 'Collapse all sections' : 'Expand all sections';
+    });
+  });
+}
+
 function initExperienceTechFilter() {
   const filterBtns = document.querySelectorAll('.exp-filter-btn');
   const bullets = document.querySelectorAll('.exp-bullets li[data-tech]');
   const counter = document.getElementById('expMatchCounter');
 
   if (!filterBtns.length) return;
+
+  // Make sure a filtered-to achievement is never hidden behind a collapsed category
+  const expandAllCategories = () => {
+    document.querySelectorAll('.exp-category').forEach(c => {
+      c.classList.remove('collapsed');
+      c.querySelector('.exp-category-toggle')?.setAttribute('aria-expanded', 'true');
+    });
+  };
 
   // Keep chip labels in sync with the tagged achievements
   const countFor = f => f === 'all' ? bullets.length : [...bullets].filter(li => (li.getAttribute('data-tech') || '').split(/\s+/).includes(f)).length;
@@ -1389,6 +1438,7 @@ function initExperienceTechFilter() {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      expandAllCategories();
 
       const filter = btn.getAttribute('data-exp-filter');
       let matchCount = 0;
