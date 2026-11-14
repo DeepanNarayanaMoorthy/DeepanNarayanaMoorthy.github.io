@@ -1026,7 +1026,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 16px;
   margin-bottom: 8px;
 }
@@ -1035,6 +1035,19 @@ a {
   display: flex;
   align-items: center;
   gap: 16px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+/* Lets the (often long) company name + subtitle wrap/shrink instead of
+   pushing the date/location block onto its own line. */
+.company-text-wrap {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.exp-meta {
+  flex: 0 0 auto;
 }
 
 .company-name {
