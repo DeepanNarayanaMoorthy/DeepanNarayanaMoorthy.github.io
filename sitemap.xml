@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://deepannarayanamoorthy.github.io/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -11,16 +11,21 @@
       <image:title>Deepan Narayanamoorthy - Senior DevOps &amp; Cloud Engineer</image:title>
       <image:caption>Headshot of Deepan Narayanamoorthy, DevOps &amp; Cloud Infrastructure Engineer</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://deepannarayanamoorthy.github.io/og-image.png</image:loc>
+      <image:title>Deepan Narayanamoorthy portfolio preview</image:title>
+      <image:caption>DevOps, Cloud &amp; SRE Engineer portfolio social preview</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://deepannarayanamoorthy.github.io/resume/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://deepannarayanamoorthy.github.io/Deepan_Cloud_DevOps_SRE_Resume.pdf</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
